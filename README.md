@@ -1,8 +1,7 @@
-# cellular-neural-processing-system-vhdl
+# CellNetPU (Cellular Neural Network Processing Unit)
 A Cellular Neural Network SoC implementation with learning algorithm on VHDL. (Digilent Atlys Board)
 
-# How to use ISE on Windows 10
-
+## How to use ISE on Windows 10
 Xilinx ISE 14.7:
 The license manager and Project Navigator both just CLOSE.
 
@@ -25,7 +24,7 @@ Copy the new rdiArgs.bat file to C:\Xilinx\14.7\ISE_DS\PlanAhead\bin
 
 Now you should have a working ISE Design Suite on win 10
 
-# Publications
+## Publications
 If you use this work, please citate following papers.
 
 [A new architecture for emulating CNN with template learning on FPGA](https://ieeexplore.ieee.org/abstract/document/8093280)

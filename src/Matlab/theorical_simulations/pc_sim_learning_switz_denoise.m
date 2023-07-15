@@ -50,7 +50,8 @@ for i=1:nfiles
     x_new=0;
     
     for j=1:learn_loop
-        [x_new,x_normal,~] = cnn_system( A,B,I,x_bnd,u_bnd, u{i}, x_new, Ts, iter, 1);
+        x_new=0;
+        [x_new,x_normal,~] = cnn_system( A,B,I,x_bnd,u_bnd, u{i}, x_new, Ts, iter, 'cpu');
         
         error_map=((1/2)*(ideal{i}-x_new));
         

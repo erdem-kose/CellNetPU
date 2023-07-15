@@ -6,87 +6,89 @@ addpath(genpath('../func_image'));
 
 %reading image
 gray_im=gray_read('images/1d/midpoint_input.png');
-% gray_im=im2bw(gray_read('images/others/lara.png'));
-% gray_im=imresize(gray_im,[128 128],'bicubic');
 u=2*(gray_im)-1;
 
 %reading ideal
 ideal=gray_read('images/1d/midpoint_ideal.png');
-% ideal=edge(gray_im,'canny');
 ideal=2*(ideal)-1;
 
 %cnn calculation
-iter=1;
-Ts=0.2;
-learn_loop=2000;
+iter=10;
+Ts=0.1;
+learn_loop=1000;
 learn_rate=0.1;
 
 patch_size=3;
 patch_mid=(patch_size+1)/2;
-A=zeros(patch_size,patch_size,5);
-B=zeros(patch_size,patch_size,5);
-I=zeros(1,5);
+A1=zeros(patch_size,patch_size);
+B1=zeros(patch_size,patch_size);
+I1=zeros(1,1);
+A2=zeros(patch_size,patch_size);
+B2=zeros(patch_size,patch_size);
+I2=zeros(1,1);
 x_bnd=0;
 u_bnd=0;
 
-x=zeros(size(u,1),size(u,2),5);
-
-delta=0*u;
-error_map=0*u;
-da=zeros(patch_size,patch_size);
-db=zeros(patch_size,patch_size);
-
 err=zeros(1,learn_loop);
-
+learnProg=waitbar(0,'Learn Progress');
 for i=1:learn_loop
-%kademe 1
-    [x(:,:,1),~,~] = cnn_system( A(:,:,1),B(:,:,1),I(1),x_bnd,u_bnd, u, x(:,:,2), Ts, iter, 1);
-    
-    for k=1:patch_size
-        for l=1:patch_size
-            delta_a=learn_rate*cnn_system( A(:,:,2),0,0,x_bnd,0, delta, delta, 1, 1, 1)/(size(delta,1)*size(delta,2));
-            da(k,l)=sum(sum(delta_a.*circshift(x(:,:,1),[patch_mid-k patch_mid-l])));
-            A(k,l,1)=A(k,l,1)+da(k,l);
-            
-            delta_b=learn_rate*cnn_system( B(:,:,2),0,0,x_bnd,0, delta, delta, 1, 1, 1)/(size(delta,1)*size(delta,2));
-            db(k,l)=sum(sum(delta_b.*circshift(u,[patch_mid-k patch_mid-l])));
-            B(k,l,1)=B(k,l,1)+db(k,l);
-        end
-    end
-    delta_i=learn_rate*I(2)*delta/(size(delta,1)*size(delta,2));
-    di=sum(sum(delta_i));
-    I(1)=I(1)+di;
-    
-%kademe 2
-    [x(:,:,2),~,~] = cnn_system( A(:,:,2),B(:,:,2),I(2),x_bnd,u_bnd, u, x(:,:,1), Ts, iter, 1);
+    %layer 1
+    [x_1,~,~,x_1_diff] = cnn_system( A1,B1,I1,x_bnd,u_bnd, u, 0, Ts, iter, 'cpu');
+    %layer 2
+    [x_2,~,~,x_2_diff] = cnn_system( A2,B2,I2,x_bnd,u_bnd, x_1, 0, Ts, iter, 'cpu');
 
-    error_map=(1/2)*(ideal-x(:,:,2));
+    %learn layer 2 because of backpropagation
+    error_map2=(ideal-x_2);
+    dirac2=-error_map2.*x_2_diff;
     
-    delta=(learn_rate*error_map)/(size(error_map,1)*size(error_map,2));
+    delta2=(-learn_rate*dirac2)/(size(dirac2,1)*size(dirac2,2));
 
     for k=1:patch_size
         for l=1:patch_size
-            da(k,l)=sum(sum(delta.*circshift(x(:,:,2),[patch_mid-k patch_mid-l])));
-            A(k,l,2)=A(k,l,2)+da(k,l);
-            
-            db(k,l)=sum(sum(delta.*circshift(u,[patch_mid-k patch_mid-l])));
-            B(k,l,2)=B(k,l,2)+db(k,l);
+            da2=sum(sum(delta2.*circshift(x_2,[patch_mid-k patch_mid-l])));
+            A2(k,l)=A2(k,l)+da2;
+            db2=sum(sum(delta2.*circshift(x_1,[patch_mid-k patch_mid-l])));
+            B2(k,l)=B2(k,l)+db2;
         end
     end
-    di=sum(sum(delta));
-    I(2)=I(2)+di;
-    
-    err(i)=100*sum(sum(error_map))/(size(error_map,1)*size(error_map,2));
-    
-end
-x=zeros(size(u,1),size(u,2),5);
-for i=1:learn_loop
-    [x(:,:,1),~,~] = cnn_system( A(:,:,1),B(:,:,1),I(1),x_bnd,u_bnd, u, x(:,:,2), Ts, iter, 1);
-    [x(:,:,2),x_normal,~] = cnn_system( A(:,:,2),B(:,:,2),I(2),x_bnd,u_bnd, u, x(:,:,1), Ts, iter, 1);
-end
-error_map=((1/2)*(ideal-x(:,:,2))).^2;
-[ssimval, ssimmap] = ssim(x(:,:,2),double(ideal));
+    di2=sum(sum(delta2));
+    I2=I2+di2;
 
+    %learn layer 1
+    dirac1=imfilter(dirac2,A2,x_bnd,'same','corr').*x_1_diff;
+    delta1=(-learn_rate*dirac1)/(size(dirac1,1)*size(dirac1,2));
+    
+    for k=1:patch_size
+        for l=1:patch_size
+            da1=sum(sum(delta1.*circshift(x_1,[patch_mid-k patch_mid-l])));
+            A1(k,l)=A1(k,l)+da1;
+            db1=sum(sum(delta1.*circshift(u,[patch_mid-k patch_mid-l])));
+            B1(k,l)=B1(k,l)+db1;
+        end
+    end
+    di1=sum(sum(delta1));
+    I1=I1+di1;
+    
+    %error summary per iteration
+    err(i)=100*sum(sum(error_map2))/(size(error_map2,1)*size(error_map2,2));
+    
+    waitbar(i/learn_loop);
+    if(isgraphics(learnProg)==0)
+        break;
+    end
+end
+close(learnProg);
+%CNN calculation with learned weights
+%layer 1
+[x_1,~] = cnn_system( A1,B1,I1,x_bnd,u_bnd, u, 0, Ts, iter, 'cpu');
+%layer 2
+[x_2,x_normal] = cnn_system( A2,B2,I2,x_bnd,u_bnd, x_1, 0, Ts, iter, 'cpu');
+    
+%error map and structural similarity calculation
+error_map2=((1/2)*(ideal-x_2)).^2;
+[ssimval, ssimmap] = ssim(x_1,double(ideal));
+
+%plot figures
 figure(2)
 subplot(2,3,1)
 imshow((u+1)/2)
@@ -95,10 +97,10 @@ subplot(2,3,2)
 imshow(x_normal)
 title('CNN')
 subplot(2,3,3)
-imshow((ideal+1)/2)
+imshow(ideal)
 title('Ideal')
 subplot(2,2,3)
-imshow(abs(error_map))
+imshow(abs(error_map2))
 title('Absolute Error Map')
 subplot(2,2,4)
 plot(err)
@@ -106,4 +108,3 @@ grid on
 ylabel('% Error ');
 xlabel('Learning Count');
 title(sprintf('Error=%%%f%',err(end)))
-

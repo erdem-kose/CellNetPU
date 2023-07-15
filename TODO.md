@@ -1,0 +1,3 @@
+-CNN changeable template size 
+-Hold image in CNN Processor cache in pieces with critical information-like error, state outputs etc.-(1920x1080 image in 128x128 pieces)
+-Send image to CNN Processor cache piece by piece(1920x1080 image in 128x128 pieces)
