@@ -1,0 +1,2 @@
+vhdl work ../../cnn_clocking.vhd
+vhdl work ../example_design/cnn_clocking_exdes.vhd

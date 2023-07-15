@@ -57,13 +57,8 @@ begin
 			wait for clk_100M_period*2;
 			rst<='0';
 			wait for clk_100M_period*2;
-
-			wait for 4.8 ms;
-			rst<='1';
-			wait for clk_100M_period*2;
-			rst<='0';
 			
-			--wait; -- will wait forever
+			wait; -- will wait forever
 	end process tb;
   --  End Test Bench 
 END;

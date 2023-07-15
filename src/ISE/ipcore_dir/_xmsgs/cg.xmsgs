@@ -8,49 +8,20 @@
 <msg type="info" file="sim" num="172" delta="old" >Generating IP...
 </msg>
 
-<msg type="error" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">Unable to find D:\Egitim\ELEYLT-Tez</arg>
+<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">A core named &apos;cnn_clocking&apos; already exists in the project. Output products for this core may be overwritten.</arg>
 </msg>
 
-<msg type="error" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">   Calismasi\Work\v2\ISE\source\rom_files\ram_generic.coe</arg>
+<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">A core named &apos;cnn_clocking&apos; already exists in the project. Output products for this core may be overwritten.</arg>
 </msg>
 
-<msg type="error" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">   Coregen is looking for D:\Egitim\ELEYLT-Tez</arg>
-</msg>
-
-<msg type="error" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">   Calismasi\Work\v2\ISE\source\rom_files\ram_generic.coe</arg>
-</msg>
-
-<msg type="error" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">Unable to find D:\Egitim\ELEYLT-Tez</arg>
-</msg>
-
-<msg type="error" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">   Calismasi\Work\v2\ISE\source\rom_files\ram_generic.coe</arg>
-</msg>
-
-<msg type="error" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">   Coregen is looking for D:\Egitim\ELEYLT-Tez</arg>
-</msg>
-
-<msg type="error" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">   Calismasi\Work\v2\ISE\source\rom_files\ram_generic.coe</arg>
-</msg>
-
-<msg type="error" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">An invalid core configuration has been detected during</arg>
-</msg>
-
-<msg type="error" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">   Customization. Core parameters will be reset to their default values.</arg>
-</msg>
-
-<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">A core named &apos;blk_mem_gen_v7_3&apos; already exists in the project. Output products for this core may be overwritten.</arg>
-</msg>
-
-<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">A core named &apos;blk_mem_gen_v7_3&apos; already exists in the project. Output products for this core may be overwritten.</arg>
-</msg>
-
-<msg type="info" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">Pre-processing HDL files for &apos;blk_mem_gen_v7_3&apos;...</arg>
-</msg>
-
-<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">Overwriting existing file D:/Egitim/ELEYLT-Tez Calismasi/Work/v2/ISE/ipcore_dir/tmp/_cg/blk_mem_gen_v7_3/doc/blk_mem_gen_v7_3_vinfo.html with file from view xilinx_documentation</arg>
+<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">Component clk_wiz_v3_6 does not have a valid model name for VHDL synthesis</arg>
 </msg>
 
 <msg type="info" file="sim" num="949" delta="old" >Finished generation of ASY schematic symbol.
+</msg>
+
+<msg type="warning" file="coreutil" num="0" delta="new" >WARNING: This core does not have a top level called &quot;/cnn_clocking&quot;
+WARNING: Top level has been set to &quot;/cnn_clocking_exdes&quot;
 </msg>
 
 <msg type="info" file="sim" num="948" delta="old" >Finished FLIST file generation.

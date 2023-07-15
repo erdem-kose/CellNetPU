@@ -3,7 +3,7 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="D:/Egitim/ELEYLT-Tez Calismasi/Work/v2/ISE/testbench_isim_beh.wdb" id="1" type="auto">
+      <db_ref path="D:/Egitim/ELEYLT-Tez Calismasi/Work/v0_3/ISE/testbench_isim_beh.wdb" id="1" type="auto">
          <top_modules>
             <top_module name="cnn_package" />
             <top_module name="numeric_std" />
@@ -13,10 +13,14 @@
             <top_module name="std_logic_unsigned" />
             <top_module name="testbench" />
             <top_module name="textio" />
+            <top_module name="vcomponents" />
+            <top_module name="vital_primitives" />
+            <top_module name="vital_timing" />
+            <top_module name="vpkg" />
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="7" />
+   <WVObjectSize size="17" />
    <wvobject fp_name="/testbench/clk" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -36,6 +40,34 @@
    <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/state" type="other" db_ref_id="1">
       <obj_property name="ElementShortName">state</obj_property>
       <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/uut/CLOCKING/clk_in" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_in</obj_property>
+      <obj_property name="ObjectShortName">clk_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/alu_calc" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">alu_calc</obj_property>
+      <obj_property name="ObjectShortName">alu_calc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/uut/CLOCKING/sys_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">sys_clk</obj_property>
+      <obj_property name="ObjectShortName">sys_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/inv_sys_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">inv_sys_clk</obj_property>
+      <obj_property name="ObjectShortName">inv_sys_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/uut/CLOCKING/bram_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">bram_clk</obj_property>
+      <obj_property name="ObjectShortName">bram_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/uut/CLOCKING/dvi_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">dvi_clk</obj_property>
+      <obj_property name="ObjectShortName">dvi_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/uut/CLOCKING/dvi2x_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">dvi2x_clk</obj_property>
+      <obj_property name="ObjectShortName">dvi2x_clk</obj_property>
    </wvobject>
    <wvobject fp_name="group11" type="group">
       <obj_property name="label">templates</obj_property>
@@ -63,47 +95,17 @@
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
       </wvobject>
-      <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/a" type="array" db_ref_id="1">
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/a" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">a[0:2]</obj_property>
          <obj_property name="ObjectShortName">a[0:2]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/a[0]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[0]</obj_property>
-            <obj_property name="ObjectShortName">a[0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/a[1]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[1]</obj_property>
-            <obj_property name="ObjectShortName">a[1]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/a[2]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[2]</obj_property>
-            <obj_property name="ObjectShortName">a[2]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
       </wvobject>
-      <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/b" type="array" db_ref_id="1">
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/b" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">b[0:2]</obj_property>
          <obj_property name="ObjectShortName">b[0:2]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/b[0]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[0]</obj_property>
-            <obj_property name="ObjectShortName">b[0]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/b[1]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[1]</obj_property>
-            <obj_property name="ObjectShortName">b[1]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/b[2]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[2]</obj_property>
-            <obj_property name="ObjectShortName">b[2]</obj_property>
-            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         </wvobject>
       </wvobject>
-      <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/i" type="array" db_ref_id="1">
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/i" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">i[15:0]</obj_property>
          <obj_property name="ObjectShortName">i[15:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
@@ -119,12 +121,64 @@
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
+   <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/x_old" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">x_old[0:2]</obj_property>
+      <obj_property name="ObjectShortName">x_old[0:2]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/x_old[0]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">x_old[0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/x_old[1]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">x_old[1]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/x_old[2]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">x_old[2]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/u" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">u[0:2]</obj_property>
+      <obj_property name="ObjectShortName">u[0:2]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/u[0]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">u[0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/u[1]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">u[1]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/u[2]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">u[2]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
    <wvobject fp_name="group30" type="group">
       <obj_property name="label">ALU</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="/testbench/uut/PROCESSOR/alu_en" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">alu_en</obj_property>
-         <obj_property name="ObjectShortName">alu_en</obj_property>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/rst" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/alu_calc" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">alu_calc</obj_property>
+         <obj_property name="ObjectShortName">alu_calc</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/calc_rst" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">calc_rst</obj_property>
+         <obj_property name="ObjectShortName">calc_rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/x_out_ready" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">x_out_ready</obj_property>
+         <obj_property name="ObjectShortName">x_out_ready</obj_property>
       </wvobject>
       <wvobject fp_name="group56" type="group">
          <obj_property name="label">ram</obj_property>
@@ -156,6 +210,7 @@
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          <obj_property name="UseCustomSignalColor">true</obj_property>
          <obj_property name="CustomSignalColor">#008000</obj_property>
+         <obj_property name="label">x[0:2]</obj_property>
          <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/x[0]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[0]</obj_property>
             <obj_property name="ObjectShortName">x[0]</obj_property>
@@ -205,6 +260,19 @@
             <obj_property name="ElementShortName">[2]</obj_property>
             <obj_property name="ObjectShortName">u[2]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/u[2][0]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[0]</obj_property>
+               <obj_property name="ObjectShortName">u[2][0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/u[2][1]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[1]</obj_property>
+               <obj_property name="ObjectShortName">u[2][1]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/u[2][2]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[2]</obj_property>
+               <obj_property name="ObjectShortName">u[2][2]</obj_property>
+            </wvobject>
          </wvobject>
       </wvobject>
       <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/x_out" type="array" db_ref_id="1">
@@ -232,6 +300,11 @@
          <obj_property name="ObjectShortName">x_temp_4[15:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/x_temp_5" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">x_temp_5[15:0]</obj_property>
+         <obj_property name="ObjectShortName">x_temp_5[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
       <wvobject fp_name="/testbench/uut/PROCESSOR/ALU/ax" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">ax[31:0]</obj_property>
          <obj_property name="ObjectShortName">ax[31:0]</obj_property>
@@ -241,6 +314,104 @@
          <obj_property name="ElementShortName">bu[31:0]</obj_property>
          <obj_property name="ObjectShortName">bu[31:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group48" type="group">
+      <obj_property name="label">FIFO</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_in" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fifo_data_in[0:1]</obj_property>
+         <obj_property name="ObjectShortName">fifo_data_in[0:1]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_in[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">fifo_data_in[0]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_in[0][0]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[0]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_in[0][0]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_in[0][1]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[1]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_in[0][1]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_in[0][2]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[2]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_in[0][2]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_in[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">fifo_data_in[1]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_in[1][0]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[0]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_in[1][0]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_in[1][1]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[1]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_in[1][1]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_in[1][2]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[2]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_in[1][2]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_out" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fifo_data_out[0:1]</obj_property>
+         <obj_property name="ObjectShortName">fifo_data_out[0:1]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_out[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">fifo_data_out[0]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_out[0][0]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[0]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_out[0][0]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_out[0][1]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[1]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_out[0][1]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_out[0][2]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[2]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_out[0][2]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_out[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">fifo_data_out[1]</obj_property>
+            <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_out[1][0]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[0]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_out[1][0]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_out[1][1]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[1]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_out[1][1]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_data_out[1][2]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[2]</obj_property>
+               <obj_property name="ObjectShortName">fifo_data_out[1][2]</obj_property>
+               <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/testbench/uut/PROCESSOR/STATE_MACHINE/fifo_clk_en" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fifo_clk_en[0:1]</obj_property>
+         <obj_property name="ObjectShortName">fifo_clk_en[0:1]</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

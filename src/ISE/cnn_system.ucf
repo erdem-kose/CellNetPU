@@ -101,6 +101,6 @@ NET "data[2]" SLEW = FAST;
 NET "data[1]" SLEW = FAST;
 NET "data[0]" SLEW = FAST;
 NET "ready" SLEW = FAST;
-#Created by Constraints Editor (xc6slx45-csg324-3) - 2016/10/17
-NET "PROCESSOR/STATE_MACHINE/alu_clk" TNM_NET = PROCESSOR/STATE_MACHINE/alu_clk;
-TIMESPEC TS_PROCESSOR_STATE_MACHINE_alu_clk = PERIOD "PROCESSOR/STATE_MACHINE/alu_clk" 10 ns HIGH 50%;
+#Created by Constraints Editor (xc6slx45-csg324-3) - 2016/10/26
+NET "PROCESSOR/ALU/alu_calc" TNM_NET = PROCESSOR/ALU/alu_calc;
+TIMESPEC TS_PROCESSOR_ALU_alu_calc = PERIOD "PROCESSOR/ALU/alu_calc" 60 ns HIGH 50%;

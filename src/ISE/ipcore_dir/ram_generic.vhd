@@ -114,7 +114,7 @@ END COMPONENT;
       c_use_bram_block => 0,
       c_use_byte_wea => 0,
       c_use_byte_web => 0,
-      c_use_default_data => 1,
+      c_use_default_data => 0,
       c_use_ecc => 0,
       c_use_softecc => 0,
       c_wea_width => 1,

@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.5
-# Date: Sat Oct 15 11:06:51 2016
+# Date: Thu Oct 20 20:22:46 2016
 #
 ##############################################################
 #
@@ -46,7 +46,7 @@ CSET axi_id_width=4
 CSET axi_slave_type=Memory_Slave
 CSET axi_type=AXI4_Full
 CSET byte_size=9
-CSET coe_file="D:\Egitim\ELEYLT-Tez Calismasi\Work\v2\ISE\source\rom_files\ram_templates.coe"
+CSET coe_file=.\rom_files\ram_templates.coe
 CSET collision_warnings=ALL
 CSET component_name=ram_templates
 CSET disable_collision_warnings=false
@@ -105,4 +105,4 @@ CSET write_width_b=16
 MISC pkg_timestamp=2012-11-19T16:22:25Z
 # END Extra information
 GENERATE
-# CRC: a2b22f77
+# CRC: cbe488c4
