@@ -56,7 +56,6 @@
 ------------------------------------------------------------------------------
 -- CLK_OUT1___100.000______0.000______50.0______200.000____150.000
 -- CLK_OUT2___100.000______0.000______50.0______200.000____150.000
--- CLK_OUT3____20.000______0.000______50.0_____1200.000____150.000
 --
 ------------------------------------------------------------------------------
 -- "Input Clock   Freq (MHz)    Input Jitter (UI)"
@@ -72,8 +71,7 @@ port
   clk_in           : in     std_logic;
   -- Clock out ports
   sys_clk          : out    std_logic;
-  mcu_clk          : out    std_logic;
-  div_clk          : out    std_logic
+  mcu_clk          : out    std_logic
  );
 end component;
 
@@ -87,6 +85,5 @@ your_instance_name : cnn_clocking
     clk_in => clk_in,
     -- Clock out ports
     sys_clk => sys_clk,
-    mcu_clk => mcu_clk,
-    div_clk => div_clk);
+    mcu_clk => mcu_clk);
 -- INST_TAG_END ------ End INSTANTIATION Template ------------

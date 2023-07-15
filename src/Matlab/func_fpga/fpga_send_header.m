@@ -1,4 +1,4 @@
-function [] = fpga_send_header(serial_obj, bus_f, im_width, im_height, Ts, iter, template_no, learn_loop, learn_rate)
+function [] = fpga_send_header(serial_obj, bus_f, im_width, im_height, Ts, iter, template_no, learn_loop, learn_rate, alg_no)
     fwrite(serial_obj,0,'uint8');
 
     fwrite(serial_obj,bitand((int16(floor((im_width)/(2^8)))),255),'uint8');
@@ -23,5 +23,8 @@ function [] = fpga_send_header(serial_obj, bus_f, im_width, im_height, Ts, iter,
     learn_rate=int16(learn_rate*(2^bus_f));
     fwrite(serial_obj,bitand((int16(floor((learn_rate)/(2^8)))),255),'uint8');
     fwrite(serial_obj,bitand(int16(learn_rate),255),'uint8');
+    
+    while(fread(serial_obj,1,'uint8')~=1)
+    end
 end
 

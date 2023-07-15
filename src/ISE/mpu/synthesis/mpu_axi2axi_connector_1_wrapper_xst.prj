@@ -1,0 +1,2 @@
+verilog axi2axi_connector_v1_00_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1_00_a/hdl/verilog/axi2axi_connector.v
+verilog work ../hdl/mpu_axi2axi_connector_1_wrapper.v

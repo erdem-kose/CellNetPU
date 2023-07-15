@@ -1,0 +1,14 @@
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/xilinx_primitives.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/divide_part.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/fit_module.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/gpi_module.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/gpo_module.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/intr_ctrl.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/pit_module.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/uart_control_status.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/uart_receive.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/uart_transmit.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/pselect_mask.vhd
+vhdl iomodule_v1_03_a C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a/hdl/vhdl/iomodule.vhd
+vhdl work ../hdl/mpu_iomodule_0_wrapper.vhd

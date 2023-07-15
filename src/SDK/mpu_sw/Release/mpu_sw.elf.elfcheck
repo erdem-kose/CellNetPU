@@ -1,0 +1,9 @@
+elfcheck
+Xilinx EDK 14.5 Build EDK_P.58f
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../mpu_hw_platform/system.xml -pe microblaze_0
+mpu_sw.elf 
+
+ELF file	: mpu_sw.elf
+elfcheck passed.

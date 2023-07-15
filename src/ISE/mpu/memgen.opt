@@ -1,0 +1,10 @@
+-p
+xc6slx45csg324-3
+-pe
+microblaze_0
+C:/Xilinx/14.5/ISE_DS/EDK/sw/lib/microblaze/mb_bootloop_le.elf
+-od
+D:/Egitim/ELEYLT-TezCalismasi/Work/v0_8/ISE
+D:/Egitim/ELEYLT-TezCalismasi/Work/v0_8/ISE/mpu/mpu.mhs
+-lp
+D:/Egitim/ELEYLT-TezCalismasi/Work/v0_8/SupportFiles/

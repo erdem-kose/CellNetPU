@@ -1,11 +1,12 @@
 function [] = fpga_send_image(serial_obj, bus_f, type, image, im_width, im_height)
+    fwrite(serial_obj,1,'uint8');
     switch type
+        case 'u'
+            type_ind=0;
         case 'x_0'
             type_ind=1;
-        case 'u'
-            type_ind=2;
         case 'y_ideal'
-            type_ind=3;
+            type_ind=2;
         otherwise
             display('not available!')
             return;

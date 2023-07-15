@@ -1,0 +1,14 @@
+set -tmpdir D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\synthesis\xst_temp_dir\
+run
+-opt_mode speed
+-netlist_hierarchy as_optimized
+-opt_level 1
+-p xc6slx45csg324-3
+-top mpu_error_u20_u21_wrapper
+-ifmt MIXED
+-ifn mpu_error_u20_u21_wrapper_xst.prj
+-ofn ../implementation/mpu_error_u20_u21_wrapper.ngc
+-hierarchy_separator /
+-iobuf NO
+-sd {../implementation}
+-vlgincdir {"D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\pcores\" "D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\SupportFiles\Digilent\pcores\" "C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }

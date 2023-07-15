@@ -6,152 +6,93 @@ library ieee;
 library std;
 	use std.textio.all;
 library cnn_library;
-	use cnn_library.cnn_package.all;
+	use cnn_library.cnn_components.all;
+	use cnn_library.cnn_constants.all;
+	use cnn_library.cnn_types.all;
 	
 entity cnn_state_machine is
-	port (
+	port
+	(
 		sys_clk, rst, en : in  std_logic;
-		ready, alu_calc, alu_err_rst: out std_logic;
-			
-		ram_we :out std_logic_vector(0 downto 0);
-		ram_address :out std_logic_vector (ramAddressWidth-1 downto 0);
-		ram_data_in :out std_logic_vector (busWidth-1 downto 0);
-		ram_data_out :in std_logic_vector (busWidth-1 downto 0);
-			
-		template_we :out std_logic_vector(0 downto 0);
-		template_address :out std_logic_vector (templateAddressWidth-1 downto 0);
-		template_data_in :out std_logic_vector (busWidth-1 downto 0);
-		template_data_out :in std_logic_vector (busWidth-1 downto 0);
-			
-		a_line: out std_logic_vector ((busWidth*patchSize-1) downto 0);
-		b_line: out std_logic_vector ((busWidth*patchSize-1) downto 0);
-		i_line: out std_logic_vector (busWidth-1 downto 0);
-			
-		x_old_line: out std_logic_vector ((busWidth*patchSize-1) downto 0);
-		u_line: out std_logic_vector ((busWidth*patchSize-1) downto 0);
+		ready: out std_logic:='0';
+		alu_calc: out std_logic:='0';
+		alu_err_rst: out std_logic:='0';
+		
+		u_we : out std_logic_vector(0 downto 0):=(others=>'0');
+		u_address : out std_logic_vector(cacheAddressWidth-1 downto 0):=(others=>'0');
+		u_data_in : out std_logic_vector(busWidth-1 downto 0):=(others=>'0');
+		u_data_out : in std_logic_vector(busWidth-1 downto 0);
+		
+		x_we : out std_logic_vector(0 downto 0):=(others=>'0');
+		x_address : out std_logic_vector(cacheAddressWidth-1 downto 0):=(others=>'0');
+		x_data_in : out std_logic_vector(busWidth-1 downto 0):=(others=>'0');
+		x_data_out : in std_logic_vector(busWidth-1 downto 0);
+		
+		ideal_we : out std_logic_vector(0 downto 0):=(others=>'0');
+		ideal_address : out std_logic_vector(cacheAddressWidth-1 downto 0):=(others=>'0');
+		ideal_data_in : out std_logic_vector(busWidth-1 downto 0):=(others=>'0');
+		ideal_data_out : in std_logic_vector(busWidth-1 downto 0);
+		
+		x_bnd: in std_logic_vector(busWidth-1 downto 0);
+		u_bnd: in std_logic_vector(busWidth-1 downto 0);
+		
+		x_old_out: out patch_unsigned:=(others => (others => (others => '0')));
+		u_out: out patch_unsigned:=(others => (others => (others => '0')));
+		
 		x_new: in std_logic_vector (busWidth-1 downto 0);
 		x_new_ready : in std_logic;
-			
-		ideal_line: out  std_logic_vector (busWidth-1 downto 0);
-		image_size: out  std_logic_vector (busWidth-1 downto 0);
-			
-		error: in std_logic_vector (busWidth-1 downto 0);
-		rand_num: in std_logic_vector (busWidth-1 downto 0);
-			
-		imageWidth: in integer range 0 to imageWidthMAX;
-		imageHeight: in integer range 0 to imageHeightMAX;
-			
-		iter_cnt: in integer range 0 to iterMAX;
-		template_no : in integer range 0 to templateCount;
-			
-		state_mode: in std_logic_vector(modeWidth-1 downto 0):=(others=>'0');
-			
-		ram_x_location :in std_logic_vector (busWidth-1 downto 0);
-		ram_u_location :in std_logic_vector (busWidth-1 downto 0);
-		ram_ideal_location :in std_logic_vector (busWidth-1 downto 0);
-		ram_error_location :in std_logic_vector (busWidth-1 downto 0)
+		
+		ideal: out  std_logic_vector (busWidth-1 downto 0):=(others=>'0');
+		
+		cacheWidth: in integer range 0 to cacheWidthMAX;
+		cacheHeight: in integer range 0 to cacheHeightMAX;
+		
+		iter_cnt: in integer range 0 to iterMAX
 	);
 end cnn_state_machine;
 
 
 architecture Behavioral of cnn_state_machine is
-	component cnn_fifo
-		port (
-			d : in std_logic_vector(busWidth-1 downto 0);
-			clk : in std_logic;
-			ce : in std_logic;
-			q : out std_logic_vector(busWidth-1 downto 0);
-			
-			imageWidth: in integer range 0 to 1920
-		);
-	end component;
-	
+	signal x_old: patch_unsigned:=(others => (others => (others => '0')));
+	signal u: patch_unsigned:=(others => (others => (others => '0')));
+		
 	--for FIFOs 0:fifo_u 1:fifo_x_old
-	type fifo_vector is array(0 to 1,0 to patchWH-1) of std_logic_vector (busWidth-1 downto 0);
-	type fifo_single is array(0 to 1,0 to patchWH-1) of std_logic;
-	
 	signal fifo_data_in : fifo_vector := (others =>(others => (others => '0')));
 	signal fifo_data_out : fifo_vector := (others =>(others => (others => '0')));
 	signal fifo_clk_en : fifo_single := (others =>(others => '0'));
 	
-	--for CNN_TEMPLATES
-	type patch is array (0 to patchWH-1, 0 to patchWH-1) of std_logic_vector (busWidth-1 downto 0);
-	signal A: patch := (others => (others => (others => '0')));
-	signal B: patch := (others => (others => (others => '0')));
-	signal I: std_logic_vector (busWidth-1 downto 0):= (others => '0');
-	signal x_bnd: std_logic_vector (busWidth-1 downto 0)  := (others => '0');
-	signal u_bnd: std_logic_vector (busWidth-1 downto 0)  := (others => '0');
-	
-	type xu_patch is array (0 to patchWH-1, 0 to patchWH-1) of std_logic_vector (busWidth-1 downto 0);
-	signal x_old: xu_patch  := (others => (others => (others => '0')));
-	signal u: xu_patch  := (others => (others => (others => '0')));
-	--
-	
 	-- for State Machine
-	type fsm_states is (
-								TEMPLATE_READ_INIT, TEMPLATE_READ,
-								X_OLD_U_INIT, X_OLD_U_READ, X_NEW_WRITE,
-								X_RAND_INIT, X_RAND_WRITE,
-								SUCCESS
-								);
 	signal state: fsm_states;
-	attribute enum_encoding : string; 
-	attribute enum_encoding of fsm_states: type is "0000 0001 0010 0011 0100 0101 0110 0111";
 	
 	signal iter : integer range 0 to iterMAX := 0;
-	signal ramAddressShift: integer := imageWidth*imageHeight;
-	signal ramXAddressShift: integer := 0*imageWidth*imageHeight;
-	signal ramUAddressShift: integer := 1*imageWidth*imageHeight;
-	signal ramIdealAddressShift: integer := 2*imageWidth*imageHeight;
-	signal ramErrorAddressShift: integer := 3*imageWidth*imageHeight;
+	signal cacheAddressShift: integer := cacheWidth*cacheHeight;
 	--
 	
 begin
-	image_size<=std_logic_vector(to_unsigned(ramAddressShift,busWidth));
-	--Create FIFOs
-	fifo_type_select:for i in 0 to 1 generate --satir
-		fifo_order_select:for j in 0 to patchWH-1 generate --sutun
-			FIFO_XU: cnn_fifo				port map (fifo_data_in(i,j),sys_clk,fifo_clk_en(i,j),fifo_data_out(i,j),imageWidth);
-		end generate fifo_order_select;
-	end generate fifo_type_select;
+	--ALU
+	xu_buff_i:for i in 0 to patchWH-1 generate
+		xu_buff_j:for j in 0 to patchWH-2 generate
+			u_out(i,j)<=u(i,j);
+			x_old_out(i,j)<=x_old(i,j);
+		end generate xu_buff_j;
+	end generate xu_buff_i;
 	
-	--Signal Conversion 2d to 1d for ALU
-	abi2line_height:for i in 0 to patchWH-1 generate --satir
-		abi2line_width:for j in 0 to patchWH-1 generate --sutun
-			a_line(
-						j*(busWidth)+i*(busWidth*patchWH)+(busWidth-1)
-						downto
-						j*(busWidth)+i*(busWidth*patchWH)
-			)<=A(i,j);
-			b_line(
-						j*(busWidth)+i*(busWidth*patchWH)+(busWidth-1)
-						downto
-						j*(busWidth)+i*(busWidth*patchWH)
-			)<=B(i,j);
-		end generate abi2line_width;
-	end generate abi2line_height;
-	i_line<=I;
-	--Signal Conversion 2d to 1d for x_old and u patches
-	xu2line_height:for i in 0 to patchWH-1 generate --satir
-		xu2line_width:for j in 0 to patchWH-1 generate --sutun
-			x_old_line(
-						j*(busWidth)+i*(busWidth*patchWH)+(busWidth-1)
-						downto
-						j*(busWidth)+i*(busWidth*patchWH)
-			)<=x_old(i,j);
-			u_line(
-						j*(busWidth)+i*(busWidth*patchWH)+(busWidth-1)
-						downto
-						j*(busWidth)+i*(busWidth*patchWH)
-			)<=u(i,j);
-		end generate xu2line_width;
-	end generate xu2line_height;
-	fifo2line_height:for i in 0 to patchWH-1 generate --satir
-		fifo2line_width:for j in patchWH-1 to patchWH-1 generate --sutun
-			x_old(i,j)<=fifo_data_out(1,i);
-			u(i,j)<=fifo_data_out(0,i);
-		end generate fifo2line_width;
-	end generate fifo2line_height;
+	--Create FIFOs
+	fifo_line_select:for j in 0 to patchWH-1 generate
+		L1CACHE_FIFO_U: cnn_fifo			port map
+			(
+				fifo_data_in(0,j), sys_clk, fifo_clk_en(0,j), fifo_data_out(0,j), cacheWidth
+			);
+		L1CACHE_FIFO_X: cnn_fifo			port map
+			(
+				fifo_data_in(1,j), sys_clk, fifo_clk_en(1,j), fifo_data_out(1,j), cacheWidth
+			);
+	end generate fifo_line_select;
+	
+	fifo2line:for i in 0 to patchWH-1 generate--Connect Output of FIFO to CNN-AU Input Patch
+		u_out(i,patchWH-1)<= fifo_data_out(0,i);
+		x_old_out(i,patchWH-1)<=fifo_data_out(1,i);
+	end generate fifo2line;
 	----------
 	
 	--Behavioral--------
@@ -159,19 +100,14 @@ begin
 	--------------------
 		variable init_state : integer range 0 to 1 := 0;
 		
-		variable ii : integer range 0 to imageHeightMAX := 0; --i. satir
-		variable ii_1d : integer range 0 to imageHeightMAX*imageWidthMAX := 0; --i. satir
-		variable jj : integer range 0 to imageWidthMAX := 0; --j. sutun
+		variable ii : integer range 0 to cacheHeightMAX := 0; --i. satir
+		variable ii_1d : integer range 0 to cacheHeightMAX*cacheWidthMAX := 0; --i. satir
+		variable jj : integer range 0 to cacheWidthMAX := 0; --j. sutun
 		
-		variable ram_lag : integer range 0 to bramLagMAX := 0;
-		variable template_lag : integer range 0 to templateLagMAX := 0;
+		variable cache_lag : integer range 0 to cacheLagMAX := 0;
+		variable cache_wr_lag : integer range 0 to cacheWrLagMAX := 0;
 		
-		variable address : integer range 0 to imageWidthMAX*imageHeightMAX-1 := 0;
-		
-		variable template_state : integer range 0 to 5:= 0;
-		variable template_A_position : integer range 0 to templateWidth*(templateCount-1) := 0;
-		variable template_B_position : integer range 0 to templateWidth*(templateCount-1)+patchSize := 0;
-		variable bias_bound_position : integer range 0 to templateWidth*(templateCount-1)+2*patchSize := 0;
+		variable address : integer range 0 to cacheWidthMAX*cacheHeightMAX-1 := 0;
 		
 		variable read_init_state : integer range 0 to 3:= 0;
 		variable read_image_patch_done : std_logic := '0';
@@ -180,205 +116,133 @@ begin
 	begin
 		if (rising_edge(sys_clk)) then
 			if (rst='1') then
-				ramAddressShift <= imageWidth*imageHeight;
+				cacheAddressShift <= cacheWidth*cacheHeight;
 				
-				ram_we<="0";template_we<="0";
-				ii:= 0; ii_1d:=0; jj:= 0; template_lag:=0; ram_lag:=0;
-				if state_mode="00" then
-					state<=TEMPLATE_READ_INIT;
-				elsif state_mode="01" then
-					state<=X_RAND_INIT;
-				end if;
+				u_we<="0";x_we<="0";ideal_we<="0";
+				ii:= 0; ii_1d:=0; jj:= 0; cache_lag:=0; cache_wr_lag:=0;
+				state<=X_OLD_U_INIT;
 				
-				ram_address<=(others => '0'); template_address<=(others => '0');
-			elsif (en='1' and state_mode="00") then
+				u_address<=(others => '0'); x_address<=(others => '0'); ideal_address<=(others => '0'); 
+			elsif (en='1') then
 				----------------------------------
 				case (state) is --start of machina
 				----------------------------------
-					
-					--TEMPLATE READ-----------
-					when TEMPLATE_READ_INIT =>
-					--------------------------
-						
-						ii:=0; ii_1d:=0; jj:=0; template_lag:=0; ram_lag:=0;
-						ram_we<="0";template_we<="0";
-						template_A_position:=templateWidth*template_no;
-						template_B_position:=templateWidth*template_no+patchSize;
-						bias_bound_position:=templateWidth*template_no+2*patchSize;
-						template_state:=0;  state<=TEMPLATE_READ;
-					when TEMPLATE_READ =>
-						case (template_state) is
-							when 0 =>
-								address:=template_A_position+(ii_1d)+(jj);
-								A(ii,jj)<=template_data_out;
-							when 1 =>
-								address:=template_B_position+(ii_1d)+(jj);
-								B(ii,jj)<=template_data_out;
-							when 2 =>
-								address:=bias_bound_position;
-								I<=template_data_out;
-							when 3 =>
-								address:=bias_bound_position+1;
-								x_bnd<=template_data_out;
-							when 4 =>
-								address:=bias_bound_position+2;
-								u_bnd<=template_data_out;
-							when others =>
-								address:=0;
-						end case;
-						template_address<=std_logic_vector(to_unsigned(address,templateAddressWidth));
-						template_lag:=template_lag+1;
-						if(template_lag=templateLagMAX) then
-							template_lag:=0;
-							if (template_state=0 or template_state=1) then
-								if (jj=patchWH-1) then
-									jj:=0;
-									if (ii=patchWH-1) then
-										ii:=0;ii_1d:=0;
-										template_state:=template_state+1;
-									else
-										ii:=ii+1;
-										ii_1d:=ii_1d+patchWH;
-									end if;
-								else
-									jj:=jj+1;
-								end if;
-							else
-								template_state:=template_state+1;
-							end if;
-						end if;
-						
-						if (template_state=5) then
-							state<=X_OLD_U_INIT;
-						else
-							state<=TEMPLATE_READ;
-						end if;
-
 					--IMAGE READ-----------
 					when X_OLD_U_INIT =>
 					-----------------------
-						ramAddressShift <= imageWidth*imageHeight;
-						ramXAddressShift <= to_integer(unsigned(ram_x_location))*imageWidth*imageHeight;
-						ramUAddressShift <= to_integer(unsigned(ram_u_location))*imageWidth*imageHeight;
-						ramIdealAddressShift <= to_integer(unsigned(ram_ideal_location))*imageWidth*imageHeight;
-						ramErrorAddressShift <= to_integer(unsigned(ram_error_location))*imageWidth*imageHeight;
 						ii:=0;ii_1d:=0;jj:=0;
-						template_lag:=0; ram_lag:=0;
+						cache_lag:=0; cache_wr_lag:=0;
+						cacheAddressShift <= cacheWidth*cacheHeight;
 						state<=X_OLD_U_READ;
 						init_state:=1;
 					when X_OLD_U_READ =>
-						ram_we<="0";
-						if ram_lag=0 then
-							if (ii>=1 and ii<=imageHeight and jj>=1 and jj<=imageWidth) then
-								address:=ii_1d-imageWidth+(jj-1);--(ii-1)*imageWidth+(jj-1);
-								ram_address<=std_logic_vector(to_unsigned(address+ramUAddressShift,ramAddressWidth));
+						x_we<="0";
+						if iter<(iter_cnt) then
+							alu_err_rst<='1';
+						elsif iter=(iter_cnt) then
+							alu_err_rst<='0';
+						end if;
+						if cache_lag=0 then--Assign Read Addresses
+							if (ii>=1 and ii<=cacheHeight and jj>=1 and jj<=cacheWidth) then
+								address:=ii_1d-cacheWidth+(jj-1);--(ii-1)*cacheWidth+(jj-1);
+								u_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
+								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							end if;
-						elsif ram_lag=1 then
-							if (ii>=1 and ii<=imageHeight and jj>=1 and jj<=imageWidth) then
-								address:=ii_1d-imageWidth+(jj-1);--(ii-1)*imageWidth+(jj-1);
-								ram_address<=std_logic_vector(to_unsigned(address+ramXAddressShift,ramAddressWidth));
+							if (ii>=0 and ii<=1 and jj>=1 and jj<=cacheWidth and init_state=0) then
+								address:=cacheAddressShift+ii_1d-cacheWidth-cacheWidth+(jj-1);
+								--(cacheHeight+ii-2)*cacheWidth+(jj-2);
+								ideal_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
+							elsif (ii>=3 and ii<=cacheHeight and jj>=1 and jj<=cacheWidth) then
+								address:=ii_1d-cacheWidth-cacheWidth-cacheWidth+(jj-1);
+								--(ii-3)*cacheWidth+(jj-2);
+								ideal_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							end if;
-						elsif ram_lag=2 then
-							if (ii>=0 and ii<=1 and jj>=1 and jj<=imageWidth and init_state=0) then
-								address:=ramAddressShift+ii_1d-imageWidth-imageWidth+(jj-1);
-								--(imageHeight+ii-2)*imageWidth+(jj-2);
-								ram_address<=std_logic_vector(to_unsigned(address+ramIdealAddressShift,ramAddressWidth));
-							elsif (ii>=3 and ii<=imageHeight and jj>=1 and jj<=imageWidth) then
-								address:=ii_1d-imageWidth-imageWidth-imageWidth+(jj-1);
-								--(ii-3)*imageWidth+(jj-2);
-								ram_address<=std_logic_vector(to_unsigned(address+ramIdealAddressShift,ramAddressWidth));
-							end if;
-							fifo_clk_en(0,2)<='1';
-							if (ii>=1 and ii<=imageHeight and jj>=1 and jj<=imageWidth) then
-								fifo_data_in(0,2)<=ram_data_out;
+						elsif cache_lag=1 then--Assign Write Address
+							cache_wr_lag:=0;
+							if (ii>=0 and ii<=1 and jj>=2 and jj<=cacheWidth and init_state=0) then
+								address:=cacheAddressShift+ii_1d-cacheWidth-cacheWidth+(jj-2);
+								--(cacheHeight+ii-2)*cacheWidth+(jj-2);
+								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
+							elsif (ii>=1 and ii<=2 and jj=0 and init_state=0) then
+								address:=cacheAddressShift+ii_1d-cacheWidth-cacheWidth-1;
+								--(cacheHeight+ii-3)*cacheWidth+(cacheWidth-1);
+								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
+							elsif (ii>=3 and ii<=cacheHeight and jj>=2 and jj<=cacheWidth) then
+								address:=ii_1d-cacheWidth-cacheWidth-cacheWidth+(jj-2);
+								--(ii-3)*cacheWidth+(jj-2);
+								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
+							elsif (ii>=4 and ii<=cacheHeight and jj=0) then
+								address:=ii_1d-cacheWidth-cacheWidth-cacheWidth-1;
+								--(ii-4)*cacheWidth+(cacheWidth-1);
+								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
+							elsif (ii=0 and jj=0) then
+								address:=cacheAddressShift+ii_1d-cacheWidth-cacheWidth-1;
+								--(cacheHeight+ii-3)*cacheWidth+(cacheWidth-1);
+								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
+							elsif (jj=1) then
 							else
-								fifo_data_in(0,2)<=u_bnd;
+								cache_wr_lag:=2;
 							end if;
-							fifo_data_in(0,0)<=fifo_data_out(0,1); fifo_clk_en(0,0)<='1';
-							fifo_data_in(0,1)<=fifo_data_out(0,2); fifo_clk_en(0,1)<='1';
-							u(0,0)<=u(0,1);u(0,1)<=fifo_data_out(0,0);
-							u(1,0)<=u(1,1);u(1,1)<=fifo_data_out(0,1);
-							u(2,0)<=u(2,1);u(2,1)<=fifo_data_out(0,2);
-						elsif ram_lag=3 then
-							fifo_clk_en(0,0)<='0'; fifo_clk_en(0,1)<='0';fifo_clk_en(0,2)<='0';
-							fifo_clk_en(1,2)<='1';
-							if (ii>=1 and ii<=imageHeight and jj>=1 and jj<=imageWidth) then
-								fifo_data_in(1,2)<=ram_data_out;
+							
+						elsif cache_lag=2 then--Assign FIFOs and CNN-AU X and U patches
+							for i in 0 to patchWH-1 loop --i. satir
+								fifo_clk_en(0,i)<='1'; fifo_clk_en(1,i)<='1';
+							end loop;
+							if (ii>=1 and ii<=cacheHeight and jj>=1 and jj<=cacheWidth) then
+								fifo_data_in(0,patchWH-1)<=u_data_out;
+								fifo_data_in(1,patchWH-1)<=x_data_out;
 							else
-								fifo_data_in(1,2)<=x_bnd;
+								fifo_data_in(0,patchWH-1)<=u_bnd;
+								fifo_data_in(1,patchWH-1)<=x_bnd;
 							end if;
-							fifo_data_in(1,0)<=fifo_data_out(1,1); fifo_clk_en(1,0)<='1';
-							fifo_data_in(1,1)<=fifo_data_out(1,2); fifo_clk_en(1,1)<='1';
-							x_old(0,0)<=x_old(0,1);x_old(0,1)<=fifo_data_out(1,0);
-							x_old(1,0)<=x_old(1,1);x_old(1,1)<=fifo_data_out(1,1);
-							x_old(2,0)<=x_old(2,1);x_old(2,1)<=fifo_data_out(1,2);
+							for i in 0 to patchWH-1 loop --i. satir
+								for j in 0 to patchWH-1 loop --j. sutun
+									if (i<patchWH-1) then
+										fifo_data_in(0,i)<=fifo_data_out(0,i+1);
+										fifo_data_in(1,i)<=fifo_data_out(1,i+1);
+									end if;
+									if (j<patchWH-2) then
+										u(i,j)<=u(i,j+1);
+										x_old(i,j)<=x_old(i,j+1);
+									elsif (j=patchWH-2) then
+										u(i,j)<=fifo_data_out(0,i);
+										x_old(i,j)<=fifo_data_out(1,i);
+									end if;
+								end loop;
+							end loop;
+							ideal<=ideal_data_out;
 							state<=X_NEW_WRITE;
 						end if;
-						if ram_lag>=bramLagMAX then
-							ram_lag:=0;
+						if cache_lag>=cacheLagMAX then
+							cache_lag:=0;
 						else 
-							ram_lag:=ram_lag+1;
+							cache_lag:=cache_lag+1;
 						end if;
 						
 					when X_NEW_WRITE =>
-						if (ram_lag=0) then
-							fifo_clk_en(1,0)<='0'; fifo_clk_en(1,1)<='0'; fifo_clk_en(1,2)<='0';
-							ideal_line<=ram_data_out;
-							ram_lag:=1;
-							if (ii>=0 and ii<=1 and jj>=2 and jj<=imageWidth and init_state=0) then
-								address:=ramAddressShift+ii_1d-imageWidth-imageWidth+(jj-2);
-								--(imageHeight+ii-2)*imageWidth+(jj-2);
-								ram_address<=std_logic_vector(to_unsigned(address+ramXAddressShift,ramAddressWidth));
-							elsif (ii>=1 and ii<=2 and jj=0 and init_state=0) then
-								address:=ramAddressShift+ii_1d-imageWidth-imageWidth-1;
-								--(imageHeight+ii-3)*imageWidth+(imageWidth-1);
-								ram_address<=std_logic_vector(to_unsigned(address+ramXAddressShift,ramAddressWidth));
-							elsif (ii>=3 and ii<=imageHeight and jj>=2 and jj<=imageWidth) then
-								address:=ii_1d-imageWidth-imageWidth-imageWidth+(jj-2);
-								--(ii-3)*imageWidth+(jj-2);
-								ram_address<=std_logic_vector(to_unsigned(address+ramXAddressShift,ramAddressWidth));
-							elsif (ii>=4 and ii<=imageHeight and jj=0) then
-								address:=ii_1d-imageWidth-imageWidth-imageWidth-1;
-								--(ii-4)*imageWidth+(imageWidth-1);
-								ram_address<=std_logic_vector(to_unsigned(address+ramXAddressShift,ramAddressWidth));
-							elsif (ii=0 and jj=0) then
-								address:=ramAddressShift+ii_1d-imageWidth-imageWidth-1;
-								--(imageHeight+ii-3)*imageWidth+(imageWidth-1);
-								ram_address<=std_logic_vector(to_unsigned(address+ramXAddressShift,ramAddressWidth));
-							elsif (jj=1) then
-							else
-								ram_lag:=3;
-							end if;
-						end if;
-						if (ram_lag=1 and x_new_ready='1') then
+						fifo_clk_en(0,0)<='0'; fifo_clk_en(0,1)<='0'; fifo_clk_en(0,2)<='0';
+						fifo_clk_en(1,0)<='0'; fifo_clk_en(1,1)<='0'; fifo_clk_en(1,2)<='0';
+						
+						if (cache_wr_lag=0 and x_new_ready='1') then
 							alu_calc<='1';
-							if iter<(iter_cnt) then
-								alu_err_rst<='1';
-							end if;
-							ram_lag:=2;
-						elsif (ram_lag=2) then
+							cache_wr_lag:=1;
+						elsif (cache_wr_lag=1) then
 							alu_calc<='0';
-							if iter=(iter_cnt) then
-								alu_err_rst<='0';
-							end if;
 							if (jj/=1) then 
-								ram_we<="1";
-								ram_data_in<=x_new;
+								x_we<="1";
+								x_data_in<=x_new;
 							end if;
-							ram_lag:=3;
-						elsif (ram_lag=3) then
-							if (jj/=1) then
-								ram_address<=std_logic_vector(to_unsigned(address+ramErrorAddressShift,ramAddressWidth));
-								ram_data_in<=error;
-							end if;
-							if (jj=imageWidth) then --imageHeight
+							cache_wr_lag:=2;
+						end if;
+						if (cache_wr_lag=2) then
+							if (jj=cacheWidth) then --cacheHeight
 								jj:=0;
-								if (ii=imageHeight) then --imageWidth
+								if (ii=cacheHeight) then --cacheWidth
 									ii:=0;
 									ii_1d:=0;
 								else
 									ii:=ii+1;
-									ii_1d:=ii_1d+imageWidth;
+									ii_1d:=ii_1d+cacheWidth;
 								end if;
 							else
 								jj:=jj+1;
@@ -390,6 +254,7 @@ begin
 								else
 									if (iter=iter_cnt) then
 										iter<=0;
+										alu_err_rst<='1';
 										state<=SUCCESS;
 									else
 										iter<=iter+1;
@@ -399,62 +264,14 @@ begin
 							else
 								state<=X_OLD_U_READ;
 							end if;
-							ram_lag:=0;
+							cache_wr_lag:=0;
 						end if;
-						
 					when SUCCESS =>
-						ram_we<="0";
+						x_we<="0";
 						state<=SUCCESS;
 						
 					when others =>
 						state<=SUCCESS;
-				end case;
-			elsif (en='1' and state_mode="01") then
-				----------------------------------
-				case (state) is --start of machina
-				----------------------------------
-					when X_RAND_INIT =>
-						ramAddressShift <= imageWidth*imageHeight;
-						ramXAddressShift <= to_integer(unsigned(ram_x_location))*imageWidth*imageHeight;
-						ii:=0;ii_1d:=0;jj:=0;
-						ram_lag:=0;	state<=X_RAND_WRITE;
-					when X_RAND_WRITE =>
-						if ram_lag=0 then
-							ram_we<="0";
-							if (ii>=1 and ii<=imageHeight and jj>=1 and jj<=imageWidth) then
-								address:=ii_1d-imageWidth+(jj-1);--(ii-1)*imageWidth+(jj-1);
-								ram_address<=std_logic_vector(to_unsigned(address+ramXAddressShift,ramAddressWidth));
-								ram_lag:=1;
-							else
-								ram_lag:=2;
-							end if;
-						end if;
-
-						if (ram_lag=1) then
-							ram_we<="1";
-							ram_data_in<=rand_num;
-							ram_lag:=2;
-						elsif (ram_lag=2) then
-							if (jj=imageWidth) then --imageHeight
-								jj:=0;
-								if (ii=imageHeight) then --imageWidth
-									ii:=0;
-									ii_1d:=0;
-									state<=SUCCESS;
-								else
-									ii:=ii+1;
-									ii_1d:=ii_1d+imageWidth;
-								end if;
-							else
-								jj:=jj+1;
-								state<=X_RAND_WRITE;
-							end if;
-							ram_lag:=0;
-						end if;
-						
-					when SUCCESS =>
-						state<=SUCCESS;
-					when others =>
 				end case;
 			end if;
 		end if;
