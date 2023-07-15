@@ -144,40 +144,33 @@ begin
 						end if;
 						if cache_lag=0 then--Assign Read Addresses
 							if (ii>=1 and ii<=cacheHeight and jj>=1 and jj<=cacheWidth) then
-								address:=ii_1d-cacheWidth+(jj-1);--(ii-1)*cacheWidth+(jj-1);
+								address:=(ii-1)*cacheWidth+(jj-1);
 								u_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							end if;
 							if (ii>=0 and ii<=1 and jj>=1 and jj<=cacheWidth and init_state=0) then
-								address:=cacheAddressShift+ii_1d-cacheWidth-cacheWidth+(jj-1);
-								--(cacheHeight+ii-2)*cacheWidth+(jj-2);
+								address:=(cacheHeight+ii-2)*cacheWidth+(jj-2);
 								ideal_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (ii>=3 and ii<=cacheHeight and jj>=1 and jj<=cacheWidth) then
-								address:=ii_1d-cacheWidth-cacheWidth-cacheWidth+(jj-1);
-								--(ii-3)*cacheWidth+(jj-2);
+								address:=(ii-3)*cacheWidth+(jj-2);
 								ideal_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							end if;
 						elsif cache_lag=1 then--Assign Write Address
 							cache_wr_lag:=0;
 							if (ii>=0 and ii<=1 and jj>=2 and jj<=cacheWidth and init_state=0) then
-								address:=cacheAddressShift+ii_1d-cacheWidth-cacheWidth+(jj-2);
-								--(cacheHeight+ii-2)*cacheWidth+(jj-2);
+								address:=(cacheHeight+ii-2)*cacheWidth+(jj-2);
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (ii>=1 and ii<=2 and jj=0 and init_state=0) then
-								address:=cacheAddressShift+ii_1d-cacheWidth-cacheWidth-1;
-								--(cacheHeight+ii-3)*cacheWidth+(cacheWidth-1);
+								address:=(cacheHeight+ii-3)*cacheWidth+(cacheWidth-1);
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (ii>=3 and ii<=cacheHeight and jj>=2 and jj<=cacheWidth) then
-								address:=ii_1d-cacheWidth-cacheWidth-cacheWidth+(jj-2);
-								--(ii-3)*cacheWidth+(jj-2);
+								address:=(ii-3)*cacheWidth+(jj-2);
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (ii>=4 and ii<=cacheHeight and jj=0) then
-								address:=ii_1d-cacheWidth-cacheWidth-cacheWidth-1;
-								--(ii-4)*cacheWidth+(cacheWidth-1);
+								address:=(ii-4)*cacheWidth+(cacheWidth-1);
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (ii=0 and jj=0) then
-								address:=cacheAddressShift+ii_1d-cacheWidth-cacheWidth-1;
-								--(cacheHeight+ii-3)*cacheWidth+(cacheWidth-1);
+								address:=(cacheHeight+ii-3)*cacheWidth+(cacheWidth-1);
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (jj=1) then
 							else
@@ -220,8 +213,9 @@ begin
 						end if;
 						
 					when X_NEW_WRITE =>
-						fifo_clk_en(0,0)<='0'; fifo_clk_en(0,1)<='0'; fifo_clk_en(0,2)<='0';
-						fifo_clk_en(1,0)<='0'; fifo_clk_en(1,1)<='0'; fifo_clk_en(1,2)<='0';
+						for i in 0 to patchWH-1 loop --i. satir
+							fifo_clk_en(0,i)<='0'; fifo_clk_en(1,i)<='0';
+						end loop;
 						
 						if (cache_wr_lag=0 and x_new_ready='1') then
 							alu_calc<='1';

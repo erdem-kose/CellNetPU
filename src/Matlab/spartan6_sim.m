@@ -23,10 +23,10 @@ image=imresize(image,[machine_height machine_width]);
 u=image*2-1;
 
 [A,B,I,x_bnd,u_bnd]=cnn_template(2,0);
-[~,x_cpu,x_cpu_time] = cnn_system( A,B,I,x_bnd,u_bnd, u, 0, Ts, iter, 1);
+[~,x_cpu,x_cpu_time] = cnn_system( A,B,I,x_bnd,u_bnd, u, 0, Ts, iter, 'cpu');
 
 [A,B,I,x_bnd,u_bnd]=cnn_template(2,0);
-[~,x_gpu,x_gpu_time] = cnn_system( A,B,I,x_bnd,u_bnd, u, 0, Ts, iter, 0);
+[~,x_gpu,x_gpu_time] = cnn_system( A,B,I,x_bnd,u_bnd, u, 0, Ts, iter, 'gpu');
 
 ideal=edge(u,'canny');
 ideal=2*ideal-1;

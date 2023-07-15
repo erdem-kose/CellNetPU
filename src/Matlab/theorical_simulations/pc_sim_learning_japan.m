@@ -21,9 +21,9 @@ y_ideal=imresize(y_ideal,[im_height im_width],'bicubic');
 y_ideal=2*y_ideal-1;
 
 %cnn calculation
-iter=10;
+iter=100;
 Ts=0.1;
-learn_loop=1000;
+learn_loop=500;
 learn_rate=0.1;
 
 [ A,B,I,x_bnd,u_bnd ]=cnn_template(0,0);
@@ -33,10 +33,10 @@ B(2,1)=abs(rand);
 B(2,2)=abs(rand);
 B(2,3)=abs(rand);
 I=0;
-x_past=0*ones(im_height,im_width);
-x_new=u;
+
 for i=1:learn_loop
-    [x_new,~,~] = cnn_system( A,B,I,x_bnd,u_bnd, u, x_past, Ts, iter, 1);
+    x_past=0;
+    [x_new,~,~] = cnn_system( A,B,I,x_bnd,u_bnd, u, x_past, Ts, iter, 'cpu');
     %error calc
     
     error_map=((1/4)*(y_ideal-x_new)).^2;
@@ -49,7 +49,7 @@ for i=1:learn_loop
     B(2,1)=B(2,1)+D; B(2,2)=B(2,2)+D; B(2,3)=B(2,3)+D;
 end
 
-[x_new,x_normal,~] = cnn_system( A,B,I,x_bnd,u_bnd, u, x_past, Ts, 2000, 1);
+[x_new,x_normal,~] = cnn_system( A,B,I,x_bnd,u_bnd, u, x_past, Ts, iter, 'cpu');
 error_map=((1/2)*(y_ideal-x_new)).^2;
 [ssimval, ssimmap] = ssim(x_normal,double(y_ideal));
 
