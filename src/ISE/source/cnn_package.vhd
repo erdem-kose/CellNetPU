@@ -18,22 +18,23 @@ library std;
 	use std.textio.all;
 
 package cnn_package is
+	constant imageWidthMAX: integer;
+	constant imageHeightMAX: integer;
+
+	constant iterMAX: integer;
+
 	constant ALULagMAX: integer;
 	constant bramLagMAX: integer;
 	constant templateLagMAX: integer;
 
 	constant busM: integer;
 	constant busF: integer;
-	constant busWidth : integer;
-
-	constant imageWidth: integer;
-	constant imageHeight: integer;		
+	constant busWidth : integer;		
 
 	constant fifoCoreAddressWidth: integer;
 
 	constant ramAddressCount: integer;
 	constant ramAddressWidth: integer;
-	constant ramAddressShift: integer;
 
 	constant patchWH : integer;
 	constant patchSize : integer;
@@ -44,20 +45,15 @@ package cnn_package is
 	constant templateWidth: integer;
 	constant templatePieces: integer;
 	constant templateAddressWidth: integer;
-	
-	constant iterMAX: integer;
-	constant Ts : integer range 0 to 65535;
+
 end cnn_package;
 
 package body cnn_package is
-	--degistirilebilir sabitler
-	constant iterMAX: integer:= 2;
-	constant Ts : integer range 0 to 65535:= 205;
+	constant imageWidthMAX: integer := 128;--will be 1920 
+	constant imageHeightMAX: integer := 128;--will be 1080
+
+	constant iterMAX: integer:= 200;
 	
-	constant imageWidth: integer := 128;--en: en fazla 1920
-	constant imageHeight: integer := 128;--boy: en fazla 1080
-	
-	--bu satirdan sonrasini degistirme
 	constant ALULagMAX: integer:= 5;--step - 1
 	constant bramLagMAX: integer:= 3;
 	constant templateLagMAX: integer:= 3;
@@ -69,9 +65,9 @@ package body cnn_package is
 	constant fifoCoreWidth: integer := 1920;--max goruntu eni, degistirme
 	constant fifoCoreAddressWidth: integer := integer(ceil(log2(real(fifoCoreWidth+1))));
 
-	constant ramAddressCount: integer := 3*imageWidth*imageHeight;
+	constant ramAddressCount: integer := 3*imageWidthMAX*imageHeightMAX;
 	constant ramAddressWidth: integer := integer(ceil(log2(real(ramAddressCount))));
-	constant ramAddressShift: integer := imageWidth*imageHeight;
+	
 
 	constant patchWH : integer := 3;
 	constant patchSize : integer := patchWH**2;

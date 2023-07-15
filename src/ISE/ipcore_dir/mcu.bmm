@@ -1,0 +1,40 @@
+ADDRESS_MAP mcu MICROBLAZE-LE 100
+  ADDRESS_SPACE lmb_bram COMBINED [0x00000000:0x0000ffff]
+    ADDRESS_RANGE RAMB16
+      BUS_BLOCK
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[0].RAMB16_S1_1 [31:31] INPUT = mcu.lmb_bram_0.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[1].RAMB16_S1_1 [30:30] INPUT = mcu.lmb_bram_1.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[2].RAMB16_S1_1 [29:29] INPUT = mcu.lmb_bram_2.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[3].RAMB16_S1_1 [28:28] INPUT = mcu.lmb_bram_3.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[4].RAMB16_S1_1 [27:27] INPUT = mcu.lmb_bram_4.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[5].RAMB16_S1_1 [26:26] INPUT = mcu.lmb_bram_5.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[6].RAMB16_S1_1 [25:25] INPUT = mcu.lmb_bram_6.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[7].RAMB16_S1_1 [24:24] INPUT = mcu.lmb_bram_7.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[8].RAMB16_S1_1 [23:23] INPUT = mcu.lmb_bram_8.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[9].RAMB16_S1_1 [22:22] INPUT = mcu.lmb_bram_9.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[10].RAMB16_S1_1 [21:21] INPUT = mcu.lmb_bram_10.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[11].RAMB16_S1_1 [20:20] INPUT = mcu.lmb_bram_11.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[12].RAMB16_S1_1 [19:19] INPUT = mcu.lmb_bram_12.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[13].RAMB16_S1_1 [18:18] INPUT = mcu.lmb_bram_13.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[14].RAMB16_S1_1 [17:17] INPUT = mcu.lmb_bram_14.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[15].RAMB16_S1_1 [16:16] INPUT = mcu.lmb_bram_15.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[16].RAMB16_S1_1 [15:15] INPUT = mcu.lmb_bram_16.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[17].RAMB16_S1_1 [14:14] INPUT = mcu.lmb_bram_17.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[18].RAMB16_S1_1 [13:13] INPUT = mcu.lmb_bram_18.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[19].RAMB16_S1_1 [12:12] INPUT = mcu.lmb_bram_19.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[20].RAMB16_S1_1 [11:11] INPUT = mcu.lmb_bram_20.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[21].RAMB16_S1_1 [10:10] INPUT = mcu.lmb_bram_21.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[22].RAMB16_S1_1 [9:9] INPUT = mcu.lmb_bram_22.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[23].RAMB16_S1_1 [8:8] INPUT = mcu.lmb_bram_23.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[24].RAMB16_S1_1 [7:7] INPUT = mcu.lmb_bram_24.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[25].RAMB16_S1_1 [6:6] INPUT = mcu.lmb_bram_25.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[26].RAMB16_S1_1 [5:5] INPUT = mcu.lmb_bram_26.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[27].RAMB16_S1_1 [4:4] INPUT = mcu.lmb_bram_27.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[28].RAMB16_S1_1 [3:3] INPUT = mcu.lmb_bram_28.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[29].RAMB16_S1_1 [2:2] INPUT = mcu.lmb_bram_29.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[30].RAMB16_S1_1 [1:1] INPUT = mcu.lmb_bram_30.mem;
+        INTERFACE/INTERFACE_MCU/U0/lmb_bram_I/RAM_Inst/Using_B16_S1.The_BRAMs[31].RAMB16_S1_1 [0:0] INPUT = mcu.lmb_bram_31.mem;
+      END_BUS_BLOCK;
+    END_ADDRESS_RANGE;
+  END_ADDRESS_SPACE;
+END_ADDRESS_MAP;

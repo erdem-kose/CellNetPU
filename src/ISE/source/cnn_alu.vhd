@@ -17,7 +17,8 @@ entity cnn_alu is
 			x_out : out  std_logic_vector ((busWidth-1) downto 0):=(others=>'0');
 			x_out_ready : out std_logic:='1';
 			x_line : in  std_logic_vector ((busWidth*patchSize-1) downto 0);
-			u_line : in  std_logic_vector ((busWidth*patchSize-1) downto 0)
+			u_line : in  std_logic_vector ((busWidth*patchSize-1) downto 0);
+			Ts : in integer range 0 to (2**busWidth)-1
 	);
 end cnn_alu;
 

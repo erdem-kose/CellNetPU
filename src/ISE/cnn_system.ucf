@@ -1,109 +1,21 @@
 
-
-NET "ram_address[14]" IOSTANDARD = LVCMOS18;
-
-
-NET "ram_data_in[15]" LOC = U1;
-NET "ram_data_in[14]" LOC = U2;
-NET "ram_data_in[13]" LOC = T1;
-NET "ram_data_in[12]" LOC = T2;
-NET "ram_data_in[11]" LOC = N1;
-NET "ram_data_in[10]" LOC = N2;
-NET "ram_data_in[9]" LOC = M1;
-NET "ram_data_in[8]" LOC = M3;
-NET "ram_data_in[7]" LOC = J1;
-NET "ram_data_in[6]" LOC = J3;
-NET "ram_data_in[5]" LOC = H1;
-NET "ram_data_in[4]" LOC = H2;
-NET "ram_data_in[3]" LOC = K1;
-NET "ram_data_in[0]" LOC = L2;
-NET "ram_data_in[1]" LOC = L1;
-NET "ram_data_in[2]" LOC = K2;
-NET "ram_address[12]" LOC = G6;
-NET "ram_address[11]" LOC = D3;
-NET "ram_address[10]" LOC = F4;
-NET "ram_address[9]" LOC = D1;
-NET "ram_address[8]" LOC = D2;
-NET "ram_address[7]" LOC = H6;
-NET "ram_address[6]" LOC = H3;
-NET "ram_address[5]" LOC = H4;
-NET "ram_address[4]" LOC = F3;
-NET "ram_address[3]" LOC = L7;
-NET "ram_address[2]" LOC = H5;
-NET "ram_address[1]" LOC = J6;
-NET "ram_address[0]" LOC = J7;
 NET "clk" LOC = L15;
-NET "en" LOC = A10;
-NET "rst" LOC = D14;
-NET "ready" LOC = U18;
+NET "en" LOC = A10;#sw0
+NET "rst" LOC = D14;#sw1
+NET "ready_led" LOC = U18;#led1
+NET "uart_rx" LOC = A16;
+NET "uart_tx" LOC = B16;
 
-NET "ram_address[12]" IOSTANDARD = LVCMOS18;
-NET "ram_address[15]" IOSTANDARD = LVCMOS18;
-NET "ram_address[13]" IOSTANDARD = LVCMOS18;
-NET "ram_address[11]" IOSTANDARD = LVCMOS18;
-NET "ram_address[10]" IOSTANDARD = LVCMOS18;
-NET "ram_address[9]" IOSTANDARD = LVCMOS18;
-NET "ram_address[8]" IOSTANDARD = LVCMOS18;
-NET "ram_address[5]" IOSTANDARD = LVCMOS18;
-NET "ram_address[6]" IOSTANDARD = LVCMOS18;
-NET "ram_address[4]" IOSTANDARD = LVCMOS18;
-NET "ram_address[3]" IOSTANDARD = LVCMOS18;
-NET "ram_address[2]" IOSTANDARD = LVCMOS18;
-NET "ram_address[1]" IOSTANDARD = LVCMOS18;
-NET "ram_address[0]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[15]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[14]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[13]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[12]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[11]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[10]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[9]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[8]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[7]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[6]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[5]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[4]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[3]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[2]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[1]" IOSTANDARD = LVCMOS18;
-NET "ram_data_in[0]" IOSTANDARD = LVCMOS18;
 NET "clk" IOSTANDARD = LVCMOS33;
 NET "en" IOSTANDARD = LVCMOS33;
-NET "ready" IOSTANDARD = LVCMOS33;
 NET "rst" IOSTANDARD = LVCMOS33;
-#Created by Constraints Editor (xc6slx45-csg324-3) - 2016/10/14
+NET "ready_led" IOSTANDARD = LVCMOS33;
+NET "uart_rx" IOSTANDARD = LVCMOS33;
+NET "uart_tx" IOSTANDARD = LVCMOS33;
+NET "uart_tx" SLEW = SLOW;
+
 NET "clk" TNM_NET = "clk";
 TIMESPEC TS_clk = PERIOD "clk" 10 ns HIGH 50%;
 
-
-NET "ram_we[0]" LOC = P15;
-
-
-NET "ram_we[0]" IOSTANDARD = LVCMOS33;
-NET "ram_address[7]" IOSTANDARD = LVCMOS18;
-
-
-# PlanAhead Generated IO constraints 
-NET "ram_data_in[15]" SLEW = FAST;
-NET "ram_data_in[14]" SLEW = FAST;
-NET "ram_data_in[13]" SLEW = FAST;
-NET "ram_data_in[12]" SLEW = FAST;
-NET "ram_data_in[11]" SLEW = FAST;
-NET "ram_data_in[10]" SLEW = FAST;
-NET "ram_data_in[9]" SLEW = FAST;
-NET "ram_data_in[8]" SLEW = FAST;
-NET "ram_data_in[7]" SLEW = FAST;
-NET "ram_data_in[6]" SLEW = FAST;
-NET "ram_data_in[5]" SLEW = FAST;
-NET "ram_data_in[4]" SLEW = FAST;
-NET "ram_data_in[3]" SLEW = FAST;
-NET "ram_data_in[2]" SLEW = FAST;
-NET "ram_data_in[1]" SLEW = FAST;
-NET "ram_data_in[0]" SLEW = FAST;
-NET "ready" SLEW = FAST;
-#Created by Constraints Editor (xc6slx45-csg324-3) - 2016/10/26
-#Created by Constraints Editor (xc6slx45-csg324-3) - 2016/10/29
-#Created by Constraints Editor (xc6slx45-csg324-3) - 2016/10/29
-#Created by Constraints Editor (xc6slx45-csg324-3) - 2016/10/30
-NET "PROCESSOR/STATE_MACHINE/alu_calc" TNM_NET = PROCESSOR/STATE_MACHINE/alu_calc;
+NET "PROCESSOR/STATE_MACHINE/alu_calc" TNM_NET = "PROCESSOR/STATE_MACHINE/alu_calc";
 TIMESPEC TS_PROCESSOR_STATE_MACHINE_alu_calc = PERIOD "PROCESSOR/STATE_MACHINE/alu_calc" 60 ns HIGH 16.667%;

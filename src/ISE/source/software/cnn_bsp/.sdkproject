@@ -1,0 +1,3 @@
+THIRPARTY=false
+PROCESSOR=mcu
+MSS_FILE=system.mss

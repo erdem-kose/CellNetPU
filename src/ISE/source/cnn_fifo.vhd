@@ -9,12 +9,14 @@ library cnn_library;
 	use cnn_library.cnn_package.all;
 
 entity cnn_fifo is
-  port (
-    d : in std_logic_vector(busWidth-1 downto 0);
-    clk : in std_logic;
-    ce : in std_logic;
-    q : out std_logic_vector(busWidth-1 downto 0)
-  );
+	port (
+		d : in std_logic_vector(busWidth-1 downto 0);
+		clk : in std_logic;
+		ce : in std_logic;
+		q : out std_logic_vector(busWidth-1 downto 0);
+	 
+		imageWidth: in integer range 0 to 1920
+	);
 end cnn_fifo;
 
 architecture Behavioral of cnn_fifo is
@@ -33,8 +35,8 @@ architecture Behavioral of cnn_fifo is
 	  );
 	end component;
 	
-	signal read_address : integer range 0 to imageWidth:= 0;
-	signal write_address : integer range 0 to imageWidth:= imageWidth;
+	signal read_address : integer range 0 to imageWidthMAX:= 0;
+	signal write_address : integer range 0 to imageWidthMAX:= imageWidth;
 		
 	signal bram_read_address : std_logic_vector (fifoCoreAddressWidth-1 downto 0):=(others=>'0');
 	signal bram_read_data_in : std_logic_vector (busWidth-1 downto 0):=(others=>'0');

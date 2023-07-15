@@ -1,0 +1,33 @@
+09:30:18 **** Auto Build of configuration Debug for project uarttest ****
+make all 
+'Building file: ../src/helloworld.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -Wl,--no-relax -I../../cnn_bsp/mcu/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: uarttest.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,--no-relax -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/mcu/lib -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -o "uarttest.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: uarttest.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size uarttest.elf  |tee "uarttest.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   9402	    364	   2106	  11872	   2e60	uarttest.elf
+'Finished building: uarttest.elf.size'
+' '
+'Invoking: Xilinx ELF Check'
+elfcheck uarttest.elf -hw ../../mcu_sw/system.xml -pe mcu  |tee "uarttest.elf.elfcheck"
+elfcheck
+Xilinx EDK 14.5 Build EDK_P.58f
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../mcu_sw/system.xml -pe mcu uarttest.elf 
+
+ELF file	: uarttest.elf
+elfcheck passed.
+'Finished building: uarttest.elf.elfcheck'
+' '
+
+09:30:19 Build Finished (took 1s.273ms)
+

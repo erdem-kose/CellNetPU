@@ -20,7 +20,39 @@ bus_f=11;
 image=((double(image)/255)*2-1)*(2^bus_f);
 ideal=(2*ideal-1)*(2^bus_f);
 
-%images
+%images-bram
+fileID = fopen('rom_files/ram_generic.coe','w');
+
+fprintf(fileID,'memory_initialization_radix=2;\n');
+fprintf(fileID,'memory_initialization_vector=\n');
+
+for i=1:size(image,2)
+    for j=1:size(image,1)
+        fprintf(fileID,'%s',dec2bin(typecast(int16(0),'uint16'),16));
+        fprintf(fileID,'\n');
+    end
+end
+
+for i=1:size(image,2)
+    for j=1:size(image,1)
+        fprintf(fileID,'%s',dec2bin(typecast(int16(image(i,j)),'uint16'),16));
+        fprintf(fileID,'\n');
+    end
+end
+
+for i=1:size(ideal,2)
+    for j=1:size(ideal,1)
+        fprintf(fileID,'%s',dec2bin(typecast(int16(ideal(i,j)),'uint16'),16));
+        if ~((i==size(ideal,1)) && (j==size(ideal,2)))
+            fprintf(fileID,'\n');
+        end
+    end
+end
+fprintf(fileID,';');
+fclose(fileID);
+%
+
+%images-simulation
 fileID = fopen('rom_files/ram_generic.init','w');
 
 for i=1:size(image,1)

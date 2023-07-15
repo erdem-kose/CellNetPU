@@ -1,0 +1,17 @@
+# Output products list for <mcu>
+mb_bootloop_le.elf
+mcu.asy
+mcu.bmm
+mcu.gise
+mcu.ngc
+mcu.vhd
+mcu.vho
+mcu.xco
+mcu.xise
+mcu\mb_bootloop_le.elf
+mcu\microblaze_mcs_setup.tcl
+mcu\system_template.tcl
+mcu_flist.txt
+mcu_readme.txt
+mcu_sdk.xml
+microblaze_mcs_setup.tcl

@@ -54,10 +54,8 @@
 -- "Output    Output      Phase     Duty      Pk-to-Pk        Phase"
 -- "Clock    Freq (MHz) (degrees) Cycle (%) Jitter (ps)  Error (ps)"
 ------------------------------------------------------------------------------
--- CLK_OUT1___100.000______0.000______50.0______170.856____405.326
--- CLK_OUT2___100.000______0.000______50.0______170.856____405.326
--- CLK_OUT3___100.000______0.000______50.0______170.856____405.326
--- CLK_OUT4___200.000______0.000______50.0______149.099____405.326
+-- CLK_OUT1___100.000______0.000______50.0______200.000____150.000
+-- CLK_OUT2___100.000______0.000______50.0______200.000____150.000
 --
 ------------------------------------------------------------------------------
 -- "Input Clock   Freq (MHz)    Input Jitter (UI)"
@@ -73,9 +71,7 @@ port
   clk_in           : in     std_logic;
   -- Clock out ports
   sys_clk          : out    std_logic;
-  bram_clk          : out    std_logic;
-  dvi_clk          : out    std_logic;
-  dvi2x_clk          : out    std_logic
+  mcu_clk          : out    std_logic
  );
 end component;
 
@@ -89,7 +85,5 @@ your_instance_name : cnn_clocking
     clk_in => clk_in,
     -- Clock out ports
     sys_clk => sys_clk,
-    bram_clk => bram_clk,
-    dvi_clk => dvi_clk,
-    dvi2x_clk => dvi2x_clk);
+    mcu_clk => mcu_clk);
 -- INST_TAG_END ------ End INSTANTIATION Template ------------

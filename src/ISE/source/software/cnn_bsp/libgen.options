@@ -1,0 +1,3 @@
+PROCESSOR=mcu
+REPOSITORIES=
+HWSPEC=../mcu_sw/system.xml

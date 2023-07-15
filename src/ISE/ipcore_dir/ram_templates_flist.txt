@@ -4,7 +4,6 @@ ram_templates.asy
 ram_templates.gise
 ram_templates.mif
 ram_templates.ngc
-ram_templates.sym
 ram_templates.vhd
 ram_templates.vho
 ram_templates.xco

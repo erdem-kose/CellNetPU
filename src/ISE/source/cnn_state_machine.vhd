@@ -14,14 +14,20 @@ entity cnn_state_machine is
 			ready: out std_logic:='0';
 			alu_calc: out std_logic:='0';
 			
+			iter_cnt: in integer range 0 to iterMAX;
+			template_no : in integer range 0 to templateCount;
+			
+			imageWidth: in integer range 0 to imageWidthMAX;
+			imageHeight: in integer range 0 to imageHeightMAX;
+
+			template_we :out std_logic_vector(0 downto 0):=(others=>'0');
 			template_address :out std_logic_vector (templateAddressWidth-1 downto 0):=(others=>'0');
 			template_data_in :out std_logic_vector (busWidth-1 downto 0):=(others=>'0');
-			template_we :out std_logic_vector(0 downto 0):=(others=>'0');
 			template_data_out :in std_logic_vector (busWidth-1 downto 0);
 			
+			ram_we :out std_logic_vector(0 downto 0):=(others=>'0');
 			ram_address :out std_logic_vector (ramAddressWidth-1 downto 0):=(others=>'0');
 			ram_data_in :out std_logic_vector (busWidth-1 downto 0):=(others=>'0');
-			ram_we :out std_logic_vector(0 downto 0):=(others=>'0');
 			ram_data_out :in std_logic_vector (busWidth-1 downto 0);
 			
 			a_line: out std_logic_vector ((busWidth*patchSize-1) downto 0):=(others=>'0');
@@ -42,12 +48,11 @@ architecture Behavioral of cnn_state_machine is
 			d : in std_logic_vector(busWidth-1 downto 0);
 			clk : in std_logic;
 			ce : in std_logic;
-			q : out std_logic_vector(busWidth-1 downto 0)
+			q : out std_logic_vector(busWidth-1 downto 0);
+			
+			imageWidth: in integer range 0 to 1920
 		);
 	end component;
-	
-	--for Clocking
-	signal inv_sys_clk : std_logic:='0';
 	
 	--for FIFOs 0:fifo_u 1:fifo_x_old
 	type fifo_vector is array(0 to 1,0 to patchWH-1) of std_logic_vector (busWidth-1 downto 0);
@@ -68,8 +73,6 @@ architecture Behavioral of cnn_state_machine is
 	type xu_patch is array (0 to patchWH-1, 0 to patchWH-1) of std_logic_vector (busWidth-1 downto 0);
 	signal x_old: xu_patch  := (others => (others => (others => '0')));
 	signal u: xu_patch  := (others => (others => (others => '0')));
-	
-	signal template_no : integer range 0 to templateCount-1:= 0;
 	--
 	
 	-- for State Machine
@@ -88,12 +91,10 @@ architecture Behavioral of cnn_state_machine is
 	--
 	
 begin
-	--Clocking
-	inv_sys_clk<=not sys_clk;
 	--Create FIFOs
 	fifo_type_select:for i in 0 to 1 generate --satir
 		fifo_order_select:for j in 0 to patchWH-1 generate --sutun
-			FIFO_XU: cnn_fifo				port map (fifo_data_in(i,j),sys_clk,fifo_clk_en(i,j),fifo_data_out(i,j));
+			FIFO_XU: cnn_fifo				port map (fifo_data_in(i,j),sys_clk,fifo_clk_en(i,j),fifo_data_out(i,j),imageWidth);
 		end generate fifo_order_select;
 	end generate fifo_type_select;
 	
@@ -141,14 +142,14 @@ begin
 	--------------------
 		variable init_state : integer range 0 to 1 := 0;
 		
-		variable ii : integer range 0 to imageHeight := 0; --i. satir
-		variable ii_1d : integer range 0 to imageHeight := 0; --i. satir
-		variable jj : integer range 0 to imageWidth := 0; --j. sutun
+		variable ii : integer range 0 to imageHeightMAX := 0; --i. satir
+		variable ii_1d : integer range 0 to imageHeightMAX*imageWidthMAX := 0; --i. satir
+		variable jj : integer range 0 to imageWidthMAX := 0; --j. sutun
 		
 		variable ram_lag : integer range 0 to bramLagMAX := 0;
 		variable template_lag : integer range 0 to templateLagMAX := 0;
 		
-		variable address : integer range 0 to imageWidth*imageHeight-1 := 0;
+		variable address : integer range 0 to imageWidthMAX*imageHeightMAX-1 := 0;
 		
 		variable template_state : integer range 0 to 5:= 0;
 		variable template_A_position : integer range 0 to templateWidth*(templateCount-1) := 0;
@@ -159,9 +160,13 @@ begin
 		variable read_image_patch_done : std_logic := '0';
 		variable read_image_done : std_logic := '0';
 		
+		variable ramAddressShift: integer := imageWidth*imageHeight;
+		
 	begin
 		if (rising_edge(sys_clk)) then
 			if (rst='1') then
+				ramAddressShift := imageWidth*imageHeight;
+				
 				ram_we<="0";template_we<="0";
 				ii:= 0; ii_1d:=0; jj:= 0; template_lag:=0; ram_lag:=0;
 				state<=TEMPLATE_READ_INIT;
@@ -231,6 +236,7 @@ begin
 					--IMAGE READ-----------
 					when X_OLD_U_INIT =>
 					-----------------------
+						ramAddressShift := imageWidth*imageHeight;
 						ii:=0;ii_1d:=0;jj:=0;
 						template_lag:=0; ram_lag:=0;
 						state<=X_OLD_U_READ;
@@ -239,12 +245,12 @@ begin
 						ram_we<="0";
 						if ram_lag=0 then
 							if (ii>=1 and ii<=imageHeight and jj>=1 and jj<=imageWidth) then
-								address:=(ii-1)*imageWidth+(jj-1);
+								address:=ii_1d-imageWidth+(jj-1);--(ii-1)*imageWidth+(jj-1);
 								ram_address<=std_logic_vector(to_unsigned(address+ramAddressShift,ramAddressWidth));
 							end if;
 						elsif ram_lag=1 then
 							if (ii>=1 and ii<=imageHeight and jj>=1 and jj<=imageWidth) then
-								address:=(ii-1)*imageWidth+(jj-1);
+								address:=ii_1d-imageWidth+(jj-1);--(ii-1)*imageWidth+(jj-1);
 								ram_address<=std_logic_vector(to_unsigned(address,ramAddressWidth));
 							end if;
 						elsif ram_lag=2 then
@@ -282,25 +288,28 @@ begin
 						end if;
 						
 					when X_NEW_WRITE =>
-						fifo_clk_en(1,0)<='0'; fifo_clk_en(1,1)<='0'; fifo_clk_en(1,2)<='0';
-						if (ii>=0 and ii<=1 and jj>=2 and jj<=imageWidth and init_state=0) then
-							address:=(imageHeight+ii-2)*imageWidth+(jj-2);
+						if (ram_lag=0) then
+							fifo_clk_en(1,0)<='0'; fifo_clk_en(1,1)<='0'; fifo_clk_en(1,2)<='0';
+							if (ii>=0 and ii<=1 and jj>=2 and jj<=imageWidth and init_state=0) then
+								address:=ramAddressShift+ii_1d-imageWidth-imageWidth+(jj-2);
+								--(imageHeight+ii-2)*imageWidth+(jj-2);
+							elsif (ii>=1 and ii<=2 and jj=0 and init_state=0) then
+								address:=ramAddressShift+ii_1d-imageWidth-imageWidth-1;
+								--(imageHeight+ii-3)*imageWidth+(imageWidth-1);
+							elsif (ii>=3 and ii<=imageHeight and jj>=2 and jj<=imageWidth) then
+								address:=ii_1d-imageWidth-imageWidth-imageWidth+(jj-2);
+								--(ii-3)*imageWidth+(jj-2);
+							elsif (ii>=4 and ii<=imageHeight and jj=0) then
+								address:=ii_1d-imageWidth-imageWidth-imageWidth-1;
+								--(ii-4)*imageWidth+(imageWidth-1);
+							elsif (ii=0 and jj=0) then
+								address:=ramAddressShift+ii_1d-imageWidth-imageWidth-1;
+								--(imageHeight+ii-3)*imageWidth+(imageWidth-1);
+							elsif (jj=1) then
+							else
+								ram_lag:=2;
+							end if;
 							ram_address<=std_logic_vector(to_unsigned(address,ramAddressWidth));
-						elsif (ii>=1 and ii<=2 and jj=0 and init_state=0) then
-							address:=(imageHeight+ii-3)*imageWidth+(imageWidth-1);
-							ram_address<=std_logic_vector(to_unsigned(address,ramAddressWidth));
-						elsif (ii>=3 and ii<=imageHeight and jj>=2 and jj<=imageWidth) then
-							address:=(ii-3)*imageWidth+(jj-2);
-							ram_address<=std_logic_vector(to_unsigned(address,ramAddressWidth));
-						elsif (ii>=4 and ii<=imageHeight and jj=0) then
-							address:=(ii-4)*imageWidth+(imageWidth-1);
-							ram_address<=std_logic_vector(to_unsigned(address,ramAddressWidth));
-						elsif (ii=0 and jj=0) then
-							address:=(imageHeight+ii-3)*imageWidth+(imageWidth-1);
-							ram_address<=std_logic_vector(to_unsigned(address,ramAddressWidth));
-						elsif (jj=1) then
-						else
-							ram_lag:=2;
 						end if;
 						if (ram_lag=0 and x_new_ready='1') then
 							alu_calc<='1';
@@ -319,8 +328,10 @@ begin
 								jj:=0;
 								if (ii=imageHeight) then --imageWidth
 									ii:=0;
+									ii_1d:=0;
 								else
 									ii:=ii+1;
+									ii_1d:=ii_1d+imageWidth;
 								end if;
 							else
 								jj:=jj+1;
@@ -330,7 +341,7 @@ begin
 									init_state:=0;
 									state<=X_OLD_U_READ;
 								else
-									if (iter=iterMAX) then
+									if (iter=iter_cnt) then
 										iter<=0;
 										state<=CALCULATE_TEMPLATE;
 									else

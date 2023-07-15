@@ -81,13 +81,13 @@
 --    C_AXI_TYPE                  :  1 
 --    C_AXI_SLAVE_TYPE            :  0 
 --    C_AXI_ID_WIDTH              :  4 
---    C_MEM_TYPE                  :  0 
+--    C_MEM_TYPE                  :  2 
 --    C_BYTE_SIZE                 :  9 
 --    C_ALGORITHM                 :  1 
 --    C_PRIM_TYPE                 :  1 
 --    C_LOAD_INIT_FILE            :  1 
 --    C_INIT_FILE_NAME            :  ram_templates.mif 
---    C_USE_DEFAULT_DATA          :  1 
+--    C_USE_DEFAULT_DATA          :  0 
 --    C_DEFAULT_DATA              :  0 
 --    C_RST_TYPE                  :  SYNC 
 --    C_HAS_RSTA                  :  0 
@@ -98,7 +98,7 @@
 --    C_HAS_REGCEA                :  0 
 --    C_USE_BYTE_WEA              :  0 
 --    C_WEA_WIDTH                 :  1 
---    C_WRITE_MODE_A              :  READ_FIRST 
+--    C_WRITE_MODE_A              :  WRITE_FIRST 
 --    C_WRITE_WIDTH_A             :  16 
 --    C_READ_WIDTH_A              :  16 
 --    C_WRITE_DEPTH_A             :  1050 
@@ -239,8 +239,18 @@ ARCHITECTURE xilinx OF ram_templates_prod IS
   
     DOUTA          : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 
-    CLKA       : IN STD_LOGIC
+  
+    CLKA       : IN STD_LOGIC;
 
+  
+      --Port B
+  
+    WEB            : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ADDRB          : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+  
+    DINB           : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    DOUTB          : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+    CLKB           : IN STD_LOGIC
 
 
 
@@ -260,7 +270,16 @@ BEGIN
   
       DOUTA      => DOUTA,
 
-      CLKA       => CLKA
+      CLKA       => CLKA,
+  
+      --Port B
+  
+      WEB        => WEB,
+      ADDRB      => ADDRB,
+  
+      DINB       => DINB,
+      DOUTB      => DOUTB,
+      CLKB       => CLKB
 
 
 
