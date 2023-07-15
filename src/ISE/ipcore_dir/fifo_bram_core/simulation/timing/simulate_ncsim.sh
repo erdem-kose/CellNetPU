@@ -46,7 +46,6 @@
 # PART OF THIS FILE AT ALL TIMES.
 set work work
 #--------------------------------------------------------------------------------
-cp ../../../fifo_bram_core.mif .
 mkdir work
 
 

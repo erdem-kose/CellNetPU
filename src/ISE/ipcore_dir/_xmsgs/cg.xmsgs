@@ -8,23 +8,22 @@
 <msg type="info" file="sim" num="172" delta="old" >Generating IP...
 </msg>
 
-<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">A core named &apos;cnn_clocking&apos; already exists in the project. Output products for this core may be overwritten.</arg>
+<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">A core named &apos;ram_templates&apos; already exists in the project. Output products for this core may be overwritten.</arg>
 </msg>
 
-<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">A core named &apos;cnn_clocking&apos; already exists in the project. Output products for this core may be overwritten.</arg>
+<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">A core named &apos;ram_templates&apos; already exists in the project. Output products for this core may be overwritten.</arg>
 </msg>
 
-<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">Component clk_wiz_v3_6 does not have a valid model name for VHDL synthesis</arg>
+<msg type="info" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">Pre-processing HDL files for &apos;ram_templates&apos;...</arg>
 </msg>
 
-<msg type="info" file="sim" num="949" delta="old" >Finished generation of ASY schematic symbol.
+<msg type="warning" file="sim" num="0" delta="new" ><arg fmt="%s" index="1">Overwriting existing file D:/Egitim/ELEYLT-TezCalismasi/Work/v0_4/ISE/ipcore_dir/tmp/_cg/ram_templates/doc/blk_mem_gen_v7_3_vinfo.html with file from view xilinx_documentation</arg>
 </msg>
 
-<msg type="warning" file="coreutil" num="0" delta="new" >WARNING: This core does not have a top level called &quot;/cnn_clocking&quot;
-WARNING: Top level has been set to &quot;/cnn_clocking_exdes&quot;
+<msg type="info" file="sim" num="949" delta="new" >Finished generation of ASY schematic symbol.
 </msg>
 
-<msg type="info" file="sim" num="948" delta="old" >Finished FLIST file generation.
+<msg type="info" file="sim" num="948" delta="new" >Finished FLIST file generation.
 </msg>
 
 </messages>

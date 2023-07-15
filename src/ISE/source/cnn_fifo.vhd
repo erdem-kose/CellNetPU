@@ -3,9 +3,10 @@ library ieee;
 	use ieee.std_logic_unsigned.all;
 	use ieee.std_logic_textio.all;
 	use ieee.numeric_std.all;
+library std;
 	use std.textio.all;
-	
-	use work.cnn_package.all;
+library cnn_library;
+	use cnn_library.cnn_package.all;
 
 entity cnn_fifo is
   port (
@@ -57,15 +58,14 @@ begin
 	bram_write_we<="1" when (ce='1') else "0";
 	bram_read_address<=std_logic_vector(to_unsigned(read_address,fifoCoreAddressWidth));
 	bram_write_address<=std_logic_vector(to_unsigned(write_address,fifoCoreAddressWidth));
+
+	q<=bram_read_data_out;
 	
 	process (clk,ce)
 	begin
-		if (rising_edge(clk)) then
-			bram_write_data_in<=d;
-			q<=bram_read_data_out;
-		end if;
 		if(ce='1') then
-			if (rising_edge(clk)) then
+			if (falling_edge(clk)) then
+				bram_write_data_in<=d;
 				if(read_address=imageWidth) then
 					read_address<=0;
 					write_address<=imageWidth;

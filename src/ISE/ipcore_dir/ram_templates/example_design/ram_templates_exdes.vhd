@@ -90,7 +90,7 @@ ENTITY ram_templates_exdes IS
       --Inputs - Port A
   
     WEA            : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    ADDRA          : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    ADDRA          : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
   
     DINA           : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
   
@@ -117,7 +117,7 @@ ARCHITECTURE xilinx OF ram_templates_exdes IS
       --Port A
   
     WEA        : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    ADDRA      : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    ADDRA      : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
   
     DINA       : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
   

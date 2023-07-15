@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2017-01-12T17:47:16</DateModified>
+  <DateModified>2017-01-12T17:50:32</DateModified>
   <ModuleName>cnn_system</ModuleName>
-  <SummaryTimeStamp>2016-10-26T13:51:35</SummaryTimeStamp>
-  <SavedFilePath>D:/Egitim/ELEYLT-TezCalismasi/Work/v0_3/ISE/iseconfig/cnn_system.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>D:/Egitim/ELEYLT-TezCalismasi/Work/v0_3/ISE\</ImplementationReportsDirectory>
-  <DateInitialized>2016-10-06T14:05:45</DateInitialized>
+  <SummaryTimeStamp>2016-11-06T18:11:03</SummaryTimeStamp>
+  <SavedFilePath>D:/Egitim/ELEYLT-TezCalismasi/Work/v0_4/ISE/iseconfig/cnn_system.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>D:/Egitim/ELEYLT-TezCalismasi/Work/v0_4/ISE\</ImplementationReportsDirectory>
+  <DateInitialized>2016-11-05T20:34:18</DateInitialized>
   <EnableMessageFiltering>true</EnableMessageFiltering>
   <XMP_File/>
  </header>
  <body>
   <viewgroup label="Design Overview" >
-   <view inputState="Unknown" program="implementation" ShowPartitionData="false" type="FPGASummary" file="cnn_system_summary.html" label="Summary" >
+   <view inputState="Unknown" program="implementation" ExpandErrors="false" ShowPartitionData="false" ExpandConstraints="false" type="FPGASummary" file="cnn_system_summary.html" label="Summary" ExpandClockNets="true" ExpandWarnings="false" >
     <toc-item title="Design Overview" target="Design Overview" />
     <toc-item title="Design Utilization Summary" target="Design Utilization Summary" />
     <toc-item title="Performance Summary" target="Performance Summary" />

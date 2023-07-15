@@ -45,7 +45,6 @@
 :: PART OF THIS FILE AT ALL TIMES.
 ::--------------------------------------------------------------------------------
 
-cp ..\..\..\fifo_bram_core.mif .
 
 
 echo "Compiling Core VHDL UNISIM/Behavioral model"

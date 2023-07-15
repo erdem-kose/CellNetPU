@@ -45,7 +45,6 @@
 # PART OF THIS FILE AT ALL TIMES.
 #--------------------------------------------------------------------------------
 #!/bin/sh
-cp ../../../fifo_bram_core.mif .
 rm -rf simv* csrc DVEfiles AN.DB
 
 echo "Compiling Core VHDL UNISIM/Behavioral model"

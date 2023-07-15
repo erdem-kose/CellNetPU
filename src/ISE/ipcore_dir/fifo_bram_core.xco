@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.5
-# Date: Sat Oct 22 23:21:57 2016
+# Date: Sat Nov 05 16:34:10 2016
 #
 ##############################################################
 #
@@ -46,7 +46,7 @@ CSET axi_id_width=4
 CSET axi_slave_type=Memory_Slave
 CSET axi_type=AXI4_Full
 CSET byte_size=9
-CSET coe_file=.\rom_files\fifo_init.coe
+CSET coe_file=no_coe_file_loaded
 CSET collision_warnings=ALL
 CSET component_name=fifo_bram_core
 CSET disable_collision_warnings=false
@@ -59,7 +59,7 @@ CSET enable_b=Always_Enabled
 CSET error_injection_type=Single_Bit_Error_Injection
 CSET fill_remaining_memory_locations=true
 CSET interface_type=Native
-CSET load_init_file=true
+CSET load_init_file=false
 CSET mem_file=no_Mem_file_loaded
 CSET memory_type=True_Dual_Port_RAM
 CSET operating_mode_a=READ_FIRST
@@ -97,7 +97,7 @@ CSET use_regcea_pin=false
 CSET use_regceb_pin=false
 CSET use_rsta_pin=false
 CSET use_rstb_pin=false
-CSET write_depth_a=129
+CSET write_depth_a=1921
 CSET write_width_a=16
 CSET write_width_b=16
 # END Parameters
@@ -105,4 +105,4 @@ CSET write_width_b=16
 MISC pkg_timestamp=2012-11-19T16:22:25Z
 # END Extra information
 GENERATE
-# CRC: 32ab1970
+# CRC: f45e2786

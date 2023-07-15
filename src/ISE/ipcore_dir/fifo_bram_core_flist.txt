@@ -2,7 +2,6 @@
 _xmsgs\pn_parser.xmsgs
 fifo_bram_core.asy
 fifo_bram_core.gise
-fifo_bram_core.mif
 fifo_bram_core.ngc
 fifo_bram_core.sym
 fifo_bram_core.vhd

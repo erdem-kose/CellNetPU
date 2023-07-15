@@ -44,12 +44,12 @@ ENTITY fifo_bram_core IS
   PORT (
     clka : IN STD_LOGIC;
     wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    addra : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    addra : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
     dina : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     douta : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
     clkb : IN STD_LOGIC;
     web : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    addrb : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    addrb : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
     dinb : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     doutb : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
   );
@@ -61,12 +61,12 @@ COMPONENT wrapped_fifo_bram_core
   PORT (
     clka : IN STD_LOGIC;
     wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    addra : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    addra : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
     dina : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     douta : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
     clkb : IN STD_LOGIC;
     web : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    addrb : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    addrb : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
     dinb : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     doutb : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
   );
@@ -75,8 +75,8 @@ END COMPONENT;
 -- Configuration specification
   FOR ALL : wrapped_fifo_bram_core USE ENTITY XilinxCoreLib.blk_mem_gen_v7_3(behavioral)
     GENERIC MAP (
-      c_addra_width => 8,
-      c_addrb_width => 8,
+      c_addra_width => 11,
+      c_addrb_width => 11,
       c_algorithm => 1,
       c_axi_id_width => 4,
       c_axi_slave_type => 0,
@@ -103,16 +103,16 @@ END COMPONENT;
       c_has_softecc_input_regs_a => 0,
       c_has_softecc_output_regs_b => 0,
       c_init_file => "BlankString",
-      c_init_file_name => "fifo_bram_core.mif",
+      c_init_file_name => "no_coe_file_loaded",
       c_inita_val => "0",
       c_initb_val => "0",
       c_interface_type => 0,
-      c_load_init_file => 1,
+      c_load_init_file => 0,
       c_mem_type => 2,
       c_mux_pipeline_stages => 0,
       c_prim_type => 1,
-      c_read_depth_a => 129,
-      c_read_depth_b => 129,
+      c_read_depth_a => 1921,
+      c_read_depth_b => 1921,
       c_read_width_a => 16,
       c_read_width_b => 16,
       c_rst_priority_a => "CE",
@@ -129,8 +129,8 @@ END COMPONENT;
       c_use_softecc => 0,
       c_wea_width => 1,
       c_web_width => 1,
-      c_write_depth_a => 129,
-      c_write_depth_b => 129,
+      c_write_depth_a => 1921,
+      c_write_depth_b => 1921,
       c_write_mode_a => "READ_FIRST",
       c_write_mode_b => "READ_FIRST",
       c_write_width_a => 16,
