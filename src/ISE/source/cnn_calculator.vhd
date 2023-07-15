@@ -10,7 +10,7 @@ library cnn_library;
 	
 entity cnn_calculator is
 	port (
-		clk, div_clk, calc, err_rst : in  std_logic;
+		clk, calc, err_rst : in  std_logic;
 			
 		a_line : in  std_logic_vector ((busWidth*patchSize-1) downto 0);
 		b_line : in  std_logic_vector ((busWidth*patchSize-1) downto 0);
@@ -26,8 +26,27 @@ entity cnn_calculator is
 		image_size: in  std_logic_vector (busWidth-1 downto 0);
 		ideal_line: in  std_logic_vector (busWidth-1 downto 0);
 			
-		error: out std_logic_vector (busWidth-1 downto 0);
-		error_squa_sum: out std_logic_vector (errorWidth-1 downto 0)
+		error: out std_logic_vector (busWidth-1 downto 0):=(others=>'0');
+		
+		error_i : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_u00 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_u01 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_u02 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_u10 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_u12 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_u11 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_u20 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_u21 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_u22 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_x00 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_x02 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_x01 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_x11 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_x10 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_x12 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_x20 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_x22 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0');
+		error_x21 : out std_logic_vector(errorWidth-1 downto 0):=(others=>'0')
 	);
 end cnn_calculator;
 
@@ -58,24 +77,89 @@ architecture Behavioral of cnn_calculator is
 	signal mul_init : signed (2*busWidth+18 downto 0):=(others => '0');
 	
 	--Error Calculation
-	signal x_new: signed (busWidth-1 downto 0):=(others => '0');
-	signal x_old: signed (busWidth-1 downto 0):=(others => '0');
 	signal ideal: signed (busWidth-1 downto 0):=(others => '0');
 	
-	signal error_reg: signed (busWidth-1 downto 0);
-	signal error_step0: signed (busWidth downto 0);
-	signal error_step1: signed (busWidth-1 downto 0);
+	signal error_reg: signed (busWidth-1 downto 0):=(others=>'0');
+	signal error_step0: signed (busWidth downto 0):=(others=>'0');
+	signal error_step1: signed (busWidth-1 downto 0):=(others => '0');
 	
-	signal error_squa_sum_reg: signed (errorWidth-1 downto 0);
-	signal error_squa_sum_step0: signed (errorWidth-1 downto 0);
-	signal error_squa_sum_step1: signed (busWidth-1 downto 0);
-	signal error_squa_sum_step2: signed (errorWidth-1 downto 0);
-	signal error_squa_sum_step3: signed (busWidth-1 downto 0);
-	signal error_squa_sum_step4: signed (errorWidth-1 downto 0);
-	signal error_squa_sum_step5: signed (busWidth-1 downto 0);
-	signal error_squa_sum_step6: signed (errorWidth-1 downto 0);
-	signal error_squa_sum_step7: signed (errorWidth downto 0);
-	signal error_squa_sum_step8: signed (errorWidth-1 downto 0);
+	signal error_sum_step0: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_sum_step1: signed (busWidth-1 downto 0):=(others => '0');
+	
+	signal error_i_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_i_step0: signed (errorWidth downto 0):=(others => '0'); signal error_i_step1: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_u00_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_u00_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_u00_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_u00_step2: signed (errorWidth downto 0):=(others => '0'); signal error_u00_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_u01_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_u01_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_u01_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_u01_step2: signed (errorWidth downto 0):=(others => '0'); signal error_u01_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_u02_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_u02_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_u02_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_u02_step2: signed (errorWidth downto 0):=(others => '0'); signal error_u02_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_u10_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_u10_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_u10_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_u10_step2: signed (errorWidth downto 0):=(others => '0'); signal error_u10_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_u11_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_u11_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_u11_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_u11_step2: signed (errorWidth downto 0):=(others => '0'); signal error_u11_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_u12_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_u12_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_u12_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_u12_step2: signed (errorWidth downto 0):=(others => '0'); signal error_u12_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_u20_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_u20_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_u20_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_u20_step2: signed (errorWidth downto 0):=(others => '0'); signal error_u20_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_u21_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_u21_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_u21_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_u21_step2: signed (errorWidth downto 0):=(others => '0'); signal error_u21_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_u22_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_u22_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_u22_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_u22_step2: signed (errorWidth downto 0):=(others => '0'); signal error_u22_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_x00_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_x00_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_x00_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_x00_step2: signed (errorWidth downto 0):=(others => '0'); signal error_x00_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_x01_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_x01_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_x01_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_x01_step2: signed (errorWidth downto 0):=(others => '0'); signal error_x01_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_x02_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_x02_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_x02_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_x02_step2: signed (errorWidth downto 0):=(others => '0'); signal error_x02_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_x10_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_x10_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_x10_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_x10_step2: signed (errorWidth downto 0):=(others => '0'); signal error_x10_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_x11_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_x11_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_x11_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_x11_step2: signed (errorWidth downto 0):=(others => '0'); signal error_x11_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_x12_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_x12_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_x12_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_x12_step2: signed (errorWidth downto 0):=(others => '0'); signal error_x12_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_x20_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_x20_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_x20_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_x20_step2: signed (errorWidth downto 0):=(others => '0'); signal error_x20_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_x21_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_x21_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_x21_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_x21_step2: signed (errorWidth downto 0):=(others => '0'); signal error_x21_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
+	signal error_x22_reg: signed (errorWidth-1 downto 0):=(others => '0');
+	signal error_x22_step0: signed (errorWidth-1 downto 0):=(others => '0'); signal error_x22_step1: signed (busWidth-1 downto 0):=(others => '0');
+	signal error_x22_step2: signed (errorWidth downto 0):=(others => '0'); signal error_x22_step3: signed (errorWidth-1 downto 0):=(others => '0');
+	
 begin
 	--CNN Calculation
 	line2ABIxu_height:for i in 0 to patchWH-1 generate --i. satir
@@ -128,14 +212,15 @@ begin
 	x_temp_1<=	to_signed(busMax,busWidth) when x_temp_0>to_signed(busMax,(2*busWidth+18-busF))  else
 					to_signed(busMin,busWidth) when x_temp_0<to_signed(busMin,(2*busWidth+18-busF))  else
 					x_temp_0(busWidth-1 downto 0);
-	x_temp_2<=(x(1,1)(busWidth-1) & x(1,1))-(x_temp_1(busWidth-1) & x_temp_1);
+					
+	x_temp_2<=resize(x(1,1),busWidth+1)-resize(x_temp_1,busWidth+1);
 	x_temp_3<=x_temp_2*to_signed(Ts,busWidth+1);
 	x_temp_4<=	to_signed(busMax,busWidth) when x_temp_3>to_signed(ALUBorderTop,(busWidth+1))*to_signed(busMax,(busWidth+1))  else
 					to_signed(busMin,busWidth) when x_temp_3<to_signed(ALUBorderTop,(busWidth+1))*to_signed(busMin,(busWidth+1))  else
 					to_signed(1,busWidth) when x_temp_3((2*busWidth+1) downto busF)=to_signed(0,(2*busWidth+2-busF)) else
 					to_signed(-1,busWidth) when x_temp_3((2*busWidth+1) downto busF)=to_signed(-1,(2*busWidth+2-busF)) else
 					x_temp_3((busWidth-1+busF) downto busF);
-	x_temp_5<=(x(1,1)(busWidth-1) & x(1,1))-(x_temp_4(busWidth-1) & x_temp_4);
+	x_temp_5<=resize(x(1,1),busWidth+1)-resize(x_temp_4,busWidth+1);
 	
 	process(calc)
 	begin
@@ -153,54 +238,225 @@ begin
 	end process;
 	
 	--Error Calculation
-	error_step0<=((ideal(busWidth-1) & ideal)-(x(1,1)(busWidth-1) & x(1,1)));
+	
+	error_step0<=resize(ideal,busWidth+1)-resize(x(1,1),busWidth+1) when err_rst='0' else to_signed(0, busWidth+1);
 	error_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_step0(busWidth downto 1))>ALUBorderTop else
 						to_signed(ALUBorderBottom,busWidth) when to_integer(error_step0(busWidth downto 1))<ALUBorderBottom else
 						error_step0(busWidth downto 1);
 	error<=std_logic_vector(error_reg);
 	
 --
-	error_squa_sum_step0<=(not error_step1)*(not error_step1);
-	error_squa_sum_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_squa_sum_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
-									to_signed(ALUBorderBottom,busWidth) when to_integer(error_squa_sum_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
-									error_squa_sum_step0((busWidth-1+busF) downto busF);
-	error_squa_sum_step2<=to_signed(learn_rate,busWidth)*error_squa_sum_step1;
-	error_squa_sum_step3<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_squa_sum_step2((busWidth-1+busF) downto busF))>ALUBorderTop else
-									to_signed(ALUBorderBottom,busWidth) when to_integer(error_squa_sum_step2((busWidth-1+busF) downto busF))<ALUBorderBottom else
-									error_squa_sum_step2((busWidth-1+busF) downto busF);
-	error_squa_sum_step4<=(not (not x(1,1)))*error_squa_sum_step3;
-	error_squa_sum_step5<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_squa_sum_step4((busWidth-1+busF) downto busF))>ALUBorderTop else
-									to_signed(ALUBorderBottom,busWidth) when to_integer(error_squa_sum_step4((busWidth-1+busF) downto busF))<ALUBorderBottom else
-									error_squa_sum_step4((busWidth-1+busF) downto busF);
-	error_squa_sum_step6<=resize(error_squa_sum_step5,errorWidth);
-	
-	error_squa_sum_step7<=(error_squa_sum_reg(errorWidth-1)&error_squa_sum_reg)+(error_squa_sum_step6(errorWidth-1)&error_squa_sum_step6);
-	error_squa_sum_step8<=	to_signed(errorMax,errorWidth) when to_integer(error_squa_sum_step7)>errorMax else
-									to_signed(errorMin,errorWidth) when to_integer(error_squa_sum_step7)<errorMin else
-									error_squa_sum_step7(errorWidth-1 downto 0);
+	error_sum_step0<=to_signed(learn_rate,busWidth)*error_step1;
+	error_sum_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_sum_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_sum_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_sum_step0((busWidth-1+busF) downto busF);
 --
-	error_squa_sum<=std_logic_vector(error_squa_sum_reg);
+	error_i_step0<=resize(error_i_reg,errorWidth+1)+resize(error_sum_step1,errorWidth+1);
+	error_i_step1<=	to_signed(errorMax,errorWidth) when to_integer(error_i_step0)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_i_step0)<errorMin else
+							error_i_step0(errorWidth-1 downto 0);
+	
+	error_u00_step0<=u(2,2)*error_sum_step1;
+	error_u00_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_u00_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_u00_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_u00_step0((busWidth-1+busF) downto busF);
+	error_u00_step2<=resize(error_u00_reg,errorWidth+1)+resize(error_u00_step1,errorWidth+1);
+	error_u00_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_u00_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_u00_step2)<errorMin else
+							error_u00_step2(errorWidth-1 downto 0);
 
+	error_u01_step0<=u(2,1)*error_sum_step1;
+	error_u01_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_u01_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_u01_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_u01_step0((busWidth-1+busF) downto busF);
+	error_u01_step2<=resize(error_u01_reg,errorWidth+1)+resize(error_u01_step1,errorWidth+1);
+	error_u01_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_u01_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_u01_step2)<errorMin else
+							error_u01_step2(errorWidth-1 downto 0);
+							
+	error_u02_step0<=u(2,0)*error_sum_step1;
+	error_u02_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_u02_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_u02_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_u02_step0((busWidth-1+busF) downto busF);
+	error_u02_step2<=resize(error_u02_reg,errorWidth+1)+resize(error_u02_step1,errorWidth+1);
+	error_u02_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_u02_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_u02_step2)<errorMin else
+							error_u02_step2(errorWidth-1 downto 0);
+							
+	error_u10_step0<=u(1,2)*error_sum_step1;
+	error_u10_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_u10_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_u10_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_u10_step0((busWidth-1+busF) downto busF);
+	error_u10_step2<=resize(error_u10_reg,errorWidth+1)+resize(error_u10_step1,errorWidth+1);
+	error_u10_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_u10_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_u10_step2)<errorMin else
+							error_u10_step2(errorWidth-1 downto 0);
+							
+	error_u11_step0<=u(1,1)*error_sum_step1;
+	error_u11_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_u11_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_u11_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_u11_step0((busWidth-1+busF) downto busF);
+	error_u11_step2<=resize(error_u11_reg,errorWidth+1)+resize(error_u11_step1,errorWidth+1);
+	error_u11_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_u11_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_u11_step2)<errorMin else
+							error_u11_step2(errorWidth-1 downto 0);
+							
+	error_u12_step0<=u(1,0)*error_sum_step1;
+	error_u12_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_u12_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_u12_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_u12_step0((busWidth-1+busF) downto busF);
+	error_u12_step2<=resize(error_u12_reg,errorWidth+1)+resize(error_u12_step1,errorWidth+1);
+	error_u12_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_u12_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_u12_step2)<errorMin else
+							error_u12_step2(errorWidth-1 downto 0);
+							
+	error_u20_step0<=u(0,2)*error_sum_step1;
+	error_u20_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_u20_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_u20_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_u20_step0((busWidth-1+busF) downto busF);
+	error_u20_step2<=resize(error_u20_reg,errorWidth+1)+resize(error_u20_step1,errorWidth+1);
+	error_u20_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_u20_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_u20_step2)<errorMin else
+							error_u20_step2(errorWidth-1 downto 0);
+							
+	error_u21_step0<=u(0,1)*error_sum_step1;
+	error_u21_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_u21_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_u21_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_u21_step0((busWidth-1+busF) downto busF);
+	error_u21_step2<=resize(error_u21_reg,errorWidth+1)+resize(error_u21_step1,errorWidth+1);
+	error_u21_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_u21_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_u21_step2)<errorMin else
+							error_u21_step2(errorWidth-1 downto 0);
+							
+	error_u22_step0<=u(0,0)*error_sum_step1;
+	error_u22_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_u22_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_u22_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_u22_step0((busWidth-1+busF) downto busF);
+	error_u22_step2<=resize(error_u22_reg,errorWidth+1)+resize(error_u22_step1,errorWidth+1);
+	error_u22_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_u22_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_u22_step2)<errorMin else
+							error_u22_step2(errorWidth-1 downto 0);
+							
+	error_x00_step0<=x(2,2)*error_sum_step1;
+	error_x00_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_x00_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_x00_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_x00_step0((busWidth-1+busF) downto busF);
+	error_x00_step2<=resize(error_x00_reg,errorWidth+1)+resize(error_x00_step1,errorWidth+1);
+	error_x00_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_x00_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_x00_step2)<errorMin else
+							error_x00_step2(errorWidth-1 downto 0);
+
+	error_x01_step0<=x(2,1)*error_sum_step1;
+	error_x01_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_x01_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_x01_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_x01_step0((busWidth-1+busF) downto busF);
+	error_x01_step2<=resize(error_x01_reg,errorWidth+1)+resize(error_x01_step1,errorWidth+1);
+	error_x01_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_x01_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_x01_step2)<errorMin else
+							error_x01_step2(errorWidth-1 downto 0);
+							
+	error_x02_step0<=x(2,0)*error_sum_step1;
+	error_x02_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_x02_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_x02_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_x02_step0((busWidth-1+busF) downto busF);
+	error_x02_step2<=resize(error_x02_reg,errorWidth+1)+resize(error_x02_step1,errorWidth+1);
+	error_x02_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_x02_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_x02_step2)<errorMin else
+							error_x02_step2(errorWidth-1 downto 0);
+							
+	error_x10_step0<=x(1,2)*error_sum_step1;
+	error_x10_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_x10_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_x10_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_x10_step0((busWidth-1+busF) downto busF);
+	error_x10_step2<=resize(error_x10_reg,errorWidth+1)+resize(error_x10_step1,errorWidth+1);
+	error_x10_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_x10_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_x10_step2)<errorMin else
+							error_x10_step2(errorWidth-1 downto 0);
+							
+	error_x11_step0<=x(1,1)*error_sum_step1;
+	error_x11_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_x11_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_x11_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_x11_step0((busWidth-1+busF) downto busF);
+	error_x11_step2<=resize(error_x11_reg,errorWidth+1)+resize(error_x11_step1,errorWidth+1);
+	error_x11_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_x11_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_x11_step2)<errorMin else
+							error_x11_step2(errorWidth-1 downto 0);
+							
+	error_x12_step0<=x(1,0)*error_sum_step1;
+	error_x12_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_x12_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_x12_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_x12_step0((busWidth-1+busF) downto busF);
+	error_x12_step2<=resize(error_x12_reg,errorWidth+1)+resize(error_x12_step1,errorWidth+1);
+	error_x12_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_x12_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_x12_step2)<errorMin else
+							error_x12_step2(errorWidth-1 downto 0);
+							
+	error_x20_step0<=x(0,2)*error_sum_step1;
+	error_x20_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_x20_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_x20_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_x20_step0((busWidth-1+busF) downto busF);
+	error_x20_step2<=resize(error_x20_reg,errorWidth+1)+resize(error_x20_step1,errorWidth+1);
+	error_x20_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_x20_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_x20_step2)<errorMin else
+							error_x20_step2(errorWidth-1 downto 0);
+							
+	error_x21_step0<=x(0,1)*error_sum_step1;
+	error_x21_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_x21_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_x21_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_x21_step0((busWidth-1+busF) downto busF);
+	error_x21_step2<=resize(error_x21_reg,errorWidth+1)+resize(error_x21_step1,errorWidth+1);
+	error_x21_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_x21_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_x21_step2)<errorMin else
+							error_x21_step2(errorWidth-1 downto 0);
+							
+	error_x22_step0<=x(0,0)*error_sum_step1;
+	error_x22_step1<=	to_signed(ALUBorderTop,busWidth) when to_integer(error_x22_step0((busWidth-1+busF) downto busF))>ALUBorderTop else
+							to_signed(ALUBorderBottom,busWidth) when to_integer(error_x22_step0((busWidth-1+busF) downto busF))<ALUBorderBottom else
+							error_x22_step0((busWidth-1+busF) downto busF);
+	error_x22_step2<=resize(error_x22_reg,errorWidth+1)+resize(error_x22_step1,errorWidth+1);
+	error_x22_step3<=	to_signed(errorMax,errorWidth) when to_integer(error_x22_step2)>errorMax else
+							to_signed(errorMin,errorWidth) when to_integer(error_x22_step2)<errorMin else
+							error_x22_step2(errorWidth-1 downto 0);
+--
+	error_i<=std_logic_vector(error_i_reg);
+	
+	error_u00<=std_logic_vector(error_u00_reg); error_u01<=std_logic_vector(error_u01_reg); error_u02<=std_logic_vector(error_u02_reg);
+	error_u10<=std_logic_vector(error_u10_reg); error_u12<=std_logic_vector(error_u12_reg); error_u11<=std_logic_vector(error_u11_reg);
+	error_u20<=std_logic_vector(error_u20_reg); error_u21<=std_logic_vector(error_u21_reg); error_u22<=std_logic_vector(error_u22_reg);
+	
+	error_x00<=std_logic_vector(error_x00_reg); error_x02<=std_logic_vector(error_x02_reg); error_x01<=std_logic_vector(error_x01_reg);
+	error_x11<=std_logic_vector(error_x11_reg); error_x10<=std_logic_vector(error_x10_reg); error_x12<=std_logic_vector(error_x12_reg);
+	error_x20<=std_logic_vector(error_x20_reg); error_x22<=std_logic_vector(error_x22_reg); error_x21<=std_logic_vector(error_x21_reg);
+			
 	process(calc)
-
 	begin
 		if (rising_edge(calc)) then
 			ideal<=signed(ideal_line);
-			x_old<=signed(x(1,1));
-			if (x_temp_5 > to_signed(ALUBorderTop,busWidth+1)) then
-				x_new <= to_signed(ALUBorderTop,busWidth);
-			elsif (x_temp_5 < to_signed(ALUBorderBottom,busWidth+1)) then
-				x_new <= to_signed(ALUBorderBottom,busWidth);
-			else
-				x_new <= x_temp_5((busWidth-1) downto 0);
-			end if;
 			
 			if(err_rst='1') then
 				error_reg<=to_signed(0,busWidth);
-				error_squa_sum_reg<=to_signed(0,errorWidth);
+				
+				error_i_reg<=to_signed(0,errorWidth);
+				
+				error_u00_reg<=to_signed(0,errorWidth); error_u01_reg<=to_signed(0,errorWidth); error_u02_reg<=to_signed(0,errorWidth);
+				error_u10_reg<=to_signed(0,errorWidth); error_u12_reg<=to_signed(0,errorWidth); error_u11_reg<=to_signed(0,errorWidth);
+				error_u20_reg<=to_signed(0,errorWidth); error_u21_reg<=to_signed(0,errorWidth); error_u22_reg<=to_signed(0,errorWidth);
+				
+				error_x00_reg<=to_signed(0,errorWidth); error_x02_reg<=to_signed(0,errorWidth); error_x01_reg<=to_signed(0,errorWidth);
+				error_x11_reg<=to_signed(0,errorWidth); error_x10_reg<=to_signed(0,errorWidth); error_x12_reg<=to_signed(0,errorWidth);
+				error_x20_reg<=to_signed(0,errorWidth); error_x22_reg<=to_signed(0,errorWidth); error_x21_reg<=to_signed(0,errorWidth);
 			else
 				error_reg<=error_step1;
-				error_squa_sum_reg<=error_squa_sum_step8;
+				
+				error_i_reg<=error_i_step1;
+				
+				error_u00_reg<=error_u00_step3; error_u01_reg<=error_u01_step3; error_u02_reg<=error_u02_step3;
+				error_u10_reg<=error_u10_step3; error_u12_reg<=error_u12_step3; error_u11_reg<=error_u11_step3;
+				error_u20_reg<=error_u20_step3; error_u21_reg<=error_u21_step3; error_u22_reg<=error_u22_step3;
+				
+				error_x00_reg<=error_x00_step3; error_x02_reg<=error_x02_step3; error_x01_reg<=error_x01_step3;
+				error_x11_reg<=error_x11_step3; error_x10_reg<=error_x10_step3; error_x12_reg<=error_x12_step3;
+				error_x20_reg<=error_x20_step3; error_x22_reg<=error_x22_step3; error_x21_reg<=error_x21_step3;
 			end if;
 		end if;
 	end process;

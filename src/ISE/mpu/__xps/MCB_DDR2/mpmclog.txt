@@ -1,0 +1,3 @@
+Per 26. Oca 13:03:05 2017XPS does not output Eplida memory models. You can download the required memory models from the <BR><a href = "http://www.elpida.com/en/products/ddr2.html">
+		Elpida web site</a>.<BR>
+	        <b>Simulations using ISIM simulator is not supported for Elpida parts.</b>

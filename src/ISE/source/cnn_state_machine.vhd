@@ -11,7 +11,9 @@ library cnn_library;
 entity cnn_state_machine is
 	port (
 		sys_clk, rst, en : in  std_logic;
-		ready, alu_calc, alu_err_rst: out std_logic;
+		ready: out std_logic:='0';
+		alu_calc: out std_logic:='0';
+		alu_err_rst: out std_logic:='0';
 			
 		ram_we :out std_logic_vector(0 downto 0);
 		ram_address :out std_logic_vector (ramAddressWidth-1 downto 0);
@@ -55,8 +57,9 @@ end cnn_state_machine;
 
 
 architecture Behavioral of cnn_state_machine is
-	component cnn_fifo
-		port (
+	component cnn_fifo is
+		port
+		(
 			d : in std_logic_vector(busWidth-1 downto 0);
 			clk : in std_logic;
 			ce : in std_logic;
@@ -91,12 +94,12 @@ architecture Behavioral of cnn_state_machine is
 	type fsm_states is (
 								TEMPLATE_READ_INIT, TEMPLATE_READ,
 								X_OLD_U_INIT, X_OLD_U_READ, X_NEW_WRITE,
-								X_RAND_INIT, X_RAND_WRITE,
+								X_RAND_ADDRESS_INIT, X_RAND_INIT, X_RAND_WRITE,
 								SUCCESS
 								);
 	signal state: fsm_states;
 	attribute enum_encoding : string; 
-	attribute enum_encoding of fsm_states: type is "0000 0001 0010 0011 0100 0101 0110 0111";
+	attribute enum_encoding of fsm_states: type is "0000 0001 0010 0011 0100 0101 0110 0111 1000";
 	
 	signal iter : integer range 0 to iterMAX := 0;
 	signal ramAddressShift: integer := imageWidth*imageHeight;
@@ -111,7 +114,10 @@ begin
 	--Create FIFOs
 	fifo_type_select:for i in 0 to 1 generate --satir
 		fifo_order_select:for j in 0 to patchWH-1 generate --sutun
-			FIFO_XU: cnn_fifo				port map (fifo_data_in(i,j),sys_clk,fifo_clk_en(i,j),fifo_data_out(i,j),imageWidth);
+			L1CACHE_FIFO_XU: cnn_fifo				port map
+				(
+					fifo_data_in(i,j), sys_clk, fifo_clk_en(i,j), fifo_data_out(i,j), imageWidth
+				);
 		end generate fifo_order_select;
 	end generate fifo_type_select;
 	
@@ -187,7 +193,7 @@ begin
 				if state_mode="00" then
 					state<=TEMPLATE_READ_INIT;
 				elsif state_mode="01" then
-					state<=X_RAND_INIT;
+					state<=X_RAND_ADDRESS_INIT;
 				end if;
 				
 				ram_address<=(others => '0'); template_address<=(others => '0');
@@ -199,7 +205,7 @@ begin
 					--TEMPLATE READ-----------
 					when TEMPLATE_READ_INIT =>
 					--------------------------
-						
+						ramAddressShift <= imageWidth*imageHeight;
 						ii:=0; ii_1d:=0; jj:=0; template_lag:=0; ram_lag:=0;
 						ram_we<="0";template_we<="0";
 						template_A_position:=templateWidth*template_no;
@@ -257,11 +263,10 @@ begin
 					--IMAGE READ-----------
 					when X_OLD_U_INIT =>
 					-----------------------
-						ramAddressShift <= imageWidth*imageHeight;
-						ramXAddressShift <= to_integer(unsigned(ram_x_location))*imageWidth*imageHeight;
-						ramUAddressShift <= to_integer(unsigned(ram_u_location))*imageWidth*imageHeight;
-						ramIdealAddressShift <= to_integer(unsigned(ram_ideal_location))*imageWidth*imageHeight;
-						ramErrorAddressShift <= to_integer(unsigned(ram_error_location))*imageWidth*imageHeight;
+						ramXAddressShift <= to_integer(unsigned(ram_x_location))*ramAddressShift;
+						ramUAddressShift <= to_integer(unsigned(ram_u_location))*ramAddressShift;
+						ramIdealAddressShift <= to_integer(unsigned(ram_ideal_location))*ramAddressShift;
+						ramErrorAddressShift <= to_integer(unsigned(ram_error_location))*ramAddressShift;
 						ii:=0;ii_1d:=0;jj:=0;
 						template_lag:=0; ram_lag:=0;
 						state<=X_OLD_U_READ;
@@ -413,11 +418,15 @@ begin
 				----------------------------------
 				case (state) is --start of machina
 				----------------------------------
-					when X_RAND_INIT =>
+					when X_RAND_ADDRESS_INIT=>
 						ramAddressShift <= imageWidth*imageHeight;
-						ramXAddressShift <= to_integer(unsigned(ram_x_location))*imageWidth*imageHeight;
+						ram_data_in<=rand_num;
+						state<=X_RAND_WRITE;
+					when X_RAND_INIT =>
+						ramXAddressShift <= to_integer(unsigned(ram_x_location))*ramAddressShift;
 						ii:=0;ii_1d:=0;jj:=0;
-						ram_lag:=0;	state<=X_RAND_WRITE;
+						ram_lag:=0;
+						state<=X_RAND_WRITE;
 					when X_RAND_WRITE =>
 						if ram_lag=0 then
 							ram_we<="0";
@@ -432,7 +441,6 @@ begin
 
 						if (ram_lag=1) then
 							ram_we<="1";
-							ram_data_in<=rand_num;
 							ram_lag:=2;
 						elsif (ram_lag=2) then
 							if (jj=imageWidth) then --imageHeight

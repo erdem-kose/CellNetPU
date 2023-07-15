@@ -1,4 +1,4 @@
-function [] = fpga_send_header(serial_obj, bus_f, im_width, im_height, Ts, iter, template_no, learn_loop, learn_rate)
+function [] = fpga_send_header(serial_obj, bus_f, im_width, im_height, Ts, iter, template_no, learn_loop, learn_rate, alg_no)
     fwrite(serial_obj,0,'uint8');
 
     fwrite(serial_obj,bitand((int16(floor((im_width)/(2^8)))),255),'uint8');

@@ -20,8 +20,9 @@ entity cnn_fifo is
 end cnn_fifo;
 
 architecture Behavioral of cnn_fifo is
-	component fifo_bram_core
-	  port (
+	component fifo_bram_core is
+	  port
+	  (
 		 clka : in std_logic;
 		 wea : in std_logic_vector(0 downto 0);
 		 addra : in std_logic_vector(fifoCoreAddressWidth-1 downto 0);
@@ -35,8 +36,10 @@ architecture Behavioral of cnn_fifo is
 	  );
 	end component;
 	
+	signal limit_address : integer range 0 to imageWidthMAX:= imageWidth;
+	
 	signal read_address : integer range 0 to imageWidthMAX:= 0;
-	signal write_address : integer range 0 to imageWidthMAX:= imageWidth;
+	signal write_address : integer range 0 to imageWidthMAX:= imageWidthMAX;
 		
 	signal bram_read_address : std_logic_vector (fifoCoreAddressWidth-1 downto 0):=(others=>'0');
 	signal bram_read_data_in : std_logic_vector (busWidth-1 downto 0):=(others=>'0');
@@ -50,11 +53,12 @@ architecture Behavioral of cnn_fifo is
 
 
 begin
-	BRAM_CORE: fifo_bram_core
-		port map (
-						clk, bram_read_we, bram_read_address, bram_read_data_in, bram_read_data_out,
-						clk, bram_write_we, bram_write_address, bram_write_data_in, bram_write_data_out
-					);
+	FIFO_CORE: fifo_bram_core
+		port map 
+		(
+			clk, bram_read_we, bram_read_address, bram_read_data_in, bram_read_data_out,
+			clk, bram_write_we, bram_write_address, bram_write_data_in, bram_write_data_out
+		);
 	
 
 	bram_write_we<="1" when (ce='1') else "0";
@@ -65,18 +69,26 @@ begin
 	
 	process (clk,ce)
 	begin
-		if(ce='1') then
-			if (falling_edge(clk)) then
+		if (rising_edge(clk)) then
+			limit_address<=imageWidth;
+		end if;
+		if (falling_edge(clk)) then
+			if(ce='1') then
 				bram_write_data_in<=d;
-				if(read_address=imageWidth) then
+
+				if(read_address=limit_address) then
 					read_address<=0;
-					write_address<=imageWidth;
-				elsif(write_address=imageWidth) then
+					write_address<=limit_address;
+				elsif(write_address=limit_address) then
 					read_address<=1;
 					write_address<=0;
 				else
 					read_address<=read_address+1;
 					write_address<=write_address+1;
+				end if;
+			else
+				if (read_address=0) then
+					write_address<=limit_address;
 				end if;
 			end if;
 		end if;

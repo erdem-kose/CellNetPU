@@ -1,0 +1,1 @@
+ -p spartan6 -lang vhdl$(PROJECT_SEARCHPATHOPT) $(GLOBAL_SEARCHPATHOPT) -msg __xps/ise/xmsgprops.lst -s isim -X D:/Egitim/ELEYLT-TezCalismasi/Work/v0_8/ISE/microblazempu/

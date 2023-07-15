@@ -3,7 +3,7 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_7/ISE/testbench_isim_beh.wdb" id="1" type="auto">
+      <db_ref path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_8/ISE/testbench_isim_beh.wdb" id="1" type="auto">
          <top_modules>
             <top_module name="cnn_package" />
             <top_module name="math_real" />
@@ -17,7 +17,7 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="16" />
    <wvobject fp_name="/testbench/clk" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -26,7 +26,7 @@
       <obj_property name="ElementShortName">alu_calc</obj_property>
       <obj_property name="ObjectShortName">alu_calc</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/uut/ALU/x_out_ready" type="logic" db_ref_id="1">
+   <wvobject fp_name="/testbench/uut/CALCULATOR/x_out_ready" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">x_out_ready</obj_property>
       <obj_property name="ObjectShortName">x_out_ready</obj_property>
    </wvobject>
@@ -158,97 +158,97 @@
    <wvobject fp_name="group23" type="group">
       <obj_property name="label">alu</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="/testbench/uut/ALU/a" type="array" db_ref_id="1">
+      <wvobject fp_name="/testbench/uut/CALCULATOR/a" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">a[0:2]</obj_property>
          <obj_property name="ObjectShortName">a[0:2]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         <wvobject fp_name="/testbench/uut/ALU/a[0]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/a[0]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[0]</obj_property>
             <obj_property name="ObjectShortName">a[0]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
-         <wvobject fp_name="/testbench/uut/ALU/a[1]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/a[1]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[1]</obj_property>
             <obj_property name="ObjectShortName">a[1]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
-         <wvobject fp_name="/testbench/uut/ALU/a[2]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/a[2]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[2]</obj_property>
             <obj_property name="ObjectShortName">a[2]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
       </wvobject>
-      <wvobject fp_name="/testbench/uut/ALU/b" type="array" db_ref_id="1">
+      <wvobject fp_name="/testbench/uut/CALCULATOR/b" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">b[0:2]</obj_property>
          <obj_property name="ObjectShortName">b[0:2]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         <wvobject fp_name="/testbench/uut/ALU/b[0]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/b[0]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[0]</obj_property>
             <obj_property name="ObjectShortName">b[0]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
-         <wvobject fp_name="/testbench/uut/ALU/b[1]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/b[1]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[1]</obj_property>
             <obj_property name="ObjectShortName">b[1]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
-         <wvobject fp_name="/testbench/uut/ALU/b[2]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/b[2]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[2]</obj_property>
             <obj_property name="ObjectShortName">b[2]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
       </wvobject>
-      <wvobject fp_name="/testbench/uut/ALU/i" type="array" db_ref_id="1">
+      <wvobject fp_name="/testbench/uut/CALCULATOR/i" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">i[15:0]</obj_property>
          <obj_property name="ObjectShortName">i[15:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject fp_name="/testbench/uut/ALU/x" type="array" db_ref_id="1">
+      <wvobject fp_name="/testbench/uut/CALCULATOR/x" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">x[0:2]</obj_property>
          <obj_property name="ObjectShortName">x[0:2]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         <wvobject fp_name="/testbench/uut/ALU/x[0]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/x[0]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[0]</obj_property>
             <obj_property name="ObjectShortName">x[0]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
-         <wvobject fp_name="/testbench/uut/ALU/x[1]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/x[1]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[1]</obj_property>
             <obj_property name="ObjectShortName">x[1]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
-         <wvobject fp_name="/testbench/uut/ALU/x[2]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/x[2]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[2]</obj_property>
             <obj_property name="ObjectShortName">x[2]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
       </wvobject>
-      <wvobject fp_name="/testbench/uut/ALU/u" type="array" db_ref_id="1">
+      <wvobject fp_name="/testbench/uut/CALCULATOR/u" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">u[0:2]</obj_property>
          <obj_property name="ObjectShortName">u[0:2]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-         <wvobject fp_name="/testbench/uut/ALU/u[0]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/u[0]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[0]</obj_property>
             <obj_property name="ObjectShortName">u[0]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
-         <wvobject fp_name="/testbench/uut/ALU/u[1]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/u[1]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[1]</obj_property>
             <obj_property name="ObjectShortName">u[1]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
-         <wvobject fp_name="/testbench/uut/ALU/u[2]" type="array" db_ref_id="1">
+         <wvobject fp_name="/testbench/uut/CALCULATOR/u[2]" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">[2]</obj_property>
             <obj_property name="ObjectShortName">u[2]</obj_property>
             <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
          </wvobject>
       </wvobject>
-      <wvobject fp_name="/testbench/uut/ALU/x_out" type="array" db_ref_id="1">
+      <wvobject fp_name="/testbench/uut/CALCULATOR/x_out" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">x_out[15:0]</obj_property>
          <obj_property name="ObjectShortName">x_out[15:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject fp_name="/testbench/uut/ALU/x_out_ready" type="logic" db_ref_id="1">
+      <wvobject fp_name="/testbench/uut/CALCULATOR/x_out_ready" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">x_out_ready</obj_property>
          <obj_property name="ObjectShortName">x_out_ready</obj_property>
       </wvobject>
@@ -265,5 +265,104 @@
       <obj_property name="ElementShortName">rand_num[15:0]</obj_property>
       <obj_property name="ObjectShortName">rand_num[15:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="group55" type="group">
+      <obj_property name="label">error</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/testbench/error_i" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_i[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_u00" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_u00[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_u00[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_u01" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_u01[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_u01[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_u02" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_u02[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_u02[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_u10" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_u10[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_u10[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_u11" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_u11[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_u11[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_u12" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_u12[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_u12[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_u20" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_u20[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_u20[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_u21" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_u21[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_u21[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_u22" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_u22[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_u22[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_x00" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_x00[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_x00[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_x01" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_x01[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_x01[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_x02" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_x02[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_x02[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_x10" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_x10[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_x10[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_x11" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_x11[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_x11[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_x12" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_x12[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_x12[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_x20" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_x20[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_x20[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_x21" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_x21[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_x21[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/error_x22" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">error_x22[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_x22[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>

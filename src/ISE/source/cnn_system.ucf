@@ -1,0 +1,25 @@
+#SYSTEM
+NET "clk" LOC = L15;
+NET "rst" LOC = T15;
+NET "ready_led" LOC = U18;
+
+NET "clk" IOSTANDARD = LVCMOS33;
+NET "rst" IOSTANDARD = LVCMOS33;
+NET "ready_led" IOSTANDARD = LVCMOS33;
+
+NET "rst" TIG;
+NET "ready_led" TIG;
+
+NET "clk" TNM_NET = "clk";
+TIMESPEC TS_clk = PERIOD "clk" 9.5 ns HIGH 50%;
+
+NET "PROCESSOR/STATE_MACHINE/alu_calc" TNM_NET = "PROCESSOR/STATE_MACHINE/alu_calc";
+TIMESPEC TS_PROCESSOR_STATE_MACHINE_alu_calc = PERIOD "PROCESSOR/STATE_MACHINE/alu_calc" 59.5 ns HIGH 16.667%;
+
+#UART
+NET "uart_rx" LOC = A16;
+NET "uart_tx" LOC = B16;
+
+NET "uart_rx" IOSTANDARD = LVCMOS33;
+NET "uart_tx" IOSTANDARD = LVCMOS33;
+NET "uart_tx" SLEW = SLOW;

@@ -9,8 +9,9 @@ library cnn_library;
 	use cnn_library.cnn_package.all;
 
 entity cnn_processor is
-	port (
-		sys_clk, div_clk, rst, en : in  std_logic;
+	port
+	(
+		sys_clk, rst, en : in  std_logic;
 		ready: out std_logic:='0';
 			
 		ram_we :out  std_logic_vector(0 downto 0):=(others=>'0');
@@ -23,7 +24,26 @@ entity cnn_processor is
 		template_interface_data_in : in std_logic_vector(busWidth-1 downto 0);
 		template_interface_data_out : out std_logic_vector(busWidth-1 downto 0);
 			
-		error_squa_sum: out std_logic_vector (errorWidth-1 downto 0);
+		error_i : out std_logic_vector(errorWidth-1 downto 0);
+		error_u00 : out std_logic_vector(errorWidth-1 downto 0);
+		error_u01 : out std_logic_vector(errorWidth-1 downto 0);
+		error_u02 : out std_logic_vector(errorWidth-1 downto 0);
+		error_u10 : out std_logic_vector(errorWidth-1 downto 0);
+		error_u12 : out std_logic_vector(errorWidth-1 downto 0);
+		error_u11 : out std_logic_vector(errorWidth-1 downto 0);
+		error_u20 : out std_logic_vector(errorWidth-1 downto 0);
+		error_u21 : out std_logic_vector(errorWidth-1 downto 0);
+		error_u22 : out std_logic_vector(errorWidth-1 downto 0);
+		error_x00 : out std_logic_vector(errorWidth-1 downto 0);
+		error_x02 : out std_logic_vector(errorWidth-1 downto 0);
+		error_x01 : out std_logic_vector(errorWidth-1 downto 0);
+		error_x11 : out std_logic_vector(errorWidth-1 downto 0);
+		error_x10 : out std_logic_vector(errorWidth-1 downto 0);
+		error_x12 : out std_logic_vector(errorWidth-1 downto 0);
+		error_x20 : out std_logic_vector(errorWidth-1 downto 0);
+		error_x22 : out std_logic_vector(errorWidth-1 downto 0);
+		error_x21 : out std_logic_vector(errorWidth-1 downto 0);
+			
 		rand_num_out: out std_logic_vector (busWidth-1 downto 0);
 			
 		imageWidth: in std_logic_vector(busWidth-1 downto 0);
@@ -45,7 +65,8 @@ end cnn_processor;
 
 architecture Behavioral of cnn_processor is
 	component ram_templates is
-		port (
+		port
+		(
 			clka : in std_logic;
 			wea : in std_logic_vector(0 downto 0);
 			addra : in std_logic_vector(templateAddressWidth-1 downto 0);
@@ -60,8 +81,9 @@ architecture Behavioral of cnn_processor is
 	end component;
 	
 	component cnn_calculator is
-		port (
-			clk, div_clk, calc, err_rst : in  std_logic;
+		port
+		(
+			clk, calc, err_rst : in  std_logic;
 			
 			a_line : in  std_logic_vector ((busWidth*patchSize-1) downto 0);
 			b_line : in  std_logic_vector ((busWidth*patchSize-1) downto 0);
@@ -78,19 +100,40 @@ architecture Behavioral of cnn_processor is
 			ideal_line: in  std_logic_vector (busWidth-1 downto 0);
 			
 			error: out std_logic_vector (busWidth-1 downto 0);
-			error_squa_sum: out std_logic_vector (errorWidth-1 downto 0)
+			
+			error_i : out std_logic_vector(errorWidth-1 downto 0);
+			error_u00 : out std_logic_vector(errorWidth-1 downto 0);
+			error_u01 : out std_logic_vector(errorWidth-1 downto 0);
+			error_u02 : out std_logic_vector(errorWidth-1 downto 0);
+			error_u10 : out std_logic_vector(errorWidth-1 downto 0);
+			error_u12 : out std_logic_vector(errorWidth-1 downto 0);
+			error_u11 : out std_logic_vector(errorWidth-1 downto 0);
+			error_u20 : out std_logic_vector(errorWidth-1 downto 0);
+			error_u21 : out std_logic_vector(errorWidth-1 downto 0);
+			error_u22 : out std_logic_vector(errorWidth-1 downto 0);
+			error_x00 : out std_logic_vector(errorWidth-1 downto 0);
+			error_x02 : out std_logic_vector(errorWidth-1 downto 0);
+			error_x01 : out std_logic_vector(errorWidth-1 downto 0);
+			error_x11 : out std_logic_vector(errorWidth-1 downto 0);
+			error_x10 : out std_logic_vector(errorWidth-1 downto 0);
+			error_x12 : out std_logic_vector(errorWidth-1 downto 0);
+			error_x20 : out std_logic_vector(errorWidth-1 downto 0);
+			error_x22 : out std_logic_vector(errorWidth-1 downto 0);
+			error_x21 : out std_logic_vector(errorWidth-1 downto 0)
 		);
 	end component;
 
 	component cnn_rand is
-		port (
+		port
+		(
 			clk: in  std_logic;
 			rand_num: out std_logic_vector (busWidth-1 downto 0)
 		);
 	end component;
 
 	component cnn_state_machine is
-		port (
+		port
+		(
 			sys_clk, rst, en : in  std_logic;
 			ready, alu_calc, alu_err_rst: out std_logic;
 			
@@ -166,26 +209,34 @@ begin
 	rand_num_out<=rand_num;
 	--Create ALU, TEMPLATES and STATE_MACHINE
 	TEMPLATES : ram_templates
-		port map (
+		port map
+		(
 			sys_clk,template_we,
 			template_address,template_data_in,template_data_out,
 			sys_clk,template_interface_we,
 			template_interface_address, template_interface_data_in, template_interface_data_out
 		);
-	CALCULATOR: cnn_calculator		port map (
-			sys_clk, div_clk, alu_calc, alu_err_rst,
+	CALCULATOR: cnn_calculator		port map
+		(
+			sys_clk,
+			alu_calc, alu_err_rst,
 			a_line,b_line,i_line,x_new,x_new_ready,x_old_line,u_line,
 			to_integer(unsigned(Ts)), to_integer(unsigned(learn_rate)),
-			image_size, ideal, error, error_squa_sum
+			image_size, ideal,
+			error,
+			error_i, error_u00, error_u01, error_u02, error_u10, error_u12, error_u11, error_u20, error_u21, error_u22,
+			error_x00, error_x02, error_x01, error_x11, error_x10, error_x12, error_x20, error_x22, error_x21
 		);
 	RANDNUMGEN: cnn_rand
-		port map (
+		port map
+		(
 			sys_clk, rand_num
 		);
 	STATE_MACHINE: cnn_state_machine
 		port map
 		(
-			sys_clk, rst, en, ready, alu_calc, alu_err_rst,
+			sys_clk, rst, en, ready,
+			alu_calc, alu_err_rst,
 			ram_we, ram_address, ram_data_in ,ram_data_out,
 			template_we, template_address,	template_data_in, template_data_out,
 			a_line, b_line,i_line , x_old_line, u_line, x_new, x_new_ready,

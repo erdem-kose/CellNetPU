@@ -1,0 +1,852 @@
+Release 14.5 - xst P.58f (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\synthesis\xst_temp_dir\
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
+ 
+--> 
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input Format                       : MIXED
+Input File Name                    : "mpu_iomodule_0_wrapper_xst.prj"
+Verilog Include Directory          : {"D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\pcores\" "D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\SupportFiles\Digilent\pcores\" "C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+
+---- Target Parameters
+Target Device                      : xc6slx45csg324-3
+Output File Name                   : "../implementation/mpu_iomodule_0_wrapper.ngc"
+
+---- Source Options
+Top Module Name                    : mpu_iomodule_0_wrapper
+
+---- Target Options
+Add IO Buffers                     : NO
+
+---- General Options
+Optimization Goal                  : speed
+Netlist Hierarchy                  : as_optimized
+Optimization Effort                : 1
+Hierarchy Separator                : /
+
+---- Other Options
+Cores Search Directories           : {../implementation}
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/xilinx_primitives.vhd" into library iomodule_v1_03_a
+Parsing entity <XIL_SRL16E>.
+Parsing architecture <IMP> of entity <xil_srl16e>.
+Parsing entity <XIL_SRLC16E>.
+Parsing architecture <IMP> of entity <xil_srlc16e>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/divide_part.vhd" into library iomodule_v1_03_a
+Parsing entity <Divide_part>.
+Parsing architecture <VHDL_RTL> of entity <divide_part>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/fit_module.vhd" into library iomodule_v1_03_a
+Parsing entity <FIT_Module>.
+Parsing architecture <VHDL_RTL> of entity <fit_module>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/gpi_module.vhd" into library iomodule_v1_03_a
+Parsing entity <GPI_Module>.
+Parsing architecture <IMP> of entity <gpi_module>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/gpo_module.vhd" into library iomodule_v1_03_a
+Parsing entity <GPO_Module>.
+Parsing architecture <IMP> of entity <gpo_module>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/intr_ctrl.vhd" into library iomodule_v1_03_a
+Parsing entity <intr_ctrl>.
+Parsing architecture <IMP> of entity <intr_ctrl>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/pit_module.vhd" into library iomodule_v1_03_a
+Parsing entity <PIT_Module>.
+Parsing architecture <IMP> of entity <pit_module>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/uart_control_status.vhd" into library iomodule_v1_03_a
+Parsing entity <Uart_Control_Status>.
+Parsing architecture <IMP> of entity <uart_control_status>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/uart_receive.vhd" into library iomodule_v1_03_a
+Parsing entity <UART_Receive>.
+Parsing architecture <IMP> of entity <uart_receive>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/uart_transmit.vhd" into library iomodule_v1_03_a
+Parsing entity <UART_Transmit>.
+Parsing architecture <IMP> of entity <uart_transmit>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" into library iomodule_v1_03_a
+Parsing entity <Iomodule_core>.
+Parsing architecture <IMP> of entity <iomodule_core>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/pselect_mask.vhd" into library iomodule_v1_03_a
+Parsing entity <pselect_mask>.
+Parsing architecture <imp> of entity <pselect_mask>.
+Parsing VHDL file "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule.vhd" into library iomodule_v1_03_a
+Parsing entity <iomodule>.
+Parsing architecture <IMP> of entity <iomodule>.
+Parsing VHDL file "D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\hdl\mpu_iomodule_0_wrapper.vhd" into library work
+Parsing entity <mpu_iomodule_0_wrapper>.
+Parsing architecture <STRUCTURE> of entity <mpu_iomodule_0_wrapper>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating entity <mpu_iomodule_0_wrapper> (architecture <STRUCTURE>) from library <work>.
+
+Elaborating entity <iomodule> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <pselect_mask> (architecture <imp>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <Iomodule_core> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <UART_Transmit> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <XIL_SRL16E> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+WARNING:HDLCompiler:321 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/xilinx_primitives.vhd" Line 137: Comparison between arrays of unequal length always returns FALSE.
+
+Elaborating entity <UART_Receive> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <XIL_SRL16E> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <Uart_Control_Status> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <FIT_Module> (architecture <VHDL_RTL>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <PIT_Module> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <GPO_Module> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <GPO_Module> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <GPI_Module> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <GPI_Module> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+Elaborating entity <intr_ctrl> (architecture <IMP>) with generics from library <iomodule_v1_03_a>.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <mpu_iomodule_0_wrapper>.
+    Related source file is "D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\hdl\mpu_iomodule_0_wrapper.vhd".
+    Summary:
+	no macro.
+Unit <mpu_iomodule_0_wrapper> synthesized.
+
+Synthesizing Unit <iomodule>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule.vhd".
+        C_FAMILY = "spartan6"
+        C_FREQ = 100000000
+        C_INSTANCE = "iomodule_0"
+        C_USE_CONFIG_RESET = 0
+        C_AVOID_PRIMITIVES = 0
+        C_HIGHADDR = "10000000000000000000000001111111"
+        C_BASEADDR = "10000000000000000000000000000000"
+        C_MASK = "11010000000000000000000000000000"
+        C_IO_HIGHADDR = "00000000000000000000000000000000"
+        C_IO_BASEADDR = "11111111111111111111111111111111"
+        C_IO_MASK = "11010000000000000000000000000000"
+        C_LMB_AWIDTH = 32
+        C_LMB_DWIDTH = 32
+        C_USE_IO_BUS = 0
+        C_USE_UART_RX = 1
+        C_USE_UART_TX = 1
+        C_UART_BAUDRATE = 921600
+        C_UART_DATA_BITS = 8
+        C_UART_USE_PARITY = 0
+        C_UART_ODD_PARITY = 0
+        C_UART_RX_INTERRUPT = 0
+        C_UART_TX_INTERRUPT = 0
+        C_UART_ERROR_INTERRUPT = 0
+        C_UART_PROG_BAUDRATE = 1
+        C_USE_FIT1 = 0
+        C_FIT1_No_CLOCKS = 6216
+        C_FIT1_INTERRUPT = 0
+        C_USE_FIT2 = 0
+        C_FIT2_No_CLOCKS = 6216
+        C_FIT2_INTERRUPT = 0
+        C_USE_FIT3 = 0
+        C_FIT3_No_CLOCKS = 6216
+        C_FIT3_INTERRUPT = 0
+        C_USE_FIT4 = 0
+        C_FIT4_No_CLOCKS = 6216
+        C_FIT4_INTERRUPT = 0
+        C_USE_PIT1 = 0
+        C_PIT1_SIZE = 32
+        C_PIT1_READABLE = 1
+        C_PIT1_PRESCALER = 0
+        C_PIT1_INTERRUPT = 0
+        C_USE_PIT2 = 0
+        C_PIT2_SIZE = 32
+        C_PIT2_READABLE = 1
+        C_PIT2_PRESCALER = 0
+        C_PIT2_INTERRUPT = 0
+        C_USE_PIT3 = 0
+        C_PIT3_SIZE = 32
+        C_PIT3_READABLE = 1
+        C_PIT3_PRESCALER = 0
+        C_PIT3_INTERRUPT = 0
+        C_USE_PIT4 = 0
+        C_PIT4_SIZE = 32
+        C_PIT4_READABLE = 1
+        C_PIT4_PRESCALER = 0
+        C_PIT4_INTERRUPT = 0
+        C_USE_GPO1 = 1
+        C_GPO1_SIZE = 32
+        C_GPO1_INIT = "00000000000000000000000000000000"
+        C_USE_GPO2 = 1
+        C_GPO2_SIZE = 32
+        C_GPO2_INIT = "00000000000000000000000000000000"
+        C_USE_GPO3 = 1
+        C_GPO3_SIZE = 32
+        C_GPO3_INIT = "00000000000000000000000000000000"
+        C_USE_GPO4 = 0
+        C_GPO4_SIZE = 32
+        C_GPO4_INIT = "00000000000000000000000000000000"
+        C_USE_GPI1 = 1
+        C_GPI1_SIZE = 32
+        C_GPI1_INTERRUPT = 0
+        C_USE_GPI2 = 1
+        C_GPI2_SIZE = 32
+        C_GPI2_INTERRUPT = 0
+        C_USE_GPI3 = 0
+        C_GPI3_SIZE = 32
+        C_GPI3_INTERRUPT = 0
+        C_USE_GPI4 = 0
+        C_GPI4_SIZE = 32
+        C_GPI4_INTERRUPT = 0
+        C_INTC_USE_EXT_INTR = 0
+        C_INTC_INTR_SIZE = 1
+        C_INTC_LEVEL_EDGE = "0000000000000000"
+        C_INTC_POSITIVE = "0000000000000001"
+        C_INTC_HAS_FAST = 0
+        C_INTC_ADDR_WIDTH = 32
+        C_INTC_BASE_VECTORS = "00000000000000000000000000000000"
+    Set property "KEEP = SOFT" for signal <write_data>.
+    Set property "KEEP = SOFT" for signal <uart_tx_write>.
+WARNING:Xst:647 - Input <IO_Read_Data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <LMB_BE> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <IO_Ready> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <lmb_reg_read_Q>.
+    Found 1-bit register for signal <Sl_Wait>.
+    Found 1-bit register for signal <lmb_reg_write>.
+    Found 32-bit register for signal <write_data>.
+    Found 5-bit register for signal <lmb_abus_Q>.
+    Summary:
+	inferred  40 D-type flip-flop(s).
+Unit <iomodule> synthesized.
+
+Synthesizing Unit <pselect_mask>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/pselect_mask.vhd".
+        C_AW = 32
+        C_BAR = "10000000000000000000000000000000"
+        C_MASK = "11010000000000000000000000000000"
+WARNING:Xst:647 - Input <A<2:2>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <A<4:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <pselect_mask> synthesized.
+
+Synthesizing Unit <Iomodule_core>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd".
+        C_FREQ = 100000000
+        C_USE_CONFIG_RESET = 0
+        C_AVOID_PRIMITIVES = 0
+        C_USE_UART_RX = 1
+        C_USE_UART_TX = 1
+        C_UART_BAUDRATE = 921600
+        C_UART_DATA_BITS = 8
+        C_UART_USE_PARITY = 0
+        C_UART_ODD_PARITY = 0
+        C_UART_RX_INTERRUPT = 0
+        C_UART_TX_INTERRUPT = 0
+        C_UART_ERROR_INTERRUPT = 0
+        C_UART_PROG_BAUDRATE = 1
+        C_USE_FIT1 = 0
+        C_FIT1_No_CLOCKS = 6216
+        C_FIT1_INTERRUPT = 0
+        C_USE_FIT2 = 0
+        C_FIT2_No_CLOCKS = 6216
+        C_FIT2_INTERRUPT = 0
+        C_USE_FIT3 = 0
+        C_FIT3_No_CLOCKS = 6216
+        C_FIT3_INTERRUPT = 0
+        C_USE_FIT4 = 0
+        C_FIT4_No_CLOCKS = 6216
+        C_FIT4_INTERRUPT = 0
+        C_USE_PIT1 = 0
+        C_PIT1_SIZE = 32
+        C_PIT1_READABLE = 1
+        C_PIT1_PRESCALER = 0
+        C_PIT1_INTERRUPT = 0
+        C_USE_PIT2 = 0
+        C_PIT2_SIZE = 32
+        C_PIT2_READABLE = 1
+        C_PIT2_PRESCALER = 0
+        C_PIT2_INTERRUPT = 0
+        C_USE_PIT3 = 0
+        C_PIT3_SIZE = 32
+        C_PIT3_READABLE = 1
+        C_PIT3_PRESCALER = 0
+        C_PIT3_INTERRUPT = 0
+        C_USE_PIT4 = 0
+        C_PIT4_SIZE = 32
+        C_PIT4_READABLE = 1
+        C_PIT4_PRESCALER = 0
+        C_PIT4_INTERRUPT = 0
+        C_USE_GPO1 = 1
+        C_GPO1_SIZE = 32
+        C_GPO1_INIT = "00000000000000000000000000000000"
+        C_USE_GPO2 = 1
+        C_GPO2_SIZE = 32
+        C_GPO2_INIT = "00000000000000000000000000000000"
+        C_USE_GPO3 = 1
+        C_GPO3_SIZE = 32
+        C_GPO3_INIT = "00000000000000000000000000000000"
+        C_USE_GPO4 = 0
+        C_GPO4_SIZE = 32
+        C_GPO4_INIT = "00000000000000000000000000000000"
+        C_USE_GPI1 = 1
+        C_GPI1_SIZE = 32
+        C_GPI1_INTERRUPT = 0
+        C_USE_GPI2 = 1
+        C_GPI2_SIZE = 32
+        C_GPI2_INTERRUPT = 0
+        C_USE_GPI3 = 0
+        C_GPI3_SIZE = 32
+        C_GPI3_INTERRUPT = 0
+        C_USE_GPI4 = 0
+        C_GPI4_SIZE = 32
+        C_GPI4_INTERRUPT = 0
+        C_INTC_USE_EXT_INTR = 0
+        C_INTC_INTR_SIZE = 1
+        C_INTC_LEVEL_EDGE = "0000000000000000"
+        C_INTC_POSITIVE = "0000000000000001"
+        C_INTC_HAS_FAST = 0
+        C_INTC_ADDR_WIDTH = 32
+        C_INTC_BASE_VECTORS = "00000000000000000000000000000000"
+WARNING:Xst:647 - Input <Config_Reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PIT1_Enable> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PIT2_Enable> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PIT3_Enable> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PIT4_Enable> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 805: Output port <PIT_Data> of the instance <PIT_I1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 835: Output port <PIT_Data> of the instance <PIT_I2> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 865: Output port <PIT_Data> of the instance <PIT_I3> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 895: Output port <PIT_Data> of the instance <PIT_I4> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 995: Output port <GPI_In> of the instance <GPI_I3> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 1010: Output port <GPI_In> of the instance <GPI_I4> is unconnected or connected to loadless signal.
+    Found 20-bit register for signal <Using_UART.Programmable_BaudRate.baudrate_cnt>.
+    Found 1-bit register for signal <en_16x_baud>.
+    Found 20-bit register for signal <Using_UART.Programmable_BaudRate.baudrate_reg>.
+    Found 20-bit subtractor for signal <GND_39_o_GND_39_o_sub_2_OUT<19:0>> created at line 1308.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  41 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <Iomodule_core> synthesized.
+
+Synthesizing Unit <UART_Transmit>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/uart_transmit.vhd".
+        C_USE_SRL16 = "yes"
+        C_DATA_BITS = 8
+        C_USE_PARITY = 0
+        C_ODD_PARITY = 0
+    Set property "KEEP = SOFT" for signal <TX>.
+    Set property "KEEP = SOFT" for signal <tx_buffer_empty_i>.
+    Found 1-bit register for signal <tx_DataBits>.
+    Found 3-bit register for signal <mux_sel>.
+    Found 1-bit register for signal <data_is_sent>.
+    Found 1-bit register for signal <serial_Data>.
+    Found 1-bit register for signal <TX>.
+    Found 8-bit register for signal <fifo_DOut>.
+    Found 1-bit register for signal <tx_buffer_empty_i>.
+    Found 1-bit register for signal <tx_Start>.
+    Summary:
+	inferred  17 D-type flip-flop(s).
+	inferred   7 Multiplexer(s).
+Unit <UART_Transmit> synthesized.
+
+Synthesizing Unit <XIL_SRL16E_1>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/xilinx_primitives.vhd".
+        C_USE_SRL16 = "yes"
+        C_STATIC = false
+        INIT = "0000000000000001"
+WARNING:Xst:647 - Input <Config_Reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <XIL_SRL16E_1> synthesized.
+
+Synthesizing Unit <UART_Receive>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/uart_receive.vhd".
+        C_USE_SRL16 = "yes"
+        C_DATA_BITS = 8
+        C_USE_PARITY = 0
+        C_ODD_PARITY = 0
+    Set property "KEEP = SOFT" for signal <new_rx_data<0>>.
+    Set property "KEEP = SOFT" for signal <new_rx_data<1>>.
+    Set property "KEEP = SOFT" for signal <new_rx_data<2>>.
+    Set property "KEEP = SOFT" for signal <new_rx_data<3>>.
+    Set property "KEEP = SOFT" for signal <new_rx_data<4>>.
+    Set property "KEEP = SOFT" for signal <new_rx_data<5>>.
+    Set property "KEEP = SOFT" for signal <new_rx_data<6>>.
+    Set property "KEEP = SOFT" for signal <new_rx_data<7>>.
+    Set property "KEEP = SOFT" for signal <new_rx_data<8>>.
+    Set property "KEEP = SOFT" for signal <RX_Frame_Error>.
+    Set property "KEEP = SOFT" for signal <RX_Parity_Error>.
+    Set property "KEEP = SOFT" for signal <new_rx_data_write>.
+    Found 1-bit register for signal <previous_RX>.
+    Found 1-bit register for signal <start_Edge_Detected>.
+    Found 1-bit register for signal <running>.
+    Found 1-bit register for signal <stop_Bit_Position>.
+    Found 1-bit register for signal <new_rx_data_write>.
+    Found 1-bit register for signal <rx_data_exists_i>.
+    Found 8-bit register for signal <rx_data_i>.
+    Found 8-bit register for signal <RX_Data>.
+    Found 1-bit register for signal <rx_1>.
+    Found 1-bit register for signal <rx_2>.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal Config_Reset may hinder XST clustering optimizations.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal new_rx_data<1> may hinder XST clustering optimizations.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal new_rx_data<2> may hinder XST clustering optimizations.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal new_rx_data<3> may hinder XST clustering optimizations.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal new_rx_data<4> may hinder XST clustering optimizations.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal new_rx_data<5> may hinder XST clustering optimizations.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal new_rx_data<6> may hinder XST clustering optimizations.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal new_rx_data<7> may hinder XST clustering optimizations.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal new_rx_data<8> may hinder XST clustering optimizations.
+    Summary:
+	inferred  24 D-type flip-flop(s).
+	inferred  16 Multiplexer(s).
+Unit <UART_Receive> synthesized.
+
+Synthesizing Unit <XIL_SRL16E_2>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/xilinx_primitives.vhd".
+        C_USE_SRL16 = "yes"
+        C_STATIC = false
+        INIT = "0000000000000000"
+WARNING:Xst:647 - Input <Config_Reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <XIL_SRL16E_2> synthesized.
+
+Synthesizing Unit <Uart_Control_Status>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/uart_control_status.vhd".
+        C_USE_UART_RX = 1
+        C_USE_UART_TX = 1
+        C_UART_DATA_BITS = 8
+        C_UART_USE_PARITY = 0
+        C_UART_ODD_PARITY = 0
+WARNING:Xst:647 - Input <RX_Parity_Error> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <frame_error>.
+    Found 1-bit register for signal <overrun_error>.
+    Found 1-bit register for signal <error_interrupt>.
+    Found 8-bit register for signal <UART_Status>.
+    Summary:
+	inferred  11 D-type flip-flop(s).
+Unit <Uart_Control_Status> synthesized.
+
+Synthesizing Unit <FIT_Module>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/fit_module.vhd".
+        C_USE_SRL16 = "yes"
+        C_USE_FIT = 0
+        C_NO_CLOCKS = 6216
+        C_INACCURACY = 0
+WARNING:Xst:647 - Input <Config_Reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <FIT_Module> synthesized.
+
+Synthesizing Unit <PIT_Module>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/pit_module.vhd".
+        C_USE_PIT = 0
+        C_PIT_SIZE = 32
+        C_PIT_READABLE = 1
+WARNING:Xst:647 - Input <Write_Data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PIT_Count_En> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PIT_Write_Preload> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PIT_Write_Ctrl> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PIT_Read> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <PIT_Module> synthesized.
+
+Synthesizing Unit <GPO_Module_1>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/gpo_module.vhd".
+        C_USE_GPO = 1
+        C_GPO_SIZE = 32
+        C_GPO_INIT = "00000000000000000000000000000000"
+    Found 32-bit register for signal <gpo_io_i>.
+    Summary:
+	inferred  32 D-type flip-flop(s).
+Unit <GPO_Module_1> synthesized.
+
+Synthesizing Unit <GPO_Module_2>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/gpo_module.vhd".
+        C_USE_GPO = 0
+        C_GPO_SIZE = 32
+        C_GPO_INIT = "00000000000000000000000000000000"
+WARNING:Xst:647 - Input <Write_Data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <GPO_Write> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <GPO_Module_2> synthesized.
+
+Synthesizing Unit <GPI_Module_1>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/gpi_module.vhd".
+        C_USE_GPI = 1
+        C_GPI_SIZE = 32
+        C_GPI_INTERRUPT = 0
+WARNING:Xst:647 - Input <Reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 32-bit register for signal <GPI_In>.
+    Summary:
+	inferred  32 D-type flip-flop(s).
+Unit <GPI_Module_1> synthesized.
+
+Synthesizing Unit <GPI_Module_2>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/gpi_module.vhd".
+        C_USE_GPI = 0
+        C_GPI_SIZE = 32
+        C_GPI_INTERRUPT = 0
+WARNING:Xst:647 - Input <GPI> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <GPI_Read> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <GPI_Module_2> synthesized.
+
+Synthesizing Unit <intr_ctrl>.
+    Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/intr_ctrl.vhd".
+        C_USE_COMB_MUX = 0
+        C_INTC_ENABLED = "00000000000000000000000000000000"
+        C_INTC_LEVEL_EDGE = "00000000000000001111111111111111"
+        C_INTC_POSITIVE = "00000000000000011111111111111111"
+        C_INTC_HAS_FAST = 0
+        C_INTC_ADDR_WIDTH = 32
+        C_INTC_BASE_VECTORS = "00000000000000000000000000000000"
+        C_USE_LUTRAM = "yes"
+WARNING:Xst:647 - Input <INTR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <INTR_ACK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <INTC_CIVAR_ADDR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Write_Data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <INTC_WRITE_CIAR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <INTC_WRITE_CIER> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <INTC_WRITE_CIMR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <INTC_WRITE_CIVAR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    WARNING:Xst:2404 -  FFs/Latches <INTC_CISR<1:32>> (without init value) have a constant value of 0 in block <intr_ctrl>.
+    Summary:
+	no macro.
+Unit <intr_ctrl> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 20-bit subtractor                                     : 1
+# Registers                                            : 35
+ 1-bit register                                        : 21
+ 20-bit register                                       : 2
+ 3-bit register                                        : 1
+ 32-bit register                                       : 6
+ 5-bit register                                        : 1
+ 8-bit register                                        : 4
+# Multiplexers                                         : 24
+ 1-bit 2-to-1 multiplexer                              : 23
+ 20-bit 2-to-1 multiplexer                             : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+WARNING:Xst:2404 -  FFs/Latches <UART_Status<7:7>> (without init value) have a constant value of 0 in block <Uart_Control_Status>.
+
+Synthesizing (advanced) Unit <Iomodule_core>.
+The following registers are absorbed into counter <Using_UART.Programmable_BaudRate.baudrate_cnt>: 1 register on signal <Using_UART.Programmable_BaudRate.baudrate_cnt>.
+Unit <Iomodule_core> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Counters                                             : 1
+ 20-bit down counter                                   : 1
+# Registers                                            : 313
+ Flip-Flops                                            : 313
+# Multiplexers                                         : 23
+ 1-bit 2-to-1 multiplexer                              : 23
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <UART_Status_1> (without init value) has a constant value of 0 in block <Uart_Control_Status>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <UART_Status_2> (without init value) has a constant value of 0 in block <Uart_Control_Status>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <UART_Status_4> (without init value) has a constant value of 0 in block <Uart_Control_Status>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <mpu_iomodule_0_wrapper> ...
+
+Optimizing unit <iomodule> ...
+
+Optimizing unit <Iomodule_core> ...
+
+Optimizing unit <GPI_Module_1> ...
+
+Optimizing unit <intr_ctrl> ...
+
+Optimizing unit <UART_Transmit> ...
+
+Optimizing unit <UART_Receive> ...
+
+Optimizing unit <Uart_Control_Status> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 0) on block mpu_iomodule_0_wrapper, actual ratio is 1.
+INFO:Xst:2260 - The FF/Latch <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[31].fdr_i> in Unit <mpu_iomodule_0_wrapper> is equivalent to the following 31 FFs/Latches : <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[30].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[29].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[28].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[27].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[26].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[25].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[24].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[23].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[22].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[21].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[20].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[19].fdr_i>
+   <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[18].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[17].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[16].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[15].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[14].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[13].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[12].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[11].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[10].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[9].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[8].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[7].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[6].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[5].fdr_i>
+   <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[4].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[3].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[2].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[1].fdr_i> <iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[0].fdr_i> 
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 330
+ Flip-Flops                                            : 330
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : mpu_iomodule_0_wrapper.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 178
+#      GND                         : 1
+#      INV                         : 24
+#      LUT1                        : 1
+#      LUT2                        : 4
+#      LUT3                        : 33
+#      LUT4                        : 16
+#      LUT5                        : 33
+#      LUT6                        : 18
+#      MUXCY                       : 19
+#      MUXCY_L                     : 2
+#      MUXF5                       : 2
+#      MUXF6                       : 1
+#      VCC                         : 1
+#      XORCY                       : 23
+# FlipFlops/Latches                : 330
+#      FD                          : 69
+#      FDE                         : 2
+#      FDR                         : 113
+#      FDRE                        : 138
+#      FDS                         : 3
+#      FDSE                        : 5
+# Shift Registers                  : 3
+#      SRL16E                      : 3
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx45csg324-3 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             330  out of  54576     0%  
+ Number of Slice LUTs:                  132  out of  27288     0%  
+    Number used as Logic:               129  out of  27288     0%  
+    Number used as Memory:                3  out of   6408     0%  
+       Number used as SRL:                3
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    372
+   Number with an unused Flip Flop:      42  out of    372    11%  
+   Number with an unused LUT:           240  out of    372    64%  
+   Number of fully used LUT-FF pairs:    90  out of    372    24%  
+   Number of unique control sets:        17
+
+IO Utilization: 
+ Number of IOs:                         532
+ Number of bonded IOBs:                   0  out of    218     0%  
+
+Specific Feature Utilization:
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+--------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)          | Load  |
+-----------------------------------+--------------------------------+-------+
+CLK                                | NONE(iomodule_0/lmb_reg_read_Q)| 333   |
+-----------------------------------+--------------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -3
+
+   Minimum period: 3.872ns (Maximum Frequency: 258.278MHz)
+   Minimum input arrival time before clock: 1.246ns
+   Maximum output required time after clock: 1.574ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK'
+  Clock period: 3.872ns (frequency: 258.278MHz)
+  Total number of paths / destination ports: 2481 / 461
+-------------------------------------------------------------------------
+Delay:               3.872ns (Levels of Logic = 3)
+  Source:            iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_7 (FF)
+  Destination:       iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18 (FF)
+  Source Clock:      CLK rising
+  Destination Clock: CLK rising
+
+  Data Path: iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_7 to iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               2   0.447   0.981  iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_7 (iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_7)
+     LUT6:I0->O            2   0.203   0.845  iomodule_0/IOModule_Core_I1/GND_39_o_Using_UART.Programmable_BaudRate.baudrate_cnt[19]_equal_1_o<19>2 (iomodule_0/IOModule_Core_I1/GND_39_o_Using_UART.Programmable_BaudRate.baudrate_cnt[19]_equal_1_o<19>1)
+     LUT5:I2->O           11   0.205   0.883  iomodule_0/IOModule_Core_I1/GND_39_o_Using_UART.Programmable_BaudRate.baudrate_cnt[19]_equal_1_o<19>4 (iomodule_0/IOModule_Core_I1/GND_39_o_Using_UART.Programmable_BaudRate.baudrate_cnt[19]_equal_1_o)
+     LUT5:I4->O            1   0.205   0.000  iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18_rstpot (iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18_rstpot)
+     FD:D                      0.102          iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18
+    ----------------------------------------
+    Total                      3.872ns (1.162ns logic, 2.710ns route)
+                                       (30.0% logic, 70.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
+  Total number of paths / destination ports: 288 / 279
+-------------------------------------------------------------------------
+Offset:              1.246ns (Levels of Logic = 1)
+  Source:            Rst (PAD)
+  Destination:       iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/previous_RX (FF)
+  Destination Clock: CLK rising
+
+  Data Path: Rst to iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/previous_RX
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LUT2:I0->O            2   0.203   0.616  iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/_n0073_inv1 (iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/_n0073_inv)
+     FDE:CE                    0.322          iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/previous_RX
+    ----------------------------------------
+    Total                      1.246ns (0.630ns logic, 0.616ns route)
+                                       (50.6% logic, 49.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
+  Total number of paths / destination ports: 211 / 132
+-------------------------------------------------------------------------
+Offset:              1.574ns (Levels of Logic = 1)
+  Source:            iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/RX_Data_6 (FF)
+  Destination:       Sl_DBus<25> (PAD)
+  Source Clock:      CLK rising
+
+  Data Path: iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/RX_Data_6 to Sl_DBus<25>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              1   0.447   0.924  iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/RX_Data_6 (iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/RX_Data_6)
+     LUT5:I0->O            0   0.203   0.000  iomodule_0/IOModule_Core_I1/_n0110<6>1 (Sl_DBus<25>)
+    ----------------------------------------
+    Total                      1.574ns (0.650ns logic, 0.924ns route)
+                                       (41.3% logic, 58.7% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLK            |    3.872|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 4.93 secs
+ 
+--> 
+
+Total memory usage is 308688 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   47 (   0 filtered)
+Number of infos    :   17 (   0 filtered)
+
