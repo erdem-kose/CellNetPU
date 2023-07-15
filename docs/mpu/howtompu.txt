@@ -1,0 +1,22 @@
+ISE ilk asama
+projenin "spartan6 xc6slx45 csg324 -3 speed grade" uzerine olduguna emin ol
+projeye yeni kaynak ekle,
+"Embedded Processor" sec,
+adini gir ama bosluk kullanma,
+
+XPS acilinca 
+BSB Wizard ile sistem kurmaya evet de,
+Atlys icin "axi bsb lib" yolunu set project "peripheral repository search path"'e gir
+single microblaze ve throughput sec
+peripheral memory ve frekansý ayarla,
+
+arayuzden
+gerekli ekstra eklemeleri yap, lmb iomodule tavsiye edilir, mcu tarzi kullanilabilir
+ust barda hardware->Generate netlist
+
+ISE Tarafi
+sentezle,
+implement et,
+mpu'nun uzerine gelip "Export Hardware Design to SDK" de.
+
+SDK Tarafi
