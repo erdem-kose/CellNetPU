@@ -6,7 +6,7 @@ Command Line: platgen -p xc6slx45csg324-3 -lang vhdl -intstyle ise -lp
 D:/Egitim/ELEYLT-TezCalismasi/Work/v0_8/SupportFiles/ -toplevel no -ti mpu_i
 -msg __xps/ise/xmsgprops.lst mpu.mhs 
 
-Parse D:/Egitim/ELEYLT-TezCalismasi/Work/v0_8/ISE/mpu/mpu.mhs ...
+Parse D:/Egitim/ELEYLT-TezCalismasi/Work/v0_9/ISE/mpu/mpu.mhs ...
 
 Read MPD definitions ...
 
@@ -27,6 +27,18 @@ INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
    PARAMETER C_DCACHE_USE_FSL value to 0 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_50_a\d
    ata\microblaze_v2_1_0.mpd line 369 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_DCACHE_INTERFACE value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_50_a\d
+   ata\microblaze_v2_1_0.mpd line 372 
+INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi_interconnect_2 - tcl is
+   overriding PARAMETER C_BASEFAMILY value to spartan6 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_
+   06_a\data\axi_interconnect_v2_1_0.mpd line 81 
+INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi_interconnect_1 - tcl is
+   overriding PARAMETER C_BASEFAMILY value to spartan6 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_
+   06_a\data\axi_interconnect_v2_1_0.mpd line 81 
 INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi4lite_0 - tcl is
    overriding PARAMETER C_BASEFAMILY value to spartan6 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_
@@ -35,6 +47,46 @@ INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi4_0 - tcl is overriding
    PARAMETER C_BASEFAMILY value to spartan6 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_
    06_a\data\axi_interconnect_v2_1_0.mpd line 81 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_2 - tcl is
+   overriding PARAMETER C_INTERCONNECT_S_AXI_WRITE_ACCEPTANCE value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 89 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_2 - tcl is
+   overriding PARAMETER C_INTERCONNECT_S_AXI_READ_ACCEPTANCE value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 90 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_2 - tcl is
+   overriding PARAMETER C_INTERCONNECT_M_AXI_WRITE_ISSUING value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 106 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_2 - tcl is
+   overriding PARAMETER C_INTERCONNECT_M_AXI_READ_ISSUING value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 107 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_2 - tcl is
+   overriding PARAMETER C_M_AXI_PROTOCOL value to AXI4LITE -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 93 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_1 - tcl is
+   overriding PARAMETER C_INTERCONNECT_S_AXI_WRITE_ACCEPTANCE value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 89 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_1 - tcl is
+   overriding PARAMETER C_INTERCONNECT_S_AXI_READ_ACCEPTANCE value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 90 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_1 - tcl is
+   overriding PARAMETER C_INTERCONNECT_M_AXI_WRITE_ISSUING value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 106 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_1 - tcl is
+   overriding PARAMETER C_INTERCONNECT_M_AXI_READ_ISSUING value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 107 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_1 - tcl is
+   overriding PARAMETER C_M_AXI_PROTOCOL value to AXI4LITE -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 93 
 INFO:EDK:4130 - IPNAME: axi_quad_spi, INSTANCE:QSPI_FLASH - tcl is overriding
    PARAMETER C_SUB_FAMILY value to spartan6 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_quad_spi_v2_00_b
@@ -118,13 +170,47 @@ Address Map for Processor microblaze_0
   (0x90007000-0x90007fff) error_x10_x11	axi4lite_0
   (0x90008000-0x90008fff) error_x12_x20	axi4lite_0
   (0x90009000-0x90009fff) error_x21_x22	axi4lite_0
+  (0xa0000000-0xa0000fff)
+u_data_in_out	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xa0001000-0xa0001fff)
+u_address_we	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xa0002000-0xa0002fff)
+x_data_in_out	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xa0003000-0xa0003fff)
+x_address_we	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xa0004000-0xa0004fff)
+ideal_data_in_out	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xa0005000-0xa0005fff)
+ideal_address_we	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xb0000000-0xb0000fff)
+template_A00_A01	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0001000-0xb0001fff)
+template_A02_A10	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0002000-0xb0002fff)
+template_A11_A12	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0003000-0xb0003fff)
+template_A20_A21	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0004000-0xb0004fff)
+template_A22_B00	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0005000-0xb0005fff)
+template_B01_B02	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0006000-0xb0006fff)
+template_B10_B11	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0007000-0xb0007fff)
+template_B12_B20	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0008000-0xb0008fff)
+template_B21_B22	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0009000-0xb0009fff)
+template_I_base	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb000a000-0xb000afff)
+template_xbnd_ubnd	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
   (0xc0000000-0xc7ffffff) MCB_DDR2	axi4_0
 INFO:EDK:4087 - IPNAME: axi_ethernetlite, INSTANCE: Ethernet_Lite - This design
    requires design constraints to guarantee performance.
    Please refer to the data sheet for details.  
    The AXI clock frequency must be greater than or equal to 50 MHz for 100 Mbs
    Ethernet operation and greater than or equal to 5.0 MHz for 10 Mbs Ethernet
-   operation. - D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 456
+   operation. - D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 803
 INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:microblaze_0_ilmb - tool is overriding
    PARAMETER C_LMB_NUM_SLAVES value to 1 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
@@ -143,7 +229,11 @@ Checking platform address map ...
 Checking platform configuration ...
 IPNAME: lmb_v10, INSTANCE: microblaze_0_ilmb - 1 master(s) : 1 slave(s) 
 IPNAME: lmb_v10, INSTANCE: microblaze_0_dlmb - 1 master(s) : 2 slave(s) 
-IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 14 slave(s) 
+IPNAME: axi_interconnect, INSTANCE: axi_interconnect_2 - 1 master(s) : 11
+slave(s) 
+IPNAME: axi_interconnect, INSTANCE: axi_interconnect_1 - 1 master(s) : 6
+slave(s) 
+IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 16 slave(s) 
 IPNAME: axi_interconnect, INSTANCE: axi4_0 - 2 master(s) : 1 slave(s) 
 
 Checking port drivers...
@@ -156,6 +246,22 @@ WARNING:EDK:4181 - PORT: Processor_ack_out, CONNECTOR:
    microblaze_0_interrupt_Processor_ack_out - floating connection -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_03_a\dat
    a\axi_intc_v2_1_0.mpd line 131 
+WARNING:EDK:4181 - PORT: M_AXI_AWREGION, CONNECTOR:
+   axi_interconnect_2_S_AWREGION - floating connection -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 198 
+WARNING:EDK:4181 - PORT: M_AXI_ARREGION, CONNECTOR:
+   axi_interconnect_2_S_ARREGION - floating connection -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 223 
+WARNING:EDK:4181 - PORT: M_AXI_AWREGION, CONNECTOR:
+   axi_interconnect_1_S_AWREGION - floating connection -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 198 
+WARNING:EDK:4181 - PORT: M_AXI_ARREGION, CONNECTOR:
+   axi_interconnect_1_S_ARREGION - floating connection -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 223 
 
 Performing Clock DRCs...
 
@@ -175,7 +281,7 @@ INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:microblaze_0_intc - tcl is overriding
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_03_a\dat
    a\axi_intc_v2_1_0.mpd line 88 
 INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:microblaze_0_i_bram_ctrl -
-   tcl is overriding PARAMETER C_MASK value to 0x50000000 -
+   tcl is overriding PARAMETER C_MASK value to 0xc0000000 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3
    _10_c\data\lmb_bram_if_cntlr_v2_1_0.mpd line 92 
 INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:microblaze_0_d_bram_ctrl -
@@ -183,15 +289,19 @@ INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:microblaze_0_d_bram_ctrl -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3
    _10_c\data\lmb_bram_if_cntlr_v2_1_0.mpd line 92 
 INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_INTERCONNECT_M_AXI_IC_READ_ISSUING value to 8 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_50_a\d
+   ata\microblaze_v2_1_0.mpd line 362 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
    PARAMETER C_D_AXI value to 1 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_50_a\d
    ata\microblaze_v2_1_0.mpd line 232 
 INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
-   PARAMETER C_ADDR_TAG_BITS value to 14 -
+   PARAMETER C_ADDR_TAG_BITS value to 13 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_50_a\d
    ata\microblaze_v2_1_0.mpd line 337 
 INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
-   PARAMETER C_DCACHE_ADDR_TAG value to 14 -
+   PARAMETER C_DCACHE_ADDR_TAG value to 13 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_50_a\d
    ata\microblaze_v2_1_0.mpd line 367 
 INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
@@ -207,17 +317,29 @@ INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_50_a\d
    ata\microblaze_v2_1_0.mpd line 403 
 INFO:EDK:4130 - IPNAME: iomodule, INSTANCE:iomodule_0 - tcl is overriding
-   PARAMETER C_MASK value to 0xd0000000 -
+   PARAMETER C_MASK value to 0xf0000000 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a\dat
    a\iomodule_v2_1_0.mpd line 85 
 INFO:EDK:4130 - IPNAME: iomodule, INSTANCE:iomodule_0 - tcl is overriding
-   PARAMETER C_IO_MASK value to 0xd0000000 -
+   PARAMETER C_IO_MASK value to 0xf0000000 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a\dat
    a\iomodule_v2_1_0.mpd line 88 
 INFO:EDK:4130 - IPNAME: iomodule, INSTANCE:iomodule_0 - tcl is overriding
    PARAMETER C_INTC_POSITIVE value to 0b0000000000000001 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\iomodule_v1_03_a\dat
    a\iomodule_v2_1_0.mpd line 161 
+
+INFO: Setting C_RANGE_CHECK = ON for axi_interconnect axi_interconnect_2.
+INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi_interconnect_2 - tcl is
+   overriding PARAMETER C_RANGE_CHECK value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_
+   06_a\data\axi_interconnect_v2_1_0.mpd line 149 
+
+INFO: Setting C_RANGE_CHECK = ON for axi_interconnect axi_interconnect_1.
+INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi_interconnect_1 - tcl is
+   overriding PARAMETER C_RANGE_CHECK value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_
+   06_a\data\axi_interconnect_v2_1_0.mpd line 149 
 
 INFO: Setting C_RANGE_CHECK = ON for axi_interconnect axi4lite_0.
 INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi4lite_0 - tcl is
@@ -269,6 +391,15 @@ Performing System level DRCs on properties...
 Running DRC Tcl procedures for OPTION SYSLEVEL_DRC_PROC...
 INTC INFO:: Processor_clk not connected.. IRQ to Microblaze is generated on AXI
 clock.
+WARNING:EDK -  ****************************************************************
+WARNING:EDK -  Optimization Alert: axi_interconnect axi_interconnect_1: All SI 
+WARNING:EDK -  and MI slots use AXI4-Lite protocol, and the interconnect is 
+WARNING:EDK -  configured as a high-performance crossbar 
+WARNING:EDK -  (C_INTERCONNECT_CONNECTIVITY_MODE = 1). AXI4-Lite traffic 
+WARNING:EDK -  generally cannot take advantage of full crossbar functionality. 
+WARNING:EDK -  To reduce resources, set C_INTERCONNECT_CONNECTIVITY_MODE = 0 
+WARNING:EDK -  ("Shared-access").
+
 INFO:EDK - 
    INFO:For axi_quad_spi, in the present instance, the C_SCK_RATIO is set to :
    16. 
@@ -306,6 +437,8 @@ INFO: The microblaze_0 core has constraints automatically generated by XPS in
 implementation/microblaze_0_wrapper/microblaze_0_wrapper.ucf.
 It can be overridden by constraints placed in the system.ucf file.
 
+INFO: No asynchronous clock conversions in axi_interconnect axi_interconnect_2.
+INFO: No asynchronous clock conversions in axi_interconnect axi_interconnect_1.
 INFO: No asynchronous clock conversions in axi_interconnect axi4lite_0.
 INFO: No asynchronous clock conversions in axi_interconnect axi4_0.
 INFO:EDK - 
@@ -335,89 +468,152 @@ Creating hardware output directories ...
 
 Managing hardware (BBD-specified) netlist files ...
 IPNAME:axi_quad_spi INSTANCE:qspi_flash -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 388 - Copying
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 735 - Copying
 (BBD-specified) netlist files.
 
 Managing cache ...
+IPNAME:axi_gpio INSTANCE:x_data_in_out -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 108 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:x_address_we -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 123 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:u_data_in_out -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 138 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:u_address_we -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 153 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_i_base -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 168 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_b21_b22 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 179 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_b12_b20 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 193 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_b10_b11 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 207 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_b01_b02 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 221 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_a22_b00 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 235 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_a20_a21 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 249 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_a11_a12 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 263 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_a02_a10 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 277 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_a00_a01 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 291 - Copying cache
+implementation netlist
 IPNAME:proc_sys_reset INSTANCE:proc_sys_reset_0 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 78 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 305 - Copying cache
 implementation netlist
 IPNAME:axi_intc INSTANCE:microblaze_0_intc -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 92 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 319 - Copying cache
 implementation netlist
 IPNAME:lmb_v10 INSTANCE:microblaze_0_ilmb -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 103 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 330 - Copying cache
 implementation netlist
 IPNAME:lmb_bram_if_cntlr INSTANCE:microblaze_0_i_bram_ctrl -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 110 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 337 - Copying cache
 implementation netlist
 IPNAME:lmb_v10 INSTANCE:microblaze_0_dlmb -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 119 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 346 - Copying cache
 implementation netlist
 IPNAME:lmb_bram_if_cntlr INSTANCE:microblaze_0_d_bram_ctrl -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 126 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 353 - Copying cache
 implementation netlist
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 135 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 362 - Copying cache
 implementation netlist
-IPNAME:microblaze INSTANCE:microblaze_0 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 142 - Copying cache
+IPNAME:iomodule INSTANCE:iomodule_0 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 408 - Copying cache
 implementation netlist
-IPNAME:axi_gpio INSTANCE:error_x12_x20 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 201 - Copying cache
+IPNAME:axi_gpio INSTANCE:ideal_data_in_out -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 432 - Copying cache
 implementation netlist
-IPNAME:axi_gpio INSTANCE:error_x10_x11 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 215 - Copying cache
-implementation netlist
-IPNAME:axi_gpio INSTANCE:error_x01_x02 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 229 - Copying cache
-implementation netlist
-IPNAME:axi_gpio INSTANCE:error_u22_x00 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 243 - Copying cache
-implementation netlist
-IPNAME:axi_gpio INSTANCE:error_u20_u21 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 257 - Copying cache
-implementation netlist
-IPNAME:axi_gpio INSTANCE:error_u11_u12 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 271 - Copying cache
-implementation netlist
-IPNAME:axi_gpio INSTANCE:error_u02_u10 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 285 - Copying cache
-implementation netlist
-IPNAME:axi_gpio INSTANCE:error_u00_u01 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 299 - Copying cache
-implementation netlist
-IPNAME:axi_gpio INSTANCE:error_i_base -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 313 - Copying cache
-implementation netlist
-IPNAME:mdm INSTANCE:debug_module -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 324 - Copying cache
+IPNAME:axi_gpio INSTANCE:ideal_address_we -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 447 - Copying cache
 implementation netlist
 IPNAME:axi_gpio INSTANCE:error_x21_x22 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 359 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 462 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:error_x12_x20 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 476 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:error_x10_x11 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 490 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:error_x01_x02 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 504 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:error_u22_x00 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 518 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:error_u20_u21 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 532 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:error_u11_u12 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 546 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:error_u02_u10 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 560 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:error_u00_u01 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 574 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:error_i_base -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 588 - Copying cache
+implementation netlist
+IPNAME:mdm INSTANCE:debug_module -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 599 - Copying cache
+implementation netlist
+IPNAME:axi_interconnect INSTANCE:axi_interconnect_2 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 634 - Copying cache
+implementation netlist
+IPNAME:axi_interconnect INSTANCE:axi_interconnect_1 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 642 - Copying cache
+implementation netlist
+IPNAME:axi_gpio INSTANCE:template_xbnd_ubnd -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 650 - Copying cache
 implementation netlist
 IPNAME:axi_interconnect INSTANCE:axi4lite_0 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 373 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 664 - Copying cache
 implementation netlist
 IPNAME:axi_interconnect INSTANCE:axi4_0 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 381 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 672 - Copying cache
+implementation netlist
+IPNAME:axi2axi_connector INSTANCE:axi2axi_connector_2 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 679 - Copying cache
+implementation netlist
+IPNAME:axi2axi_connector INSTANCE:axi2axi_connector_1 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 710 - Copying cache
 implementation netlist
 IPNAME:axi_quad_spi INSTANCE:qspi_flash -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 388 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 735 - Copying cache
 implementation netlist
 IPNAME:axi_s6_ddrx INSTANCE:mcb_ddr2 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 408 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 755 - Copying cache
 implementation netlist
 IPNAME:axi_ethernetlite INSTANCE:ethernet_lite -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 456 - Copying cache
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 803 - Copying cache
 implementation netlist
 
 Elaborating instances ...
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 135 - elaborating
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 362 - elaborating
 IP
 IPNAME:clock_generator INSTANCE:clock_generator_0 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 337 - elaborating
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 612 - elaborating
 IP
 ClkGen elaborate status: PASSED
 ----------------------------------------
@@ -426,10 +622,10 @@ ClkGen elaborate status: PASSED
 Writing HDL for elaborated instances ...
 
 Inserting wrapper level ...
-Completion time: 1.00 seconds
+Completion time: 0.00 seconds
 
 Constructing platform-level connectivity ...
-Completion time: 0.00 seconds
+Completion time: 1.00 seconds
 
 Writing (top-level) BMM ...
 
@@ -442,15 +638,18 @@ Running XST synthesis ...
 INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
    IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
    synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
-INSTANCE:iomodule_0 - D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs
-line 174 - Running XST synthesis
+INSTANCE:microblaze_0 - D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs
+line 369 - Running XST synthesis
 INSTANCE:clock_generator_0 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 337 - Running XST
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 612 - Running XST
 synthesis
 
 Running NGCBUILD ...
+IPNAME:mpu_microblaze_0_wrapper INSTANCE:microblaze_0 -
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 369 - Running
+NGCBUILD
 IPNAME:mpu_clock_generator_0_wrapper INSTANCE:clock_generator_0 -
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 337 - Running
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 612 - Running
 NGCBUILD
 INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
    If any constraint needs to be overridden, this should be done by modifying
@@ -458,4 +657,4 @@ INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
 
 Rebuilding cache ...
 
-Total run time: 31.00 seconds
+Total run time: 246.00 seconds

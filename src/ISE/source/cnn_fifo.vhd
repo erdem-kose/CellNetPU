@@ -6,92 +6,49 @@ library ieee;
 library std;
 	use std.textio.all;
 library cnn_library;
-	use cnn_library.cnn_package.all;
+	use cnn_library.cnn_components.all;
+	use cnn_library.cnn_constants.all;
+	use cnn_library.cnn_types.all;
 
 entity cnn_fifo is
-	port (
+	port
+	(
 		d : in std_logic_vector(busWidth-1 downto 0);
 		clk : in std_logic;
 		ce : in std_logic;
-		q : out std_logic_vector(busWidth-1 downto 0);
+		q : out std_logic_vector(busWidth-1 downto 0):=(others=>'0');
 	 
-		imageWidth: in integer range 0 to 1920
+		cacheWidth: in integer range 0 to cacheWidthMAX
 	);
 end cnn_fifo;
 
 architecture Behavioral of cnn_fifo is
-	component fifo_bram_core is
-	  port
-	  (
-		 clka : in std_logic;
-		 wea : in std_logic_vector(0 downto 0);
-		 addra : in std_logic_vector(fifoCoreAddressWidth-1 downto 0);
-		 dina : in std_logic_vector(busWidth-1 downto 0);
-		 douta : out std_logic_vector(busWidth-1 downto 0);
-		 clkb : in std_logic;
-		 web : in std_logic_vector(0 downto 0);
-		 addrb : in std_logic_vector(fifoCoreAddressWidth-1 downto 0);
-		 dinb : in std_logic_vector(busWidth-1 downto 0);
-		 doutb : out std_logic_vector(busWidth-1 downto 0)
-	  );
-	end component;
-	
-	signal limit_address : integer range 0 to imageWidthMAX:= imageWidth;
-	
-	signal read_address : integer range 0 to imageWidthMAX:= 0;
-	signal write_address : integer range 0 to imageWidthMAX:= imageWidthMAX;
-		
-	signal bram_read_address : std_logic_vector (fifoCoreAddressWidth-1 downto 0):=(others=>'0');
-	signal bram_read_data_in : std_logic_vector (busWidth-1 downto 0):=(others=>'0');
-	signal bram_read_we : std_logic_vector(0 downto 0):=(others=>'0');
-	signal bram_read_data_out : std_logic_vector (busWidth-1 downto 0):=(others=>'0');
-
-	signal bram_write_address : std_logic_vector (fifoCoreAddressWidth-1 downto 0):=(others=>'0');
-	signal bram_write_data_in : std_logic_vector (busWidth-1 downto 0):=(others=>'0');
-	signal bram_write_we : std_logic_vector(0 downto 0):=(others=>'0');
-	signal bram_write_data_out : std_logic_vector (busWidth-1 downto 0):=(others=>'0');
-
-
+	signal FIFO: fifo_core:=(others=>(others=>'0'));
 begin
-	FIFO_CORE: fifo_bram_core
-		port map 
-		(
-			clk, bram_read_we, bram_read_address, bram_read_data_in, bram_read_data_out,
-			clk, bram_write_we, bram_write_address, bram_write_data_in, bram_write_data_out
-		);
-	
-
-	bram_write_we<="1" when (ce='1') else "0";
-	bram_read_address<=std_logic_vector(to_unsigned(read_address,fifoCoreAddressWidth));
-	bram_write_address<=std_logic_vector(to_unsigned(write_address,fifoCoreAddressWidth));
-
-	q<=bram_read_data_out;
-	
 	process (clk,ce)
+		variable read_address : integer range 0 to cacheWidthMAX:= 0;
+		variable write_address : integer range 0 to cacheWidthMAX:= cacheWidthMAX;
 	begin
-		if (rising_edge(clk)) then
-			limit_address<=imageWidth;
-		end if;
 		if (falling_edge(clk)) then
 			if(ce='1') then
-				bram_write_data_in<=d;
-
-				if(read_address=limit_address) then
-					read_address<=0;
-					write_address<=limit_address;
-				elsif(write_address=limit_address) then
-					read_address<=1;
-					write_address<=0;
+				if(read_address=cacheWidth) then
+					read_address:=0;
+					write_address:=cacheWidth;
+				elsif(write_address=cacheWidth) then
+					read_address:=1;
+					write_address:=0;
 				else
-					read_address<=read_address+1;
-					write_address<=write_address+1;
+					read_address:=read_address+1;
+					write_address:=write_address+1;
 				end if;
+				q<=FIFO(read_address);
+				FIFO(write_address)<=d;
 			else
 				if (read_address=0) then
-					write_address<=limit_address;
+					write_address:=cacheWidth;
 				end if;
 			end if;
+			
 		end if;
 	end process;
 end Behavioral;
-

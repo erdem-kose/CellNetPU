@@ -6,9 +6,10 @@
 #ifndef CNN_ALGORITHM_H_
 #define CNN_ALGORITHM_H_
 
-void algorithm1();
-void algorithm2();
-void algorithm3();
-void algorithm4();
-
+void algorithm_run();
+void algorithm1();//direct cnn
+void algorithm2();//cnn-algorithm
+void algorithm3();//1d learning
+void algorithm4();//1d multilayer learning
+void algorithm5();//2d learning
 #endif

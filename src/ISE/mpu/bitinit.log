@@ -21,6 +21,18 @@ INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
    PARAMETER C_DCACHE_USE_FSL value to 0 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_50_a\d
    ata\microblaze_v2_1_0.mpd line 369 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_DCACHE_INTERFACE value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_50_a\d
+   ata\microblaze_v2_1_0.mpd line 372 
+INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi_interconnect_2 - tcl is
+   overriding PARAMETER C_BASEFAMILY value to spartan6 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_
+   06_a\data\axi_interconnect_v2_1_0.mpd line 81 
+INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi_interconnect_1 - tcl is
+   overriding PARAMETER C_BASEFAMILY value to spartan6 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_
+   06_a\data\axi_interconnect_v2_1_0.mpd line 81 
 INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi4lite_0 - tcl is
    overriding PARAMETER C_BASEFAMILY value to spartan6 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_
@@ -29,6 +41,46 @@ INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi4_0 - tcl is overriding
    PARAMETER C_BASEFAMILY value to spartan6 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_
    06_a\data\axi_interconnect_v2_1_0.mpd line 81 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_2 - tcl is
+   overriding PARAMETER C_INTERCONNECT_S_AXI_WRITE_ACCEPTANCE value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 89 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_2 - tcl is
+   overriding PARAMETER C_INTERCONNECT_S_AXI_READ_ACCEPTANCE value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 90 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_2 - tcl is
+   overriding PARAMETER C_INTERCONNECT_M_AXI_WRITE_ISSUING value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 106 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_2 - tcl is
+   overriding PARAMETER C_INTERCONNECT_M_AXI_READ_ISSUING value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 107 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_2 - tcl is
+   overriding PARAMETER C_M_AXI_PROTOCOL value to AXI4LITE -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 93 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_1 - tcl is
+   overriding PARAMETER C_INTERCONNECT_S_AXI_WRITE_ACCEPTANCE value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 89 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_1 - tcl is
+   overriding PARAMETER C_INTERCONNECT_S_AXI_READ_ACCEPTANCE value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 90 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_1 - tcl is
+   overriding PARAMETER C_INTERCONNECT_M_AXI_WRITE_ISSUING value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 106 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_1 - tcl is
+   overriding PARAMETER C_INTERCONNECT_M_AXI_READ_ISSUING value to 1 -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 107 
+INFO:EDK:4130 - IPNAME: axi2axi_connector, INSTANCE:axi2axi_connector_1 - tcl is
+   overriding PARAMETER C_M_AXI_PROTOCOL value to AXI4LITE -
+   C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi2axi_connector_v1
+   _00_a\data\axi2axi_connector_v2_1_0.mpd line 93 
 INFO:EDK:4130 - IPNAME: axi_quad_spi, INSTANCE:QSPI_FLASH - tcl is overriding
    PARAMETER C_SUB_FAMILY value to spartan6 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_quad_spi_v2_00_b
@@ -112,13 +164,47 @@ Address Map for Processor microblaze_0
   (0x90007000-0x90007fff) error_x10_x11	axi4lite_0
   (0x90008000-0x90008fff) error_x12_x20	axi4lite_0
   (0x90009000-0x90009fff) error_x21_x22	axi4lite_0
+  (0xa0000000-0xa0000fff)
+u_data_in_out	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xa0001000-0xa0001fff)
+u_address_we	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xa0002000-0xa0002fff)
+x_data_in_out	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xa0003000-0xa0003fff)
+x_address_we	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xa0004000-0xa0004fff)
+ideal_data_in_out	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xa0005000-0xa0005fff)
+ideal_address_we	axi4lite_0->axi2axi_connector_1->axi_interconnect_1
+  (0xb0000000-0xb0000fff)
+template_A00_A01	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0001000-0xb0001fff)
+template_A02_A10	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0002000-0xb0002fff)
+template_A11_A12	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0003000-0xb0003fff)
+template_A20_A21	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0004000-0xb0004fff)
+template_A22_B00	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0005000-0xb0005fff)
+template_B01_B02	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0006000-0xb0006fff)
+template_B10_B11	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0007000-0xb0007fff)
+template_B12_B20	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0008000-0xb0008fff)
+template_B21_B22	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb0009000-0xb0009fff)
+template_I_base	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
+  (0xb000a000-0xb000afff)
+template_xbnd_ubnd	axi4lite_0->axi2axi_connector_2->axi_interconnect_2
   (0xc0000000-0xc7ffffff) MCB_DDR2	axi4_0
 INFO:EDK:4087 - IPNAME: axi_ethernetlite, INSTANCE: Ethernet_Lite - This design
    requires design constraints to guarantee performance.
    Please refer to the data sheet for details.  
    The AXI clock frequency must be greater than or equal to 50 MHz for 100 Mbs
    Ethernet operation and greater than or equal to 5.0 MHz for 10 Mbs Ethernet
-   operation. - D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\mpu.mhs line 456
+   operation. - D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\mpu.mhs line 803
 INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:microblaze_0_ilmb - tool is overriding
    PARAMETER C_LMB_NUM_SLAVES value to 1 -
    C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data

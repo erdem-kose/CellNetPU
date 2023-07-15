@@ -54,32 +54,51 @@ for i=1:size(ideal,1)
     end
 end
 fclose(fileID);
-%
-%templates
-fileID = fopen('rom_files/ram_templates.coe','w');
 
-fprintf(fileID,'memory_initialization_radix=2;\n');
-fprintf(fileID,'memory_initialization_vector=\n');
-
-for m=0:14
+fileID = fopen('rom_files/template_init.txt','w');
+m_last=14;
+for m=0:m_last
     [A,B,I,x_bnd,u_bnd] = cnn_template(m,0);
+    fprintf(fileID,'{{');
     for i=1:size(A,1)
+        fprintf(fileID,'{');
         for j=1:size(A,2)
-            fprintf(fileID,'%s\n',dec2bin(typecast(int16(A(i,j)*(2^bus_f)),'uint16'),16));
+            fprintf(fileID,'%d',fix(A(i,j)*(2^bus_f)));
+            if j~=size(A,2)
+                fprintf(fileID,',');
+            end
+        end
+        if i~=size(A,1)
+            fprintf(fileID,'},');
+        else
+            fprintf(fileID,'}');
         end
     end
+    fprintf(fileID,'},');
+    fprintf(fileID,'{');
     for i=1:size(B,1)
+        fprintf(fileID,'{');
         for j=1:size(B,2)
-            fprintf(fileID,'%s\n',dec2bin(typecast(int16(B(i,j)*(2^bus_f)),'uint16'),16));
+            fprintf(fileID,'%d',fix(B(i,j)*(2^bus_f)));
+            if j~=size(B,2)
+                fprintf(fileID,',');
+            end
+        end
+        if i~=size(B,1)
+            fprintf(fileID,'},');
+        else
+            fprintf(fileID,'}');
         end
     end
-    fprintf(fileID,'%s\n',dec2bin(typecast(int16(I*(2^bus_f)),'uint16'),16));
-    fprintf(fileID,'%s\n',dec2bin(typecast(int16(x_bnd*(2^bus_f)),'uint16'),16));
-    fprintf(fileID,'%s',dec2bin(typecast(int16(u_bnd*(2^bus_f)),'uint16'),16));
-    if ~(m==14)
-        fprintf(fileID,'\n');
+    fprintf(fileID,'},');
+    fprintf(fileID,'%d,',fix(I*(2^bus_f)));
+    fprintf(fileID,'%d,',fix(x_bnd*(2^bus_f)));
+    fprintf(fileID,'%d',fix(u_bnd*(2^bus_f)));
+    if m==m_last
+        fprintf(fileID,'}');
+    else
+        fprintf(fileID,'},\n');
     end
 end
-fprintf(fileID,';');
 fclose(fileID);
-%
+

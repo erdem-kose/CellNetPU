@@ -28,10 +28,11 @@ u=image*2-1;
 [A,B,I,x_bnd,u_bnd]=cnn_template(2,0);
 [~,x_gpu,x_gpu_time] = cnn_system( A,B,I,x_bnd,u_bnd, u, 0, Ts, iter, 0);
 
+ideal=edge(u,'canny');
+ideal=2*ideal-1;
 
 %reading fpga sim calculation
 simulation_output='images/cnn_simulation.out';
-x_simulation_time=3011620*(10^(-9)); %3011620*(10^(-9)); 128*128 image %55575480*(10^(-9)); %640*480 image
 x_spartan=zeros(machine_height,machine_width);
 binary_x=0;
 fileID = fopen(simulation_output,'r');
@@ -56,6 +57,9 @@ title(sprintf('%s, Perf=%f iter/s',winqueryreg('HKEY_LOCAL_MACHINE','HARDWARE\DE
 subplot(2,2,2)
 imshow(x_gpu)
 title(sprintf('GTX 970 1200 MHz, Perf=%f iter/s SS=%%%f',iter/x_gpu_time,100*ssim(x_gpu,x_cpu)))
-subplot(2,1,2)
+subplot(2,2,3)
 imshow(x_spartan)
-title(sprintf('Xilinx Spartan 6 100 MHz Simulation, Perf=%f iter/s SS=%%%f',iter/x_simulation_time,100*ssim(x_spartan,x_cpu)))
+title(sprintf('Xilinx Spartan 6 100 MHz Simulation\nSS=%%%f',100*ssim(x_spartan,x_cpu)))
+subplot(2,2,4)
+imshow(ideal)
+title(sprintf('Ideal Canny Image\nSS=%%%f',100*ssim(ideal,x_cpu)))

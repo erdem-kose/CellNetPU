@@ -298,7 +298,7 @@ begin
       C_BASEADDR => X"00000000",
       C_HIGHADDR => X"0000ffff",
       C_FAMILY => "spartan6",
-      C_MASK => X"50000000",
+      C_MASK => X"c0000000",
       C_MASK1 => X"00800000",
       C_MASK2 => X"00800000",
       C_MASK3 => X"00800000",

@@ -2,7 +2,7 @@
 #  Xilinx EDK 14.5 EDK_P.58f
 #  Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 #
-#  File     top_level_ports_wave.tcl (Thu Jan 26 13:03:09 2017)
+#  File     top_level_ports_wave.tcl (Sat Apr 08 23:18:00 2017)
 #
 if { [info exists PathSeparator] } { set ps $PathSeparator } else { set ps "/" }
 if { ![info exists tbpath] } { set tbpath "${ps}mpu_tb${ps}dut" }
@@ -46,10 +46,7 @@ wave add $tbpath${ps}Ethernet_Lite_COL -into $id
 wave add $tbpath${ps}iomodule_0_UART_Rx -into $id 
 wave add $tbpath${ps}iomodule_0_UART_Tx -into $id 
 wave add $tbpath${ps}iomodule_0_GPO1 -into $id 
-wave add $tbpath${ps}iomodule_0_GPO2 -into $id 
-wave add $tbpath${ps}iomodule_0_GPO3 -into $id 
 wave add $tbpath${ps}iomodule_0_GPI1 -into $id 
-wave add $tbpath${ps}iomodule_0_GPI2 -into $id 
 wave add $tbpath${ps}error_i -into $id 
 wave add $tbpath${ps}error_u00 -into $id 
 wave add $tbpath${ps}error_u01 -into $id 
@@ -69,4 +66,37 @@ wave add $tbpath${ps}error_x12 -into $id
 wave add $tbpath${ps}error_x20 -into $id 
 wave add $tbpath${ps}error_x22 -into $id 
 wave add $tbpath${ps}error_x21 -into $id 
+wave add $tbpath${ps}u_data_in -into $id 
+wave add $tbpath${ps}u_data_out -into $id 
+wave add $tbpath${ps}u_address -into $id 
+wave add $tbpath${ps}u_we -into $id 
+wave add $tbpath${ps}x_data_in -into $id 
+wave add $tbpath${ps}x_data_out -into $id 
+wave add $tbpath${ps}x_address -into $id 
+wave add $tbpath${ps}x_we -into $id 
+wave add $tbpath${ps}ideal_address -into $id 
+wave add $tbpath${ps}ideal_we -into $id 
+wave add $tbpath${ps}ideal_data_in -into $id 
+wave add $tbpath${ps}ideal_data_out -into $id 
+wave add $tbpath${ps}template_A00 -into $id 
+wave add $tbpath${ps}template_A01 -into $id 
+wave add $tbpath${ps}template_A02 -into $id 
+wave add $tbpath${ps}template_A10 -into $id 
+wave add $tbpath${ps}template_A11 -into $id 
+wave add $tbpath${ps}template_A12 -into $id 
+wave add $tbpath${ps}template_A20 -into $id 
+wave add $tbpath${ps}template_A21 -into $id 
+wave add $tbpath${ps}template_A22 -into $id 
+wave add $tbpath${ps}template_B00 -into $id 
+wave add $tbpath${ps}template_B01 -into $id 
+wave add $tbpath${ps}template_B02 -into $id 
+wave add $tbpath${ps}template_B10 -into $id 
+wave add $tbpath${ps}template_B11 -into $id 
+wave add $tbpath${ps}template_B12 -into $id 
+wave add $tbpath${ps}template_B20 -into $id 
+wave add $tbpath${ps}template_B21 -into $id 
+wave add $tbpath${ps}template_B22 -into $id 
+wave add $tbpath${ps}template_I -into $id 
+wave add $tbpath${ps}template_xbnd -into $id 
+wave add $tbpath${ps}template_ubnd -into $id 
 

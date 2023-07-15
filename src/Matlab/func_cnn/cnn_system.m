@@ -1,4 +1,4 @@
-function [y,y_normal,y_cpu_time] = cnn_system( A,B,I,x_bnd,u_bnd, u, x_0, Ts, iter, gpu_cpu)
+function [x,x_normal,x_cpu_time] = cnn_system( A,B,I,x_bnd,u_bnd, u, x_0, Ts, iter, gpu_cpu)
     % image and state values must be double and between -1 to 1
     % A: feedback patch
     % B: feedforward patch
@@ -9,62 +9,37 @@ function [y,y_normal,y_cpu_time] = cnn_system( A,B,I,x_bnd,u_bnd, u, x_0, Ts, it
     % x_0: state image first state
     % Ts: time step for iterations
     % iter: iteration count
-    format('long');
-    
-    im_height=size(u,1);
-    im_width=size(u,2);
-    
-    if size(x_0)==[1,1]
-        x=x_bnd*ones(im_height+2,im_width+2);
-        x(2:(im_height+1),2:(im_width+1))=x_0*ones(im_height,im_width);
-        y=x_bnd*ones(im_height+2,im_width+2);
-        y(2:(im_height+1),2:(im_width+1))=x_0*ones(im_height,im_width);
-    else
-        x=x_bnd*ones(im_height+2,im_width+2);
-        x(2:(im_height+1),2:(im_width+1))=x_0;
-        y=x_bnd*ones(im_height+2,im_width+2);
-        y(2:(im_height+1),2:(im_width+1))=x_0;
-    end
-    y_normal=x_bnd*ones(im_height+2,im_width+2);
+    % gpu_cpu: 0:gpu 1:cpu computing
+    format('short');
 
-    u_temp=u_bnd*ones(im_height+2,im_width+2);
-    u_temp(2:(im_height+1),2:(im_width+1))=u;
-    
+    if size(x_0)==size(u)
+        x=x_0;
+    else
+        x=ones(size(u,1),size(u,2))*x_0;
+    end
+
     xx=x;
+
+    p=gcp();
     
     tic;
     for loop=1:iter
 
         if (gpu_cpu==0)
             %GPU Computing
-            Ax=imfilter(gpuArray(x),gpuArray(A),x_bnd,'same','conv');
-            Bu=imfilter(gpuArray(u_temp),gpuArray(B),u_bnd,'same','conv');
-            xx=gather(gpuArray(y)-gpuArray(Ts)*(gpuArray(y)-(Ax+Bu+gpuArray(I))));
+            Ax=imfilter(gpuArray(x),gpuArray(A),x_bnd,'same','corr');
+            Bu=imfilter(gpuArray(u),gpuArray(B),u_bnd,'same','corr');
+            xx=gather(gpuArray(x)-gpuArray(Ts)*(gpuArray(x)-(Ax+Bu+gpuArray(I))));
         elseif (gpu_cpu==1)
-            %CPU Computing
-            %Ax=imfilter(x,A,x_bnd,'same','conv');
-            Ax=conv2(x,A,'same');
-            %Bu=imfilter(u_temp,B,u_bnd,'same','conv');
-            Bu=conv2(u_temp,B,'same');
-            xx=y-Ts*(y-(Ax+Bu+I));
-        elseif (gpu_cpu==2)
-            %FPGA Like CPU Computing
-            for i=2:im_height+1
-                for j=2:im_width+1
-                    xx(i,j)=cnn_core(B,A,I,u_temp(i-1:i+1,j-1:j+1),x(i-1:i+1,j-1:j+1),Ts);
-                end
-            end
-            
+            Ax=imfilter(x,A,x_bnd,'same','corr');
+            Bu=imfilter(u,B,u_bnd,'same','corr');
+            xx=x-Ts*(x-(Ax+Bu+I));
         end
         xx(xx>1)=1;
         xx(xx<-1)=-1;
         x=xx;
-        y=x;
-        y_cpu_time=toc;
-
-        y_normal=(y(2:(im_height+1),2:(im_width+1))+1)/2;
+        x_cpu_time=toc;
     end
-
-    y=y(2:(im_height+1),2:(im_width+1));
+    x_normal=(x+1)/2;
 end
 

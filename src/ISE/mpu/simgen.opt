@@ -15,7 +15,7 @@ __xps/ise/xmsgprops.lst
 isim
 -tb
 -X
-D:/Egitim/ELEYLT-TezCalismasi/Work/v0_8/ISE/mpu/
+D:/Egitim/ELEYLT-TezCalismasi/Work/v0_9/ISE/mpu/
 -m
 behavioral
 mpu.mhs

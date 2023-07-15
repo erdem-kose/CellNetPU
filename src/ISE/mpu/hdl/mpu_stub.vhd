@@ -48,10 +48,7 @@ entity mpu_stub is
     iomodule_0_UART_Rx : in std_logic;
     iomodule_0_UART_Tx : out std_logic;
     iomodule_0_GPO1 : out std_logic_vector(31 downto 0);
-    iomodule_0_GPO2 : out std_logic_vector(31 downto 0);
-    iomodule_0_GPO3 : out std_logic_vector(31 downto 0);
     iomodule_0_GPI1 : in std_logic_vector(31 downto 0);
-    iomodule_0_GPI2 : in std_logic_vector(31 downto 0);
     error_i : in std_logic_vector(31 downto 0);
     error_u00 : in std_logic_vector(31 downto 0);
     error_u01 : in std_logic_vector(31 downto 0);
@@ -70,7 +67,40 @@ entity mpu_stub is
     error_x12 : in std_logic_vector(31 downto 0);
     error_x20 : in std_logic_vector(31 downto 0);
     error_x22 : in std_logic_vector(31 downto 0);
-    error_x21 : in std_logic_vector(31 downto 0)
+    error_x21 : in std_logic_vector(31 downto 0);
+    u_data_in : out std_logic_vector(15 downto 0);
+    u_data_out : in std_logic_vector(15 downto 0);
+    u_address : out std_logic_vector(13 downto 0);
+    u_we : out std_logic;
+    x_data_in : out std_logic_vector(15 downto 0);
+    x_data_out : in std_logic_vector(15 downto 0);
+    x_address : out std_logic_vector(13 downto 0);
+    x_we : out std_logic;
+    ideal_address : out std_logic_vector(13 downto 0);
+    ideal_we : out std_logic;
+    ideal_data_in : out std_logic_vector(15 downto 0);
+    ideal_data_out : in std_logic_vector(15 downto 0);
+    template_A00 : out std_logic_vector(15 downto 0);
+    template_A01 : out std_logic_vector(15 downto 0);
+    template_A02 : out std_logic_vector(15 downto 0);
+    template_A10 : out std_logic_vector(15 downto 0);
+    template_A11 : out std_logic_vector(15 downto 0);
+    template_A12 : out std_logic_vector(15 downto 0);
+    template_A20 : out std_logic_vector(15 downto 0);
+    template_A21 : out std_logic_vector(15 downto 0);
+    template_A22 : out std_logic_vector(15 downto 0);
+    template_B00 : out std_logic_vector(15 downto 0);
+    template_B01 : out std_logic_vector(15 downto 0);
+    template_B02 : out std_logic_vector(15 downto 0);
+    template_B10 : out std_logic_vector(15 downto 0);
+    template_B11 : out std_logic_vector(15 downto 0);
+    template_B12 : out std_logic_vector(15 downto 0);
+    template_B20 : out std_logic_vector(15 downto 0);
+    template_B21 : out std_logic_vector(15 downto 0);
+    template_B22 : out std_logic_vector(15 downto 0);
+    template_I : out std_logic_vector(15 downto 0);
+    template_xbnd : out std_logic_vector(15 downto 0);
+    template_ubnd : out std_logic_vector(15 downto 0)
   );
 end mpu_stub;
 
@@ -117,10 +147,7 @@ architecture STRUCTURE of mpu_stub is
       iomodule_0_UART_Rx : in std_logic;
       iomodule_0_UART_Tx : out std_logic;
       iomodule_0_GPO1 : out std_logic_vector(31 downto 0);
-      iomodule_0_GPO2 : out std_logic_vector(31 downto 0);
-      iomodule_0_GPO3 : out std_logic_vector(31 downto 0);
       iomodule_0_GPI1 : in std_logic_vector(31 downto 0);
-      iomodule_0_GPI2 : in std_logic_vector(31 downto 0);
       error_i : in std_logic_vector(31 downto 0);
       error_u00 : in std_logic_vector(31 downto 0);
       error_u01 : in std_logic_vector(31 downto 0);
@@ -139,7 +166,40 @@ architecture STRUCTURE of mpu_stub is
       error_x12 : in std_logic_vector(31 downto 0);
       error_x20 : in std_logic_vector(31 downto 0);
       error_x22 : in std_logic_vector(31 downto 0);
-      error_x21 : in std_logic_vector(31 downto 0)
+      error_x21 : in std_logic_vector(31 downto 0);
+      u_data_in : out std_logic_vector(15 downto 0);
+      u_data_out : in std_logic_vector(15 downto 0);
+      u_address : out std_logic_vector(13 downto 0);
+      u_we : out std_logic;
+      x_data_in : out std_logic_vector(15 downto 0);
+      x_data_out : in std_logic_vector(15 downto 0);
+      x_address : out std_logic_vector(13 downto 0);
+      x_we : out std_logic;
+      ideal_address : out std_logic_vector(13 downto 0);
+      ideal_we : out std_logic;
+      ideal_data_in : out std_logic_vector(15 downto 0);
+      ideal_data_out : in std_logic_vector(15 downto 0);
+      template_A00 : out std_logic_vector(15 downto 0);
+      template_A01 : out std_logic_vector(15 downto 0);
+      template_A02 : out std_logic_vector(15 downto 0);
+      template_A10 : out std_logic_vector(15 downto 0);
+      template_A11 : out std_logic_vector(15 downto 0);
+      template_A12 : out std_logic_vector(15 downto 0);
+      template_A20 : out std_logic_vector(15 downto 0);
+      template_A21 : out std_logic_vector(15 downto 0);
+      template_A22 : out std_logic_vector(15 downto 0);
+      template_B00 : out std_logic_vector(15 downto 0);
+      template_B01 : out std_logic_vector(15 downto 0);
+      template_B02 : out std_logic_vector(15 downto 0);
+      template_B10 : out std_logic_vector(15 downto 0);
+      template_B11 : out std_logic_vector(15 downto 0);
+      template_B12 : out std_logic_vector(15 downto 0);
+      template_B20 : out std_logic_vector(15 downto 0);
+      template_B21 : out std_logic_vector(15 downto 0);
+      template_B22 : out std_logic_vector(15 downto 0);
+      template_I : out std_logic_vector(15 downto 0);
+      template_xbnd : out std_logic_vector(15 downto 0);
+      template_ubnd : out std_logic_vector(15 downto 0)
     );
   end component;
 
@@ -192,10 +252,7 @@ begin
       iomodule_0_UART_Rx => iomodule_0_UART_Rx,
       iomodule_0_UART_Tx => iomodule_0_UART_Tx,
       iomodule_0_GPO1 => iomodule_0_GPO1,
-      iomodule_0_GPO2 => iomodule_0_GPO2,
-      iomodule_0_GPO3 => iomodule_0_GPO3,
       iomodule_0_GPI1 => iomodule_0_GPI1,
-      iomodule_0_GPI2 => iomodule_0_GPI2,
       error_i => error_i,
       error_u00 => error_u00,
       error_u01 => error_u01,
@@ -214,7 +271,40 @@ begin
       error_x12 => error_x12,
       error_x20 => error_x20,
       error_x22 => error_x22,
-      error_x21 => error_x21
+      error_x21 => error_x21,
+      u_data_in => u_data_in,
+      u_data_out => u_data_out,
+      u_address => u_address,
+      u_we => u_we,
+      x_data_in => x_data_in,
+      x_data_out => x_data_out,
+      x_address => x_address,
+      x_we => x_we,
+      ideal_address => ideal_address,
+      ideal_we => ideal_we,
+      ideal_data_in => ideal_data_in,
+      ideal_data_out => ideal_data_out,
+      template_A00 => template_A00,
+      template_A01 => template_A01,
+      template_A02 => template_A02,
+      template_A10 => template_A10,
+      template_A11 => template_A11,
+      template_A12 => template_A12,
+      template_A20 => template_A20,
+      template_A21 => template_A21,
+      template_A22 => template_A22,
+      template_B00 => template_B00,
+      template_B01 => template_B01,
+      template_B02 => template_B02,
+      template_B10 => template_B10,
+      template_B11 => template_B11,
+      template_B12 => template_B12,
+      template_B20 => template_B20,
+      template_B21 => template_B21,
+      template_B22 => template_B22,
+      template_I => template_I,
+      template_xbnd => template_xbnd,
+      template_ubnd => template_ubnd
     );
 
 end architecture STRUCTURE;

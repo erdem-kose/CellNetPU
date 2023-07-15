@@ -2,7 +2,7 @@
 #  Xilinx EDK 14.5 EDK_P.58f
 #  Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 #
-#  File     axi4lite_0_wave.tcl (Thu Jan 26 13:03:09 2017)
+#  File     axi4lite_0_wave.tcl (Sat Apr 08 23:18:00 2017)
 #
 #  Module   mpu_axi4lite_0_wrapper
 #  Instance axi4lite_0
@@ -64,19 +64,19 @@ if { ![info exists tbpath] } { set tbpath "${ps}mpu_tb${ps}dut" }
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWLEN -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWSIZE -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWBURST -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWLOCK -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWLOCK -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWCACHE -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWPROT -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWREGION -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWQOS -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWUSER -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWPROT -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWREGION -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWQOS -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWUSER -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWVALID -into $id
 # wave add $tbpath${ps}axi4lite_0${ps}M_AXI_AWREADY -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_WID -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_WID -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_WDATA -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_WSTRB -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_WLAST -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_WUSER -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_WUSER -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_WVALID -into $id
 # wave add $tbpath${ps}axi4lite_0${ps}M_AXI_WREADY -into $id
 # wave add $tbpath${ps}axi4lite_0${ps}M_AXI_BID -into $id
@@ -89,12 +89,12 @@ if { ![info exists tbpath] } { set tbpath "${ps}mpu_tb${ps}dut" }
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARLEN -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARSIZE -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARBURST -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARLOCK -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARLOCK -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARCACHE -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARPROT -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARREGION -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARQOS -into $id
-# wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARUSER -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARPROT -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARREGION -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARQOS -into $id
+  wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARUSER -into $id
   wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARVALID -into $id
 # wave add $tbpath${ps}axi4lite_0${ps}M_AXI_ARREADY -into $id
 # wave add $tbpath${ps}axi4lite_0${ps}M_AXI_RID -into $id

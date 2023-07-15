@@ -1,4 +1,4 @@
-set -tmpdir D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\synthesis\xst_temp_dir\
+set -tmpdir D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\synthesis\xst_temp_dir\
 run
 -opt_mode speed
 -netlist_hierarchy as_optimized
@@ -12,4 +12,4 @@ run
 -iobuf NO
 -max_fanout 10000
 -sd {../implementation}
--vlgincdir {"D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\ISE\mpu\pcores\" "D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\SupportFiles\Digilent\pcores\" "C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+-vlgincdir {"D:\Egitim\ELEYLT-TezCalismasi\Work\v0_9\ISE\mpu\pcores\" "D:\Egitim\ELEYLT-TezCalismasi\Work\v0_8\SupportFiles\Digilent\pcores\" "C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.5\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }

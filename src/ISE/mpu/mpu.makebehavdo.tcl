@@ -1,5 +1,5 @@
 proc pnsimmodel {} {
-  if { [ catch { xload xmp D:/Egitim/ELEYLT-TezCalismasi/Work/v0_8/ISE/mpu/mpu.xmp } result ] } {
+  if { [ catch { xload xmp D:/Egitim/ELEYLT-TezCalismasi/Work/v0_9/ISE/mpu/mpu.xmp } result ] } {
     exit 10
   }
   set simulator_bak [xget simulator]

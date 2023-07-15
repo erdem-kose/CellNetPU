@@ -2,7 +2,7 @@
 #  Xilinx EDK 14.5 EDK_P.58f
 #  Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 #
-#  File     iomodule_0_wave.tcl (Thu Jan 26 13:03:09 2017)
+#  File     iomodule_0_wave.tcl (Sat Apr 08 23:18:00 2017)
 #
 #  Module   mpu_iomodule_0_wrapper
 #  Instance iomodule_0
@@ -43,8 +43,8 @@ if { ![info exists tbpath] } { set tbpath "${ps}mpu_tb${ps}dut" }
 # wave add $tbpath${ps}iomodule_0${ps}PIT4_Interrupt -into $id
 # wave add $tbpath${ps}iomodule_0${ps}PIT4_Toggle -into $id
   wave add $tbpath${ps}iomodule_0${ps}GPO1 -into $id
-  wave add $tbpath${ps}iomodule_0${ps}GPO2 -into $id
-  wave add $tbpath${ps}iomodule_0${ps}GPO3 -into $id
+# wave add $tbpath${ps}iomodule_0${ps}GPO2 -into $id
+# wave add $tbpath${ps}iomodule_0${ps}GPO3 -into $id
 # wave add $tbpath${ps}iomodule_0${ps}GPO4 -into $id
   wave add $tbpath${ps}iomodule_0${ps}GPI1 -into $id
 # wave add $tbpath${ps}iomodule_0${ps}GPI1_Interrupt -into $id

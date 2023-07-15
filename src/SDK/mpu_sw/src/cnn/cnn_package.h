@@ -8,6 +8,8 @@
 #define busUSMax (s64)(pow(2,busWidth)-1)
 #define busMax (s64)(pow(2,(busWidth-1))-1)
 #define busMin (s64)(-pow(2,(busWidth-1)))
+#define busFMax (s64)pow(2,busF)
+#define busFMin (s64)(-pow(2,busF))
 
 #define errorM 22
 #define errorF 10

@@ -4,7 +4,7 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 TABLE OF CONTENTS
@@ -163,10 +163,10 @@ Synthesizing Unit <iomodule>.
         C_AVOID_PRIMITIVES = 0
         C_HIGHADDR = "10000000000000000000000001111111"
         C_BASEADDR = "10000000000000000000000000000000"
-        C_MASK = "11010000000000000000000000000000"
+        C_MASK = "11110000000000000000000000000000"
         C_IO_HIGHADDR = "00000000000000000000000000000000"
         C_IO_BASEADDR = "11111111111111111111111111111111"
-        C_IO_MASK = "11010000000000000000000000000000"
+        C_IO_MASK = "11110000000000000000000000000000"
         C_LMB_AWIDTH = 32
         C_LMB_DWIDTH = 32
         C_USE_IO_BUS = 0
@@ -215,10 +215,10 @@ Synthesizing Unit <iomodule>.
         C_USE_GPO1 = 1
         C_GPO1_SIZE = 32
         C_GPO1_INIT = "00000000000000000000000000000000"
-        C_USE_GPO2 = 1
+        C_USE_GPO2 = 0
         C_GPO2_SIZE = 32
         C_GPO2_INIT = "00000000000000000000000000000000"
-        C_USE_GPO3 = 1
+        C_USE_GPO3 = 0
         C_GPO3_SIZE = 32
         C_GPO3_INIT = "00000000000000000000000000000000"
         C_USE_GPO4 = 0
@@ -227,7 +227,7 @@ Synthesizing Unit <iomodule>.
         C_USE_GPI1 = 1
         C_GPI1_SIZE = 32
         C_GPI1_INTERRUPT = 0
-        C_USE_GPI2 = 1
+        C_USE_GPI2 = 0
         C_GPI2_SIZE = 32
         C_GPI2_INTERRUPT = 0
         C_USE_GPI3 = 0
@@ -261,8 +261,7 @@ Synthesizing Unit <pselect_mask>.
     Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/pselect_mask.vhd".
         C_AW = 32
         C_BAR = "10000000000000000000000000000000"
-        C_MASK = "11010000000000000000000000000000"
-WARNING:Xst:647 - Input <A<2:2>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+        C_MASK = "11110000000000000000000000000000"
 WARNING:Xst:647 - Input <A<4:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Summary:
 	no macro.
@@ -318,10 +317,10 @@ Synthesizing Unit <Iomodule_core>.
         C_USE_GPO1 = 1
         C_GPO1_SIZE = 32
         C_GPO1_INIT = "00000000000000000000000000000000"
-        C_USE_GPO2 = 1
+        C_USE_GPO2 = 0
         C_GPO2_SIZE = 32
         C_GPO2_INIT = "00000000000000000000000000000000"
-        C_USE_GPO3 = 1
+        C_USE_GPO3 = 0
         C_GPO3_SIZE = 32
         C_GPO3_INIT = "00000000000000000000000000000000"
         C_USE_GPO4 = 0
@@ -330,7 +329,7 @@ Synthesizing Unit <Iomodule_core>.
         C_USE_GPI1 = 1
         C_GPI1_SIZE = 32
         C_GPI1_INTERRUPT = 0
-        C_USE_GPI2 = 1
+        C_USE_GPI2 = 0
         C_GPI2_SIZE = 32
         C_GPI2_INTERRUPT = 0
         C_USE_GPI3 = 0
@@ -355,12 +354,13 @@ INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodu
 INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 835: Output port <PIT_Data> of the instance <PIT_I2> is unconnected or connected to loadless signal.
 INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 865: Output port <PIT_Data> of the instance <PIT_I3> is unconnected or connected to loadless signal.
 INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 895: Output port <PIT_Data> of the instance <PIT_I4> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 980: Output port <GPI_In> of the instance <GPI_I2> is unconnected or connected to loadless signal.
 INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 995: Output port <GPI_In> of the instance <GPI_I3> is unconnected or connected to loadless signal.
 INFO:Xst:3210 - "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/iomodule_v1_03_a/hdl/vhdl/iomodule_core.vhd" line 1010: Output port <GPI_In> of the instance <GPI_I4> is unconnected or connected to loadless signal.
     Found 20-bit register for signal <Using_UART.Programmable_BaudRate.baudrate_cnt>.
     Found 1-bit register for signal <en_16x_baud>.
     Found 20-bit register for signal <Using_UART.Programmable_BaudRate.baudrate_reg>.
-    Found 20-bit subtractor for signal <GND_39_o_GND_39_o_sub_2_OUT<19:0>> created at line 1308.
+    Found 20-bit subtractor for signal <GND_38_o_GND_38_o_sub_2_OUT<19:0>> created at line 1308.
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred  41 D-type flip-flop(s).
@@ -572,11 +572,11 @@ HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  20-bit subtractor                                     : 1
-# Registers                                            : 35
+# Registers                                            : 32
  1-bit register                                        : 21
  20-bit register                                       : 2
  3-bit register                                        : 1
- 32-bit register                                       : 6
+ 32-bit register                                       : 3
  5-bit register                                        : 1
  8-bit register                                        : 4
 # Multiplexers                                         : 24
@@ -601,8 +601,8 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # Counters                                             : 1
  20-bit down counter                                   : 1
-# Registers                                            : 313
- Flip-Flops                                            : 313
+# Registers                                            : 217
+ Flip-Flops                                            : 217
 # Multiplexers                                         : 23
  1-bit 2-to-1 multiplexer                              : 23
 
@@ -616,6 +616,8 @@ WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <UART_Status_2> (wit
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <UART_Status_4> (without init value) has a constant value of 0 in block <Uart_Control_Status>. This FF/Latch will be trimmed during the optimization process.
 
 Optimizing unit <mpu_iomodule_0_wrapper> ...
+
+Optimizing unit <GPO_Module_1> ...
 
 Optimizing unit <iomodule> ...
 
@@ -644,8 +646,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 330
- Flip-Flops                                            : 330
+# Registers                                            : 234
+ Flip-Flops                                            : 234
 
 =========================================================================
 
@@ -668,26 +670,26 @@ Top Level Output File Name         : mpu_iomodule_0_wrapper.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 178
+# BELS                             : 174
 #      GND                         : 1
 #      INV                         : 24
 #      LUT1                        : 1
-#      LUT2                        : 4
+#      LUT2                        : 29
 #      LUT3                        : 33
 #      LUT4                        : 16
-#      LUT5                        : 33
-#      LUT6                        : 18
+#      LUT5                        : 6
+#      LUT6                        : 16
 #      MUXCY                       : 19
 #      MUXCY_L                     : 2
 #      MUXF5                       : 2
 #      MUXF6                       : 1
 #      VCC                         : 1
 #      XORCY                       : 23
-# FlipFlops/Latches                : 330
-#      FD                          : 69
+# FlipFlops/Latches                : 234
+#      FD                          : 49
 #      FDE                         : 2
-#      FDR                         : 113
-#      FDRE                        : 138
+#      FDR                         : 101
+#      FDRE                        : 74
 #      FDS                         : 3
 #      FDSE                        : 5
 # Shift Registers                  : 3
@@ -700,18 +702,18 @@ Selected Device : 6slx45csg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             330  out of  54576     0%  
- Number of Slice LUTs:                  132  out of  27288     0%  
-    Number used as Logic:               129  out of  27288     0%  
+ Number of Slice Registers:             234  out of  54576     0%  
+ Number of Slice LUTs:                  128  out of  27288     0%  
+    Number used as Logic:               125  out of  27288     0%  
     Number used as Memory:                3  out of   6408     0%  
        Number used as SRL:                3
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    372
-   Number with an unused Flip Flop:      42  out of    372    11%  
-   Number with an unused LUT:           240  out of    372    64%  
-   Number of fully used LUT-FF pairs:    90  out of    372    24%  
-   Number of unique control sets:        17
+ Number of LUT Flip Flop pairs used:    272
+   Number with an unused Flip Flop:      38  out of    272    13%  
+   Number with an unused LUT:           144  out of    272    52%  
+   Number of fully used LUT-FF pairs:    90  out of    272    33%  
+   Number of unique control sets:        15
 
 IO Utilization: 
  Number of IOs:                         532
@@ -740,7 +742,7 @@ Clock Information:
 -----------------------------------+--------------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)          | Load  |
 -----------------------------------+--------------------------------+-------+
-CLK                                | NONE(iomodule_0/lmb_reg_read_Q)| 333   |
+CLK                                | NONE(iomodule_0/lmb_reg_read_Q)| 237   |
 -----------------------------------+--------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
@@ -752,9 +754,9 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 3.872ns (Maximum Frequency: 258.278MHz)
-   Minimum input arrival time before clock: 1.246ns
-   Maximum output required time after clock: 1.574ns
+   Minimum period: 4.665ns (Maximum Frequency: 214.378MHz)
+   Minimum input arrival time before clock: 1.830ns
+   Maximum output required time after clock: 1.561ns
    Maximum combinational path delay: No path found
 
 Timing Details:
@@ -763,65 +765,64 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK'
-  Clock period: 3.872ns (frequency: 258.278MHz)
-  Total number of paths / destination ports: 2481 / 461
+  Clock period: 4.665ns (frequency: 214.378MHz)
+  Total number of paths / destination ports: 1841 / 321
 -------------------------------------------------------------------------
-Delay:               3.872ns (Levels of Logic = 3)
-  Source:            iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_7 (FF)
+Delay:               4.665ns (Levels of Logic = 2)
+  Source:            iomodule_0/lmb_abus_Q_5 (FF)
   Destination:       iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18 (FF)
   Source Clock:      CLK rising
   Destination Clock: CLK rising
 
-  Data Path: iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_7 to iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18
+  Data Path: iomodule_0/lmb_abus_Q_5 to iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               2   0.447   0.981  iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_7 (iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_7)
-     LUT6:I0->O            2   0.203   0.845  iomodule_0/IOModule_Core_I1/GND_39_o_Using_UART.Programmable_BaudRate.baudrate_cnt[19]_equal_1_o<19>2 (iomodule_0/IOModule_Core_I1/GND_39_o_Using_UART.Programmable_BaudRate.baudrate_cnt[19]_equal_1_o<19>1)
-     LUT5:I2->O           11   0.205   0.883  iomodule_0/IOModule_Core_I1/GND_39_o_Using_UART.Programmable_BaudRate.baudrate_cnt[19]_equal_1_o<19>4 (iomodule_0/IOModule_Core_I1/GND_39_o_Using_UART.Programmable_BaudRate.baudrate_cnt[19]_equal_1_o)
-     LUT5:I4->O            1   0.205   0.000  iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18_rstpot (iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18_rstpot)
-     FD:D                      0.102          iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18
+     FD:C->Q               9   0.447   1.174  iomodule_0/lmb_abus_Q_5 (iomodule_0/lmb_abus_Q_5)
+     LUT6:I1->O           21   0.203   1.114  iomodule_0/uart_baud_write1 (iomodule_0/uart_baud_write)
+     LUT2:I1->O           20   0.205   1.092  iomodule_0/IOModule_Core_I1/Mcount_Using_UART.Programmable_BaudRate.baudrate_cnt_val1 (iomodule_0/IOModule_Core_I1/Mcount_Using_UART.Programmable_BaudRate.baudrate_cnt_val)
+     FDR:R                     0.430          iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_0
     ----------------------------------------
-    Total                      3.872ns (1.162ns logic, 2.710ns route)
-                                       (30.0% logic, 70.0% route)
+    Total                      4.665ns (1.285ns logic, 3.380ns route)
+                                       (27.5% logic, 72.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
-  Total number of paths / destination ports: 288 / 279
+  Total number of paths / destination ports: 194 / 183
 -------------------------------------------------------------------------
-Offset:              1.246ns (Levels of Logic = 1)
+Offset:              1.830ns (Levels of Logic = 1)
   Source:            Rst (PAD)
-  Destination:       iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/previous_RX (FF)
+  Destination:       iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18 (FF)
   Destination Clock: CLK rising
 
-  Data Path: Rst to iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/previous_RX
+  Data Path: Rst to iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_18
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     LUT2:I0->O            2   0.203   0.616  iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/_n0073_inv1 (iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/_n0073_inv)
-     FDE:CE                    0.322          iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/previous_RX
+     LUT2:I0->O           20   0.203   1.092  iomodule_0/IOModule_Core_I1/Mcount_Using_UART.Programmable_BaudRate.baudrate_cnt_val1 (iomodule_0/IOModule_Core_I1/Mcount_Using_UART.Programmable_BaudRate.baudrate_cnt_val)
+     FDR:R                     0.430          iomodule_0/IOModule_Core_I1/Using_UART.Programmable_BaudRate.baudrate_cnt_0
     ----------------------------------------
-    Total                      1.246ns (0.630ns logic, 0.616ns route)
-                                       (50.6% logic, 49.4% route)
+    Total                      1.830ns (0.738ns logic, 1.092ns route)
+                                       (40.3% logic, 59.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
-  Total number of paths / destination ports: 211 / 132
+  Total number of paths / destination ports: 115 / 68
 -------------------------------------------------------------------------
-Offset:              1.574ns (Levels of Logic = 1)
-  Source:            iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/RX_Data_6 (FF)
-  Destination:       Sl_DBus<25> (PAD)
+Offset:              1.561ns (Levels of Logic = 1)
+  Source:            iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/new_rx_data_write (FF)
+  Destination:       UART_Interrupt (PAD)
   Source Clock:      CLK rising
 
-  Data Path: iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/RX_Data_6 to Sl_DBus<25>
+  Data Path: iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/new_rx_data_write to UART_Interrupt
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              1   0.447   0.924  iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/RX_Data_6 (iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/RX_Data_6)
-     LUT5:I0->O            0   0.203   0.000  iomodule_0/IOModule_Core_I1/_n0110<6>1 (Sl_DBus<25>)
+     FD:C->Q              12   0.447   0.909  iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/new_rx_data_write (iomodule_0/IOModule_Core_I1/Using_UART_RX.UART_RX_I1/new_rx_data_write)
+     LUT3:I2->O            0   0.205   0.000  iomodule_0/IOModule_Core_I1/Using_UART.Uart_Control_Status_I1/UART_Interrupt1 (UART_Interrupt)
     ----------------------------------------
-    Total                      1.574ns (0.650ns logic, 0.924ns route)
-                                       (41.3% logic, 58.7% route)
+    Total                      1.561ns (0.652ns logic, 0.909ns route)
+                                       (41.8% logic, 58.2% route)
 
 =========================================================================
 
@@ -833,20 +834,20 @@ Clock to Setup on destination clock CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK            |    3.872|         |         |         |
+CLK            |    4.665|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 4.93 secs
+Total REAL time to Xst completion: 4.00 secs
+Total CPU time to Xst completion: 4.51 secs
  
 --> 
 
-Total memory usage is 308688 kilobytes
+Total memory usage is 312488 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   47 (   0 filtered)
-Number of infos    :   17 (   0 filtered)
+Number of warnings :   46 (   0 filtered)
+Number of infos    :   18 (   0 filtered)
 

@@ -4,7 +4,7 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 TABLE OF CONTENTS
@@ -129,7 +129,7 @@ Synthesizing Unit <lmb_bram_if_cntlr>.
         C_FAMILY = "spartan6"
         C_HIGHADDR = "00000000000000001111111111111111"
         C_BASEADDR = "00000000000000000000000000000000"
-        C_MASK = "01010000000000000000000000000000"
+        C_MASK = "11000000000000000000000000000000"
         C_MASK1 = "00000000100000000000000000000000"
         C_MASK2 = "00000000100000000000000000000000"
         C_MASK3 = "00000000100000000000000000000000"
@@ -204,7 +204,7 @@ Unit <lmb_bram_if_cntlr> synthesized.
 Synthesizing Unit <lmb_mux>.
     Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/lmb_bram_if_cntlr_v3_10_c/hdl/vhdl/lmb_mux.vhd".
         C_BASEADDR = "00000000000000000000000000000000"
-        C_MASK = "01010000000000000000000000000000"
+        C_MASK = "11000000000000000000000000000000"
         C_MASK1 = "00000000100000000000000000000000"
         C_MASK2 = "00000000100000000000000000000000"
         C_MASK3 = "00000000100000000000000000000000"
@@ -239,10 +239,8 @@ Synthesizing Unit <pselect_mask>.
     Related source file is "C:/Xilinx/14.5/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/lmb_bram_if_cntlr_v3_10_c/hdl/vhdl/pselect_mask.vhd".
         C_AW = 32
         C_BAR = "00000000000000000000000000000000"
-        C_MASK = "01010000000000000000000000000000"
-WARNING:Xst:647 - Input <A<0:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <A<2:2>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <A<4:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+        C_MASK = "11000000000000000000000000000000"
+WARNING:Xst:647 - Input <A<2:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Summary:
 	no macro.
 Unit <pselect_mask> synthesized.
@@ -448,13 +446,13 @@ Cross Clock Domains Report:
 
 
 Total REAL time to Xst completion: 4.00 secs
-Total CPU time to Xst completion: 4.40 secs
+Total CPU time to Xst completion: 4.05 secs
  
 --> 
 
 Total memory usage is 312488 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   58 (   0 filtered)
+Number of warnings :   56 (   0 filtered)
 Number of infos    :    2 (   0 filtered)
 

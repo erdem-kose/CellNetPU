@@ -2,7 +2,7 @@
 #  Xilinx EDK 14.5 EDK_P.58f
 #  Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 #
-#  File     mpu_wave.tcl (Thu Jan 26 13:03:09 2017)
+#  File     mpu_wave.tcl (Sat Apr 08 23:18:00 2017)
 #
 #  ISE Simulator Trace Script File
 #
@@ -31,6 +31,10 @@ source microblaze_0_ilmb_wave.tcl
 
 source microblaze_0_dlmb_wave.tcl
 
+source axi_interconnect_2_wave.tcl
+
+source axi_interconnect_1_wave.tcl
+
 source axi4lite_0_wave.tcl
 
 source axi4_0_wave.tcl
@@ -53,6 +57,34 @@ set id [group add "Processor registers"]
 #  Trace IP and peripheral ports
 #
 set id [group add "IP and peripheral ports" ]
+source x_data_in_out_wave.tcl
+
+source x_address_we_wave.tcl
+
+source u_data_in_out_wave.tcl
+
+source u_address_we_wave.tcl
+
+source template_I_base_wave.tcl
+
+source template_B21_B22_wave.tcl
+
+source template_B12_B20_wave.tcl
+
+source template_B10_B11_wave.tcl
+
+source template_B01_B02_wave.tcl
+
+source template_A22_B00_wave.tcl
+
+source template_A20_A21_wave.tcl
+
+source template_A11_A12_wave.tcl
+
+source template_A02_A10_wave.tcl
+
+source template_A00_A01_wave.tcl
+
 source proc_sys_reset_0_wave.tcl
 
 source microblaze_0_intc_wave.tcl
@@ -64,6 +96,12 @@ source microblaze_0_d_bram_ctrl_wave.tcl
 source microblaze_0_bram_block_wave.tcl
 
 source iomodule_0_wave.tcl
+
+source ideal_data_in_out_wave.tcl
+
+source ideal_address_we_wave.tcl
+
+source error_x21_x22_wave.tcl
 
 source error_x12_x20_wave.tcl
 
@@ -87,7 +125,11 @@ source debug_module_wave.tcl
 
 source clock_generator_0_wave.tcl
 
-source error_x21_x22_wave.tcl
+source template_xbnd_ubnd_wave.tcl
+
+source axi2axi_connector_2_wave.tcl
+
+source axi2axi_connector_1_wave.tcl
 
 source QSPI_FLASH_wave.tcl
 

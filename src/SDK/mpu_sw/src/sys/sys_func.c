@@ -1,11 +1,14 @@
 #include "sys_func.h"
 
 extern general_struct general;
+//extern cache_struct cache;
 extern image_struct image;
 extern cnn_struct cnn;
 extern mpu_struct mpu;
+extern template_struct templates[];
+extern error_struct errors;
 
-u8 read_uart()
+u8 uart_read()
 {
 	u8 data;
 	while (((*mpu.uart_status)&0b00000001)==0);//if rx available
@@ -13,274 +16,293 @@ u8 read_uart()
 	return data;
 }
 
-void write_uart(u8 data)
+void uart_write(u8 data)
 {
 	while (((*mpu.uart_status)&0b00001000)==0b00001000);//if tx available
 	*mpu.uart_tx=data;
 }
 
-void setdimensions_l2cache_bram(u16 width, u16 height)
+void l2cache_setdimensions(u16 width, u16 height)
 {
 	if ((width>0) && (width<l2cacheWidthMAX))
 	{
 		if ((height>0) && (height<l2cacheHeightMAX))
 		{
-			write_control(1, width);
-			write_control(2, height);
+			command_write(CMD_CACHE_WIDTH, width);
+			command_write(CMD_CACHE_HEIGHT, height);
 		}
 	}
 }
 
-u16 read_l2cache_bram(u16 address)
+u16 l2cache_u_read(u16 address)
 {
 	u16 value;
-	*mpu.bram=(address<<16);
-	value=((*mpu.bram_temp_dataout)&0x0000FFFF);
+	*mpu.u_address=address;
+	value=(*mpu.u_data_out);
 	return value;
 }
 
-void write_l2cache_bram(u16 address, u16 data)
+void l2cache_u_write(u16 address, u16 data)
 {
-	*mpu.bram=(address<<16)|data;
-
-	write_control(8, 1);
-	write_control(8, 0);
+	*mpu.u_address=address;
+	*mpu.u_data_in=data;
+	*mpu.u_we=1;
+	*mpu.u_we=0;
 }
 
-u16 read_template_bram(u16 address)
+u16 l2cache_x_read(u16 address)
 {
 	u16 value;
-	*mpu.template=(address<<16);
-	value=(((*mpu.bram_temp_dataout)&0xFFFF0000)>>16);
+	*mpu.x_address=address;
+	value=(*mpu.x_data_out);
 	return value;
 }
 
-void write_template_bram(u16 address, u16 data)
+void l2cache_x_write(u16 address, u16 data)
 {
-	*mpu.template=(address<<16)|data;
-
-	write_control(9, 1);
-	write_control(9, 0);
+	*mpu.x_address=address;
+	*mpu.x_data_in=data;
+	*mpu.x_we=1;
+	*mpu.x_we=0;
 }
 
-void write_control(u16 address, u16 data)
+u16 l2cache_ideal_read(u16 address)
 {
-	*mpu.control=((address<<16) | data);
+	u16 value;
+	*mpu.ideal_address=address;
+	value=(*mpu.ideal_data_out);
+	return value;
 }
 
-s16 read_rand_num()
+void l2cache_ideal_write(u16 address, u16 data)
+{
+	*mpu.ideal_address=address;
+	*mpu.ideal_data_in=data;
+	*mpu.ideal_we=1;
+	*mpu.ideal_we=0;
+}
+
+void command_write(u16 address, u16 data)
+{
+	*mpu.command=((address<<16) | data);
+}
+
+s16 rand_num_generate()
+{
+	command_write(CMD_RAND_GEN, 1);
+	command_write(CMD_RAND_GEN, 0);
+	return (((s32)*mpu.feedback)>>16);
+}
+
+s16 rand_num_read()
 {
 	return (((s32)*mpu.feedback)>>16);
 }
 
-u8 read_ready()
+u8 ready_read()
 {
 	return ((*mpu.feedback)&0x00000001);
 }
 
-s32 read_error(char type, u8 i, u8 j)
+void header_read()
 {
-	s32 result=0;
-	switch(type)
-	{
-		case 'I': result=((s32)*mpu.error_i); break;
+	command_write(CMD_STATE_RST, 1);
 
-		case 'x':
-			switch(i)
-			{
-				case 0:
-					switch(j)
-					{
-						case 0: result=((s32)*mpu.error_x00); break;
-						case 1: result=((s32)*mpu.error_x01); break;
-						case 2: result=((s32)*mpu.error_x02); break;
-					} break;
-				case 1:
-					switch(j)
-					{
-						case 0: result=((s32)*mpu.error_x10); break;
-						case 1: result=((s32)*mpu.error_x11); break;
-						case 2: result=((s32)*mpu.error_x12); break;
-					} break;
-				case 2:
-					switch(j)
-					{
-						case 0: result=((s32)*mpu.error_x20); break;
-						case 1: result=((s32)*mpu.error_x21); break;
-						case 2: result=((s32)*mpu.error_x22); break;
-					} break;
-			} break;
+	image.width = (uart_read()<<8);
+	image.width |= uart_read();
 
-		case 'u':
-			switch(i)
-			{
-				case 0:
-					switch(j)
-					{
-						case 0: result=((s32)*mpu.error_u00); break;
-						case 1: result=((s32)*mpu.error_u01); break;
-						case 2: result=((s32)*mpu.error_u02); break;
-					} break;
-				case 1:
-					switch(j)
-					{
-						case 0: result=((s32)*mpu.error_u10); break;
-						case 1: result=((s32)*mpu.error_u11); break;
-						case 2: result=((s32)*mpu.error_u12); break;
-					} break;
-				case 2:
-					switch(j)
-					{
-						case 0: result=((s32)*mpu.error_u20); break;
-						case 1: result=((s32)*mpu.error_u21); break;
-						case 2: result=((s32)*mpu.error_u22); break;
-					} break;
-			} break;
-		default: break;
-	}
-	return result;
+	image.height = (uart_read()<<8);
+	image.height |= uart_read();
 
-}
+	cnn.Ts = (uart_read()<<8);
+	cnn.Ts |= uart_read();
 
-void read_header()
-{
-	write_control(7, 1);
-
-	image.width = (read_uart()<<8);
-	image.width |= read_uart();
-
-	image.height = (read_uart()<<8);
-	image.height |= read_uart();
-
-	cnn.Ts = (read_uart()<<8);
-	cnn.Ts |= read_uart();
-
-	cnn.iter_cnt = (read_uart()<<8);
-	cnn.iter_cnt |= read_uart();
+	cnn.iter_cnt = (uart_read()<<8);
+	cnn.iter_cnt |= uart_read();
 	cnn.iter_cnt=cnn.iter_cnt-1;
 
-	cnn.template_no = (read_uart()<<8);
-	cnn.template_no |= read_uart();
+	cnn.template_no = (uart_read()<<8);
+	cnn.template_no |= uart_read();
 
-	cnn.learn_loop = (read_uart()<<8);
-	cnn.learn_loop |= read_uart();
+	cnn.learn_loop = (uart_read()<<8);
+	cnn.learn_loop |= uart_read();
 
-	cnn.learn_rate = (read_uart()<<8);
-	cnn.learn_rate |= read_uart();
+	cnn.learn_rate = (uart_read()<<8);
+	cnn.learn_rate |= uart_read();
 
-	write_control(1, image.width);
-	write_control(2, image.height);
-	write_control(3, cnn.Ts);
-	write_control(4, cnn.iter_cnt);
-	write_control(5, cnn.template_no);
-	write_control(6, cnn.learn_rate);
+	command_write(CMD_CACHE_WIDTH, image.width);
+	command_write(CMD_CACHE_HEIGHT, image.height);
+	command_write(CMD_TS, cnn.Ts);
+	command_write(CMD_ITER_CNT, cnn.iter_cnt);
 
-	write_control(10, image.x_base);
-	write_control(11, image.u_base);
-	write_control(12, image.ideal_base);
-	write_control(13, image.error_base);
+	//duzelt iç realloclar malloc olabilir, ya da free de baþtan baþla
+	free(image.image);
+    image.image = (u16***)malloc(image.count * sizeof(u16**));
+    for (general.i=0; general.i<20; general.i=general.i+1)
+    {
+    	image.image[general.i] = (u16**)malloc(image.height * sizeof(u16*));
+        for (general.j=0; general.j<image.height; general.j=general.j+1)
+        {
+        	image.image[general.i][general.j] = (u16*)calloc(image.width, sizeof(u16));
+        }
 
+    }
 	image.shift=image.width*image.height;
+	uart_write(1);
 }
 
-void read_image(int pos)
+void image_fill(u16 index, float data)
 {
-	general.i=pos*image.shift;
-	general.j=general.i+image.shift;
-	while(general.i<general.j)
+    for (general.i=0; general.i<image.height; general.i=general.i+1)
+    {
+        for (general.j=0; general.j<image.width; general.j=general.j+1)
+        {
+        	image.image[index][general.i][general.j] = (u16)(data*pow(2,busF));
+        }
+    }
+}
+
+void image_read()
+{
+	u8 pos;
+	pos=uart_read();
+
+	for (general.i=0;general.i<image.height;general.i=general.i+1)
 	{
-		mpu.bram_var=(read_uart()<<8);
-		mpu.bram_var|=read_uart();
-
-		write_l2cache_bram(general.i, mpu.bram_var);
-
-		general.i=general.i+1;
+		for (general.j=0;general.j<image.width;general.j=general.j+1)
+		{
+			image.image[pos][general.i][general.j]=(uart_read()<<8);
+			image.image[pos][general.i][general.j]|=uart_read();
+		}
 	}
 }
 
-void send_image(int pos)
+void image_send()
 {
-	general.i=pos*image.shift;
-	general.j=general.i+image.shift;
-	while(general.i<general.j)
+	u8 pos;
+	pos=uart_read();
+
+	for (general.i=0;general.i<image.height;general.i=general.i+1)
 	{
-		mpu.bram_var=read_l2cache_bram(general.i);
-
-		write_uart((mpu.bram_var&0x0000FF00)>>8);
-		write_uart((mpu.bram_var&0x000000FF));
-
-		general.i=general.i+1;
+		for (general.j=0;general.j<image.width;general.j=general.j+1)
+		{
+			uart_write((image.image[pos][general.i][general.j]&0x0000FF00)>>8);
+			uart_write((image.image[pos][general.i][general.j]&0x000000FF));
+		}
 	}
 }
 
-void send_error_sum()
+void error_get()
 {
+	errors.u[0][0]=(*mpu.error_u00*cnn.learn_rate)/(busFMax*image.shift);
+	errors.u[0][1]=(*mpu.error_u01*cnn.learn_rate)/(busFMax*image.shift);
+	errors.u[0][2]=(*mpu.error_u02*cnn.learn_rate)/(busFMax*image.shift);
+	errors.u[1][0]=(*mpu.error_u10*cnn.learn_rate)/(busFMax*image.shift);
+	errors.u[1][1]=(*mpu.error_u11*cnn.learn_rate)/(busFMax*image.shift);
+	errors.u[1][2]=(*mpu.error_u12*cnn.learn_rate)/(busFMax*image.shift);
+	errors.u[2][0]=(*mpu.error_u20*cnn.learn_rate)/(busFMax*image.shift);
+	errors.u[2][1]=(*mpu.error_u21*cnn.learn_rate)/(busFMax*image.shift);
+	errors.u[2][2]=(*mpu.error_u22*cnn.learn_rate)/(busFMax*image.shift);
+
+	errors.x[0][0]=(*mpu.error_x00*cnn.learn_rate)/(busFMax*image.shift);
+	errors.x[0][1]=(*mpu.error_x01*cnn.learn_rate)/(busFMax*image.shift);
+	errors.x[0][2]=(*mpu.error_x02*cnn.learn_rate)/(busFMax*image.shift);
+	errors.x[1][0]=(*mpu.error_x10*cnn.learn_rate)/(busFMax*image.shift);
+	errors.x[1][1]=(*mpu.error_x11*cnn.learn_rate)/(busFMax*image.shift);
+	errors.x[1][2]=(*mpu.error_x12*cnn.learn_rate)/(busFMax*image.shift);
+	errors.x[2][0]=(*mpu.error_x20*cnn.learn_rate)/(busFMax*image.shift);
+	errors.x[2][1]=(*mpu.error_x21*cnn.learn_rate)/(busFMax*image.shift);
+	errors.x[2][2]=(*mpu.error_x22*cnn.learn_rate)/(busFMax*image.shift);
+
+	errors.i=(*mpu.error_i*cnn.learn_rate)/(busFMax*image.shift);
+}
+
+void error_send()
+{
+	error_get();
+
 	for(general.i=patchBot;general.i<=patchTop;general.i=general.i+1)
 	{
 		for(general.j=patchBot;general.j<=patchTop;general.j=general.j+1)
 		{
-			write_uart(((read_error('x',general.i,general.j))&0xFF000000)>>24);
-			write_uart(((read_error('x',general.i,general.j))&0x00FF0000)>>16);
-			write_uart(((read_error('x',general.i,general.j))&0x0000FF00)>>8);
-			write_uart(((read_error('x',general.i,general.j))&0x000000FF));
+			uart_write(((errors.x[general.i][general.j])&0xFF000000)>>24);
+			uart_write(((errors.x[general.i][general.j])&0x00FF0000)>>16);
+			uart_write(((errors.x[general.i][general.j])&0x0000FF00)>>8);
+			uart_write(((errors.x[general.i][general.j])&0x000000FF));
 		}
 	}
 	for(general.i=patchBot;general.i<=patchTop;general.i=general.i+1)
 	{
 		for(general.j=patchBot;general.j<=patchTop;general.j=general.j+1)
 		{
-			write_uart(((read_error('u',general.i,general.j))&0xFF000000)>>24);
-			write_uart(((read_error('u',general.i,general.j))&0x00FF0000)>>16);
-			write_uart(((read_error('u',general.i,general.j))&0x0000FF00)>>8);
-			write_uart(((read_error('u',general.i,general.j))&0x000000FF));
+			uart_write(((errors.u[general.i][general.j])&0xFF000000)>>24);
+			uart_write(((errors.u[general.i][general.j])&0x00FF0000)>>16);
+			uart_write(((errors.u[general.i][general.j])&0x0000FF00)>>8);
+			uart_write(((errors.u[general.i][general.j])&0x000000FF));
 		}
 	}
-	write_uart(((read_error('I',0,0))&0xFF000000)>>24);
-	write_uart(((read_error('I',0,0))&0x00FF0000)>>16);
-	write_uart(((read_error('I',0,0))&0x0000FF00)>>8);
-	write_uart(((read_error('I',0,0))&0x000000FF));
+	uart_write(((errors.i)&0xFF000000)>>24);
+	uart_write(((errors.i)&0x00FF0000)>>16);
+	uart_write(((errors.i)&0x0000FF00)>>8);
+	uart_write(((errors.i)&0x000000FF));
 }
 
+void template_set(u16 template_no)
+{
+	*mpu.template_A00=templates[template_no].A[0][0]; *mpu.template_A01=templates[template_no].A[0][1];
+	*mpu.template_A02=templates[template_no].A[0][2]; *mpu.template_A10=templates[template_no].A[1][0];
+	*mpu.template_A11=templates[template_no].A[1][1]; *mpu.template_A12=templates[template_no].A[1][2];
+	*mpu.template_A20=templates[template_no].A[2][0]; *mpu.template_A21=templates[template_no].A[2][1];
+	*mpu.template_A22=templates[template_no].A[2][2]; *mpu.template_B00=templates[template_no].B[0][0];
 
-void send_template()
+	*mpu.template_B01=templates[template_no].B[0][1]; *mpu.template_B02=templates[template_no].B[0][2];
+	*mpu.template_B10=templates[template_no].B[1][0]; *mpu.template_B11=templates[template_no].B[1][1];
+	*mpu.template_B12=templates[template_no].B[1][2]; *mpu.template_B20=templates[template_no].B[2][0];
+	*mpu.template_B21=templates[template_no].B[2][1]; *mpu.template_B22=templates[template_no].B[2][2];
+
+	*mpu.template_I=templates[template_no].I;
+
+	*mpu.template_xbnd=templates[template_no].x_bnd;
+	*mpu.template_ubnd=templates[template_no].u_bnd;
+}
+
+void template_send()
 {
 	u16 template_no;
-	template_no = (read_uart()<<8);
-	template_no |= read_uart();
+	template_no = (uart_read()<<8);
+	template_no |= uart_read();
 
-	general.i=0+21*template_no;
-	general.j=general.i+9+21*template_no;
-	while(general.i<general.j)
+	for(general.i=patchBot;general.i<=patchTop;general.i=general.i+1)
 	{
-		mpu.template_var=read_template_bram(general.i);
+		for(general.j=patchBot;general.j<=patchTop;general.j=general.j+1)
+		{
+			mpu.template_var=templates[template_no].A[general.i][general.j];
 
-		write_uart((mpu.template_var&0x0000FF00)>>8);
-		write_uart((mpu.template_var&0x000000FF));
-
-		general.i=general.i+1;
+			uart_write((mpu.template_var&0x0000FF00)>>8);
+			uart_write((mpu.template_var&0x000000FF));
+		}
 	}
 
-	general.i=9+21*template_no;
-	general.j=general.i+9+21*template_no;
-	while(general.i<general.j)
+	for(general.i=patchBot;general.i<=patchTop;general.i=general.i+1)
 	{
-		mpu.template_var=read_template_bram(general.i);
+		for(general.j=patchBot;general.j<=patchTop;general.j=general.j+1)
+		{
+			mpu.template_var=templates[template_no].B[general.i][general.j];
 
-		write_uart((mpu.template_var&0x0000FF00)>>8);
-		write_uart((mpu.template_var&0x000000FF));
-
-		general.i=general.i+1;
+			uart_write((mpu.template_var&0x0000FF00)>>8);
+			uart_write((mpu.template_var&0x000000FF));
+		}
 	}
 
-	mpu.template_var=read_template_bram((18+21*template_no));
-	write_uart((mpu.template_var&0x0000FF00)>>8);
-	write_uart((mpu.template_var&0x000000FF));
+	mpu.template_var=templates[template_no].I;
+	uart_write((mpu.template_var&0x0000FF00)>>8);
+	uart_write((mpu.template_var&0x000000FF));
 
-	mpu.template_var=read_template_bram((19+21*template_no));
-	write_uart((mpu.template_var&0x0000FF00)>>8);
-	write_uart((mpu.template_var&0x000000FF));
+	mpu.template_var=templates[template_no].x_bnd;
+	uart_write((mpu.template_var&0x0000FF00)>>8);
+	uart_write((mpu.template_var&0x000000FF));
 
-	mpu.template_var=read_template_bram((20+21*template_no));
-	write_uart((mpu.template_var&0x0000FF00)>>8);
-	write_uart((mpu.template_var&0x000000FF));
+	mpu.template_var=templates[template_no].u_bnd;
+	uart_write((mpu.template_var&0x0000FF00)>>8);
+	uart_write((mpu.template_var&0x000000FF));
 }

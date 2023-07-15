@@ -6,11 +6,14 @@ library ieee;
 library std;
 	use std.textio.all;
 library cnn_library;
-	use cnn_library.cnn_package.all;
+	use cnn_library.cnn_components.all;
+	use cnn_library.cnn_constants.all;
+	use cnn_library.cnn_types.all;
 	
 entity cnn_rand is
 	port (
 		clk: in  std_logic;
+		rand_gen: in  std_logic;
 		rand_num: out std_logic_vector (busWidth-1 downto 0):=(others=>'0')
 	);
 end cnn_rand;
@@ -24,26 +27,8 @@ begin
 	begin
 		if (rising_edge(clk)) then
 			--Galois Linear-feedback shift register
-			
-			--x^16+x^15+x^13+x^4+1, period 2^n-1 = 65535
---			rand_temp(15)<=rand_temp(0);
---			rand_temp(14)<=rand_temp(15) xor rand_temp(0);
---			rand_temp(13)<=rand_temp(14);
---			rand_temp(12)<=rand_temp(13) xor rand_temp(0);
---			rand_temp(11)<=rand_temp(12);
---			rand_temp(10)<=rand_temp(11);
---			rand_temp(9)<=rand_temp(10);
---			rand_temp(8)<=rand_temp(9);
---			rand_temp(7)<=rand_temp(8);
---			rand_temp(6)<=rand_temp(7);
---			rand_temp(5)<=rand_temp(6);
---			rand_temp(4)<=rand_temp(5);
---			rand_temp(3)<=rand_temp(4) xor rand_temp(0);
---			rand_temp(2)<=rand_temp(3);
---			rand_temp(1)<=rand_temp(2);
---			rand_temp(0)<=rand_temp(1);
 
-			--x^10+x^7+x^1+x^4+1, period 2^n-1 = 65535
+			--x^10+x^7+1, period 2^n-1 = 1023
 			rand_temp(15 downto 10)<=(others=>rand_temp(0));
 			rand_temp(9)<=rand_temp(0) xor '1';
 			rand_temp(8)<=rand_temp(9);
@@ -55,8 +40,9 @@ begin
 			rand_temp(2)<=rand_temp(3);
 			rand_temp(1)<=rand_temp(2);
 			rand_temp(0)<=rand_temp(1);
-			
-			rand_num<=std_logic_vector(rand_temp);
+			if(rand_gen='1') then
+				rand_num<=std_logic_vector(rand_temp);
+			end if;
 		end if;
 	end process;
 end Behavioral;

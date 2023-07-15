@@ -2,7 +2,7 @@ function [A,B,I,x_bnd,u_bnd] = fpga_get_template(serial_obj, bus_f, template_no)
     A=zeros(3,3);
     B=zeros(3,3);
     
-    fwrite(serial_obj,8,'uint8');
+    fwrite(serial_obj,5,'uint8');
     fwrite(serial_obj,bitand((int16(floor((template_no)/(2^8)))),255),'uint8');
     fwrite(serial_obj,bitand(int16(template_no),255),'uint8');
     
