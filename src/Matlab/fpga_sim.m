@@ -22,15 +22,15 @@ image=imresize(image,[machine_height machine_width]);
 
 u=image*2-1;
 
-[A,B,I,x_bnd,u_bnd]=cnn_template(1,0);
+[A,B,I,x_bnd,u_bnd]=cnn_template(2,0);
 [~,x_cpu,x_cpu_time] = cnn_system( A,B,I,x_bnd,u_bnd, u, 0, Ts, iter, 1);
 
-[A,B,I,x_bnd,u_bnd]=cnn_template(1,0);
+[A,B,I,x_bnd,u_bnd]=cnn_template(2,0);
 [~,x_gpu,x_gpu_time] = cnn_system( A,B,I,x_bnd,u_bnd, u, 0, Ts, iter, 0);
 
 
 %reading fpga sim calculation
-simulation_output='images/cnn_simulation.out';
+simulation_output='images/rand_x_sim.out';
 x_simulation_time=3011620*(10^(-9)); %3011620*(10^(-9)); 128*128 image %55575480*(10^(-9)); %640*480 image
 x_spartan=zeros(machine_height,machine_width);
 binary_x=0;

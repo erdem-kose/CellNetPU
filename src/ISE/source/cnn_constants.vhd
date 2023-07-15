@@ -15,20 +15,25 @@ entity cnn_constants is
 		
 		control_data_in : in std_logic_vector(busWidth-1 downto 0):=(others=>'0');
 		control_address : in std_logic_vector(busWidth-1 downto 0):=(others=>'0');
-
-		cnn_rst: out std_logic:='1';
-		
-		iter_cnt: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(2,busWidth));
-		template_no : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(0,busWidth));
-		Ts : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
 	
 		imageWidth: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
 		imageHeight: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
 		
+		Ts : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
+		iter_cnt: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(2,busWidth));
+		template_no : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(0,busWidth));
+		learn_rate : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
+		
+		cnn_rst: out std_logic:='1';
+		state_mode: out std_logic_vector(modeWidth-1 downto 0):=(others=>'0');
+		
 		interface_bram_we : out std_logic_vector(0 downto 0);
 		template_we : out std_logic_vector(0 downto 0);
 		
-		error_sum_slc : out std_logic:='0'
+		bram_x_location :out std_logic_vector (busWidth-1 downto 0):= std_logic_vector(to_unsigned(0,busWidth));
+		bram_u_location :out std_logic_vector (busWidth-1 downto 0):= std_logic_vector(to_unsigned(1,busWidth));
+		bram_ideal_location :out std_logic_vector (busWidth-1 downto 0):= std_logic_vector(to_unsigned(2,busWidth));
+		bram_error_location :out std_logic_vector (busWidth-1 downto 0):= std_logic_vector(to_unsigned(3,busWidth))
 	);
 end cnn_constants;
 
@@ -52,13 +57,22 @@ begin
 				when 5 =>
 					template_no<=control_data_in;
 				when 6 =>
-					cnn_rst<=control_data_in(0);
+					learn_rate<=control_data_in;
 				when 7 =>
-					interface_bram_we<=control_data_in(0 downto 0);
+					cnn_rst<=control_data_in(0);
+					state_mode<=control_data_in(modeWidth downto 1);
 				when 8 =>
-					template_we<=control_data_in(0 downto 0);
+					interface_bram_we<=control_data_in(0 downto 0);
 				when 9 =>
-					error_sum_slc<=control_data_in(0);
+					template_we<=control_data_in(0 downto 0);
+				when 10 =>
+					bram_x_location<=control_data_in;
+				when 11 =>
+					bram_u_location<=control_data_in;
+				when 12 =>
+					bram_ideal_location<=control_data_in;
+				when 13 =>
+					bram_error_location<=control_data_in;
 				when others =>
 					
 			end case;

@@ -30,6 +30,8 @@ package cnn_package is
 	constant errorWidth: integer;
 	constant errorMax : integer;
 	constant errorMin : integer;
+
+	constant modeWidth: integer;
 	
 	constant ALUBorderTop: integer;
 	constant ALUBorderBottom: integer;
@@ -81,6 +83,8 @@ package body cnn_package is
 	constant errorMax : integer := 2**(errorWidth-1)-1;
 	constant errorMin : integer := -2**(errorWidth-1);
 	
+	constant modeWidth: integer := 2;
+
 	constant ALUBorderTop: integer := 2**busF;
 	constant ALUBorderBottom: integer := -2**busF;
 	

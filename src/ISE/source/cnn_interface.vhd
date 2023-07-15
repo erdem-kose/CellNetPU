@@ -16,28 +16,35 @@ entity cnn_interface is
 		
 		uart_rx : in std_logic;
 		uart_tx : out std_logic;
-		
-		cnn_rst: out std_logic:='1';
-		
-		iter_cnt: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(2,busWidth));
-		template_no : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(0,busWidth));
-		Ts : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
-	
-		imageWidth: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
-		imageHeight: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
-		
+
 		bram_we : in std_logic_vector(0 downto 0);
 		bram_address : in std_logic_vector(ramAddressWidth-1 downto 0);
 		bram_data_in : in std_logic_vector(busWidth-1 downto 0);
 		bram_data_out : out std_logic_vector(busWidth-1 downto 0);
-		
+			
 		template_we : out std_logic_vector(0 downto 0);
 		template_address : out std_logic_vector(templateAddressWidth-1 downto 0);
 		template_data_in : out std_logic_vector(busWidth-1 downto 0);
 		template_data_out : in std_logic_vector(busWidth-1 downto 0);
 		
-		error_norm_sum: in std_logic_vector (errorWidth-1 downto 0);
-		error_squa_sum: in std_logic_vector (errorWidth-1 downto 0)
+		error_squa_sum: in std_logic_vector (errorWidth-1 downto 0);
+		rand_num: in std_logic_vector (busWidth-1 downto 0);
+		
+		imageWidth: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
+		imageHeight: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
+		
+		Ts : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
+		iter_cnt: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(2,busWidth));
+		template_no : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(0,busWidth));
+		learn_rate : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
+		
+		cnn_rst: out std_logic:='1';
+		state_mode: out std_logic_vector(modeWidth-1 downto 0):=(others=>'0');
+
+		bram_x_location :out std_logic_vector (busWidth-1 downto 0);
+		bram_u_location :out std_logic_vector (busWidth-1 downto 0);
+		bram_ideal_location :out std_logic_vector (busWidth-1 downto 0);
+		bram_error_location :out std_logic_vector (busWidth-1 downto 0)
 	);
 end cnn_interface;
 
@@ -81,20 +88,25 @@ architecture Behavioral of cnn_interface is
 			
 			control_data_in : in std_logic_vector(busWidth-1 downto 0):=(others=>'0');
 			control_address : in std_logic_vector(busWidth-1 downto 0):=(others=>'0');
-
-			cnn_rst: out std_logic:='1';
-			
-			iter_cnt: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(2,busWidth));
-			template_no : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(0,busWidth));
-			Ts : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
 		
 			imageWidth: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
 			imageHeight: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
 			
+			Ts : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
+			iter_cnt: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(2,busWidth));
+			template_no : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(0,busWidth));
+			learn_rate : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
+			
+			cnn_rst: out std_logic:='1';
+			state_mode: out std_logic_vector(modeWidth-1 downto 0):=(others=>'0');
+			
 			interface_bram_we : out std_logic_vector(0 downto 0);
 			template_we : out std_logic_vector(0 downto 0);
 			
-			error_sum_slc : out std_logic
+			bram_x_location :out std_logic_vector (busWidth-1 downto 0):= std_logic_vector(to_unsigned(0,busWidth));
+			bram_u_location :out std_logic_vector (busWidth-1 downto 0):= std_logic_vector(to_unsigned(1,busWidth));
+			bram_ideal_location :out std_logic_vector (busWidth-1 downto 0):= std_logic_vector(to_unsigned(2,busWidth));
+			bram_error_location :out std_logic_vector (busWidth-1 downto 0):= std_logic_vector(to_unsigned(3,busWidth))
 		);
 	end component;
 
@@ -105,17 +117,15 @@ architecture Behavioral of cnn_interface is
 	signal interface_bram_address : std_logic_vector(ramAddressWidth-1 downto 0):=(others=>'0');
 	signal interface_bram_data_in : std_logic_vector(busWidth-1 downto 0):=(others=>'0');
 	signal interface_bram_data_out : std_logic_vector(busWidth-1 downto 0):=(others=>'0');
-
-	signal error_sum_slc : std_logic := '0';
 	
 	signal gpo1 : std_logic_vector(2*busWidth-1 downto 0);--bram:bram_address,bram_data_in
 	signal gpo2 : std_logic_vector(2*busWidth-1 downto 0);--template:template_address,template_data_in
 	signal gpo3 : std_logic_vector(2*busWidth-1 downto 0);--control address/control value
 	signal gpi1 : std_logic_vector(2*busWidth-1 downto 0);--template_data_out,bram_data_out
 	signal gpi1_interrupt : std_logic :='0';
-	signal gpi2 : std_logic_vector(2*busWidth-1 downto 0);--ready
+	signal gpi2 : std_logic_vector(2*busWidth-1 downto 0);--rand_num/ready
 	signal gpi2_interrupt : std_logic :='0';
-	signal gpi3 : std_logic_vector(2*busWidth-1 downto 0);--unused
+	signal gpi3 : std_logic_vector(2*busWidth-1 downto 0);--error
 	signal gpi3_interrupt : std_logic :='0';
 begin
 
@@ -131,13 +141,12 @@ begin
 	control_address<=gpo3(16+busWidth-1 downto 16);
 	control_data_in<=gpo3(15 downto 0);
 
-	gpi2(31 downto 1)<=(others=>'0');
+	gpi2(busWidth-1+16 downto 16)<=rand_num;
+	gpi2(15 downto 1)<=(others=>'0');
 	gpi2(0)<=ready;
 	
-	gpi3<=	error_norm_sum when error_sum_slc='0' else
-				error_squa_sum when error_sum_slc='1' else
-				error_norm_sum;
-									
+	gpi3<=error_squa_sum;		
+	
 	INTERFACE_MCU: mcu
 		port map (
 			mcu_clk, rst,
@@ -155,9 +164,11 @@ begin
 	INTERFACE_CONSTANTS: cnn_constants
 		port map(
 			mcu_clk, control_data_in, control_address,
-			cnn_rst, iter_cnt, template_no, Ts, imageWidth, imageHeight,
+			imageWidth, imageHeight,
+			Ts, iter_cnt, template_no, learn_rate, 
+			cnn_rst, state_mode,
 			interface_bram_we, template_we,
-			error_sum_slc
+			bram_x_location, bram_u_location, bram_ideal_location, bram_error_location
 		);
 end Behavioral;
 

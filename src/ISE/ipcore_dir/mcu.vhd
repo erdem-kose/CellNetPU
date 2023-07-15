@@ -7,14 +7,14 @@
 -- \   \   \/     Version: P.58f
 --  \   \         Application: netgen
 --  /   /         Filename: mcu.vhd
--- /___/   /\     Timestamp: Thu Dec 08 16:54:35 2016
+-- /___/   /\     Timestamp: Sun Dec 25 18:51:36 2016
 -- \   \  /  \ 
 --  \___\/\___\
 --             
--- Command	: -w -sim -ofmt vhdl D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/ipcore_dir/tmp/_cg/mcu.ngc D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/ipcore_dir/tmp/_cg/mcu.vhd 
+-- Command	: -w -sim -ofmt vhdl D:/Egitim/ELEYLT-TezCalismasi/Work/v0_7/ISE/ipcore_dir/tmp/_cg/mcu.ngc D:/Egitim/ELEYLT-TezCalismasi/Work/v0_7/ISE/ipcore_dir/tmp/_cg/mcu.vhd 
 -- Device	: 6slx45csg324-3
--- Input file	: D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/ipcore_dir/tmp/_cg/mcu.ngc
--- Output file	: D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/ipcore_dir/tmp/_cg/mcu.vhd
+-- Input file	: D:/Egitim/ELEYLT-TezCalismasi/Work/v0_7/ISE/ipcore_dir/tmp/_cg/mcu.ngc
+-- Output file	: D:/Egitim/ELEYLT-TezCalismasi/Work/v0_7/ISE/ipcore_dir/tmp/_cg/mcu.vhd
 -- # of Entities	: 1
 -- Design Name	: mcu
 -- Xilinx	: C:\Xilinx\14.5\ISE_DS\ISE\

@@ -5,6 +5,6 @@ function [ cnn_time ] = fpga_calculate( serial_obj )
     tic;
     while(fread(serial_obj,1,'uint8')~=4)
     end
-    cnn_time=toc-10/(serial_obj.BaudRate);
+    cnn_time=toc;
 end
 

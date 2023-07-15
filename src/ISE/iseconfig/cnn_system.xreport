@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2017-01-12T18:07:41</DateModified>
+  <DateModified>2017-01-12T19:18:46</DateModified>
   <ModuleName>cnn_system</ModuleName>
-  <SummaryTimeStamp>2016-12-08T17:03:05</SummaryTimeStamp>
-  <SavedFilePath>D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/iseconfig/cnn_system.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE\</ImplementationReportsDirectory>
+  <SummaryTimeStamp>2017-01-04T15:50:33</SummaryTimeStamp>
+  <SavedFilePath>D:/Egitim/ELEYLT-TezCalismasi/Work/v0_7/ISE/iseconfig/cnn_system.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>D:/Egitim/ELEYLT-TezCalismasi/Work/v0_7/ISE\</ImplementationReportsDirectory>
   <DateInitialized>2016-11-05T20:34:18</DateInitialized>
-  <EnableMessageFiltering>true</EnableMessageFiltering>
+  <EnableMessageFiltering>false</EnableMessageFiltering>
   <XMP_File/>
  </header>
  <body>

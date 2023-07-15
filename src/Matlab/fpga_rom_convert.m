@@ -61,7 +61,7 @@ fileID = fopen('rom_files/ram_templates.coe','w');
 fprintf(fileID,'memory_initialization_radix=2;\n');
 fprintf(fileID,'memory_initialization_vector=\n');
 
-for m=0:13
+for m=0:14
     [A,B,I,x_bnd,u_bnd] = cnn_template(m,0);
     for i=1:size(A,1)
         for j=1:size(A,2)
@@ -76,7 +76,7 @@ for m=0:13
     fprintf(fileID,'%s\n',dec2bin(typecast(int16(I*(2^bus_f)),'uint16'),16));
     fprintf(fileID,'%s\n',dec2bin(typecast(int16(x_bnd*(2^bus_f)),'uint16'),16));
     fprintf(fileID,'%s',dec2bin(typecast(int16(u_bnd*(2^bus_f)),'uint16'),16));
-    if ~(m==13)
+    if ~(m==14)
         fprintf(fileID,'\n');
     end
 end

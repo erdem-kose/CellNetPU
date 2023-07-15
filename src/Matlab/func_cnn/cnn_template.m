@@ -4,58 +4,66 @@ function [ A,B,I,x_bnd,u_bnd ] = cnn_template(m,extra_arg)
     %
     % x_0=0 if it is not mentioned
     % if n is
-    % 0:edge detection (binary)
-    % 1:edge detection (gray image to binary)
-    % 2:corner detection (gray image to binary)
-    % 3:copy u to x
-    % 4:threshold (gray image) extra_arg:-1 to 1 threshold value
-    % 5:translation (binary image) extra_arg:numpad directions
-    % 6:point extraction (binary image)
-    % 7:point removal (binary image)
-    % 8:logic not (binary image)
-    % 9:logic and (binary image) x_0=another binary image
-    % 10:logic or (binary image) x_0=another binary image
-    % 11: directional edge detection (binary) x_0=input image ; extra_arg:numpad directions
-    % 12:erosion (binary image) extra_arg:3 to 3 binary shape
-    % 13:dilation (binary image) extra_arg:3 to 3 binary shape
+    % 0:empty-random template
+    % 1:edge detection (binary)
+    % 2:edge detection (gray image to binary)
+    % 3:corner detection (gray image to binary)
+    % 4:copy u to x
+    % 5:threshold (gray image) extra_arg:-1 to 1 threshold value
+    % 6:translation (binary image) extra_arg:numpad directions
+    % 7:point extraction (binary image)
+    % 8:point removal (binary image)
+    % 9:logic not (binary image)
+    % 10:logic and (binary image) x_0=another binary image
+    % 11:logic or (binary image) x_0=another binary image
+    % 12: directional edge detection (binary) x_0=input image ; extra_arg:numpad directions
+    % 13:erosion (binary image) extra_arg:3 to 3 binary shape
+    % 14:dilation (binary image) extra_arg:3 to 3 binary shape
 
     switch (m)
         case 0
+            % 0:empty-random template
+            A=[0 0 0; rand() 1 rand(); 0 0 0];
+            B=[0 0 0; rand() rand() rand(); 0 0 0];
+            I=0;
+            x_bnd=0;%boundaries
+            u_bnd=0;%boundaries
+        case 1
             % 0:edge detection (binary)
             A=[0 0 0; 0 1 0; 0 0 0];
             B=[-1 -1 -1; -1 8 -1; -1 -1 -1];
             I=-1;
             x_bnd=0;%boundaries
             u_bnd=0;%boundaries
-        case 1
+        case 2
             % 1:edge detection (gray image to binary)
             A=[0 0 0; 0 2 0; 0 0 0];
             B=[-1 -1 -1; -1 8 -1; -1 -1 -1];
             I=-0.5;
             x_bnd=0;%boundaries
             u_bnd=0;%boundaries
-        case 2
+        case 3
             % 2:corner detection (gray image to binary)
             A=[0 0 0; 0 2 0; 0 0 0];
             B=[-1 -1 -1; -1 8 -1; -1 -1 -1];
             I=-8.5;
             x_bnd=0;%boundaries
             u_bnd=0;%boundaries
-        case 3
+        case 4
             % 3:copy u to x
             A=[0 0 0; 0 0 0; 0 0 0];
             B=[0 0 0; 0 1 0; 0 0 0];
             I=0;
             x_bnd=0;%boundaries
             u_bnd=-1;%boundaries
-        case 4
+        case 5
             % 4:threshold (gray image)
             A=[0 0 0; 0 2 0; 0 0 0];
             B=[0 0 0; 0 0 0; 0 0 0];
             I=extra_arg;
             x_bnd=0;%boundaries
             u_bnd=-1;%boundaries
-        case 5
+        case 6
             % 5:translation (binary image)
             A=[0 0 0; 0 1 0; 0 0 0];
             switch (extra_arg)
@@ -81,42 +89,42 @@ function [ A,B,I,x_bnd,u_bnd ] = cnn_template(m,extra_arg)
             I=0;
             x_bnd=0;%boundaries
             u_bnd=-1;%boundaries
-        case 6
+        case 7
             % 6:point extraction (binary image)
             A=[0 0 0; 0 1 0; 0 0 0];
             B=[-1 -1 -1; -1 1 -1; -1 -1 -1];
             I=-8;
             x_bnd=1;%boundaries
             u_bnd=1;%boundaries
-        case 7
+        case 8
             % 7:point removal (binary image)
             A=[0 0 0; 0 1 0; 0 0 0];
             B=[1 1 1; 1 8 1; 1 1 1];
             I=-1;
             x_bnd=1;%boundaries
             u_bnd=-1;%boundaries
-        case 8
+        case 9
             % 8:logic not (binary image)
             A=[0 0 0; 0 1 0; 0 0 0];
             B=[0 0 0; 0 -2 0; 0 0 0];
             I=0;
             x_bnd=0;%boundaries
             u_bnd=0;%boundaries
-        case 9
+        case 10
             % 9:logic and (binary image)
             A=[0 0 0; 0 2 0; 0 0 0];
             B=[0 0 0; 0 1 0; 0 0 0];
             I=-1;
             x_bnd=0;%boundaries
             u_bnd=0;%boundaries
-        case 10
+        case 11
             % 10:logic or (binary image)
             A=[0 0 0; 0 2 0; 0 0 0];
             B=[0 0 0; 0 1 0; 0 0 0];
             I=1;
             x_bnd=0;%boundaries
             u_bnd=0;%boundaries
-        case 11
+        case 12
             % 11: directional edge detection (binary)
             A=[0 0 0; 0 1 0; 0 0 0];
             switch (extra_arg)
@@ -142,7 +150,7 @@ function [ A,B,I,x_bnd,u_bnd ] = cnn_template(m,extra_arg)
             I=-2;
             x_bnd=0;%boundaries
             u_bnd=0;%boundaries
-        case 12
+        case 13
             % 12:erosion (binary image)
             A=[0 0 0; 0 2 0; 0 0 0];
             if size(extra_arg)==[3,3]
@@ -153,7 +161,7 @@ function [ A,B,I,x_bnd,u_bnd ] = cnn_template(m,extra_arg)
             I=-4.5;
             x_bnd=1;%boundaries
             u_bnd=-1;%boundaries
-        case 13
+        case 14
             % 13:dilation (binary image)
             A=[0 0 0; 0 2 0; 0 0 0];
             if size(extra_arg)==[3,3]
