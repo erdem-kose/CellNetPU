@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Ts" key="selection"/>
+		<item value="Read" key="selection"/>
 		<list key="findhistory">
+			<item value="read"/>
+			<item value="case 3"/>
+			<item value="control"/>
 			<item value="ts"/>
 			<item value="bram_data_out"/>
 			<item value="bram_add_datain"/>
 			<item value="bram_add_data"/>
 			<item value="bram_address"/>
-			<item value="count"/>
-			<item value="fprintf"/>
-			<item value="xiomodule"/>
 		</list>
 		<list key="replacehistory">
 			<item value="bram_temp_data_out"/>

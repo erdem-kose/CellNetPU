@@ -5,7 +5,7 @@ source ipcore_dir/microblaze_mcs_setup.tcl
 implement
 generate bit file
 source ipcore_dir/microblaze_mcs_setup.tcl
-microblaze_mcs_data2mem source/software/mcu_project/Release/mcu_project.elf
+microblaze_mcs_data2mem ../SDK/mcu_project/Release/mcu_project.elf
 
 ADEPT
 

@@ -59,24 +59,17 @@ COMPONENT mcu
   PORT (
     Clk : IN STD_LOGIC;
     Reset : IN STD_LOGIC;
-    IO_Addr_Strobe : OUT STD_LOGIC;
-    IO_Read_Strobe : OUT STD_LOGIC;
-    IO_Write_Strobe : OUT STD_LOGIC;
-    IO_Address : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    IO_Byte_Enable : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-    IO_Write_Data : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    IO_Read_Data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-    IO_Ready : IN STD_LOGIC;
     UART_Rx : IN STD_LOGIC;
     UART_Tx : OUT STD_LOGIC;
     GPO1 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     GPO2 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     GPO3 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    GPO4 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     GPI1 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
     GPI1_Interrupt : OUT STD_LOGIC;
     GPI2 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-    GPI2_Interrupt : OUT STD_LOGIC
+    GPI2_Interrupt : OUT STD_LOGIC;
+    GPI3 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    GPI3_Interrupt : OUT STD_LOGIC
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
@@ -89,24 +82,17 @@ your_instance_name : mcu
   PORT MAP (
     Clk => Clk,
     Reset => Reset,
-    IO_Addr_Strobe => IO_Addr_Strobe,
-    IO_Read_Strobe => IO_Read_Strobe,
-    IO_Write_Strobe => IO_Write_Strobe,
-    IO_Address => IO_Address,
-    IO_Byte_Enable => IO_Byte_Enable,
-    IO_Write_Data => IO_Write_Data,
-    IO_Read_Data => IO_Read_Data,
-    IO_Ready => IO_Ready,
     UART_Rx => UART_Rx,
     UART_Tx => UART_Tx,
     GPO1 => GPO1,
     GPO2 => GPO2,
     GPO3 => GPO3,
-    GPO4 => GPO4,
     GPI1 => GPI1,
     GPI1_Interrupt => GPI1_Interrupt,
     GPI2 => GPI2,
-    GPI2_Interrupt => GPI2_Interrupt
+    GPI2_Interrupt => GPI2_Interrupt,
+    GPI3 => GPI3,
+    GPI3_Interrupt => GPI3_Interrupt
   );
 -- INST_TAG_END ------ End INSTANTIATION Template ------------
 

@@ -1,4 +1,4 @@
-06:20:31 **** Auto Build of project cnn_bsp ****
+12:04:59 **** Build of project cnn_bsp ****
 make -k all 
 libgen -hw ../mcu_sw/system.xml\
 	       \
@@ -32,5 +32,5 @@ Running libs - 'make -s libs "COMPILER=mb-gcc" "ARCHIVER=mb-ar"
 Running execs_generate.
 'Finished building libraries'
 
-06:20:38 Build Finished (took 6s.920ms)
+12:05:05 Build Finished (took 6s.354ms)
 

@@ -1,13 +1,11 @@
 
 NET "clk" LOC = L15;
-NET "en" LOC = A10;#sw0
-NET "rst" LOC = D14;#sw1
+NET "rst" LOC = A10;#sw0
 NET "ready_led" LOC = U18;#led1
 NET "uart_rx" LOC = A16;
 NET "uart_tx" LOC = B16;
 
 NET "clk" IOSTANDARD = LVCMOS33;
-NET "en" IOSTANDARD = LVCMOS33;
 NET "rst" IOSTANDARD = LVCMOS33;
 NET "ready_led" IOSTANDARD = LVCMOS33;
 NET "uart_rx" IOSTANDARD = LVCMOS33;

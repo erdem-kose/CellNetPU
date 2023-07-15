@@ -18,6 +18,22 @@ library std;
 	use std.textio.all;
 
 package cnn_package is
+	constant busM: integer;
+	constant busF: integer;
+	constant busWidth : integer;
+	constant busUSMax : integer;
+	constant busMax : integer;
+	constant busMin : integer;
+	
+	constant errorM: integer;
+	constant errorF: integer;
+	constant errorWidth: integer;
+	constant errorMax : integer;
+	constant errorMin : integer;
+	
+	constant ALUBorderTop: integer;
+	constant ALUBorderBottom: integer;
+	
 	constant imageWidthMAX: integer;
 	constant imageHeightMAX: integer;
 
@@ -26,10 +42,6 @@ package cnn_package is
 	constant ALULagMAX: integer;
 	constant bramLagMAX: integer;
 	constant templateLagMAX: integer;
-
-	constant busM: integer;
-	constant busF: integer;
-	constant busWidth : integer;		
 
 	constant fifoCoreAddressWidth: integer;
 
@@ -49,25 +61,43 @@ package cnn_package is
 end cnn_package;
 
 package body cnn_package is
-	constant imageWidthMAX: integer := 128;--will be 1920 
-	constant imageHeightMAX: integer := 128;--will be 1080
+--IEEE 754 half-precision binary floating-point format: binary16[edit]
+--The IEEE 754 standard specifies a binary16 as having the following format:
+--
+--Sign bit: 1 bit
+--Exponent width: 5 bits
+--Significand precision: 11 bits (10 explicitly stored)
 
-	constant iterMAX: integer:= 200;
+	constant busM: integer := 6;--bus tamsayi kismi
+	constant busF: integer := 10;--bus virgulden sonra kismi
+	constant busWidth : integer := busM+busF;
+	constant busUSMax : integer := 2**busWidth-1;
+	constant busMax : integer := 2**(busWidth-1)-1;
+	constant busMin : integer := -2**(busWidth-1);
+	
+	constant errorM: integer := 22;--bus tamsayi kismi
+	constant errorF: integer := 10;--bus virgulden sonra kismi
+	constant errorWidth: integer := errorM+errorF;
+	constant errorMax : integer := 2**(errorWidth-1)-1;
+	constant errorMin : integer := -2**(errorWidth-1);
+	
+	constant ALUBorderTop: integer := 2**busF;
+	constant ALUBorderBottom: integer := -2**busF;
+	
+	constant imageWidthMAX: integer := 128;
+	constant imageHeightMAX: integer := 128;
+
+	constant iterMAX: integer:= busUSMax;
 	
 	constant ALULagMAX: integer:= 5;--step - 1
 	constant bramLagMAX: integer:= 3;
 	constant templateLagMAX: integer:= 3;
 
-	constant busM: integer := 5;--bus tamsayi kismi
-	constant busF: integer := 11;--bus virgulden sonra kismi
-	constant busWidth : integer := busM+busF;
-	
-	constant fifoCoreWidth: integer := 1920;--max goruntu eni, degistirme
+	constant fifoCoreWidth: integer := 128;--max goruntu eni, degistirme
 	constant fifoCoreAddressWidth: integer := integer(ceil(log2(real(fifoCoreWidth+1))));
 
-	constant ramAddressCount: integer := 3*imageWidthMAX*imageHeightMAX;
+	constant ramAddressCount: integer := 4*imageWidthMAX*imageHeightMAX;
 	constant ramAddressWidth: integer := integer(ceil(log2(real(ramAddressCount))));
-	
 
 	constant patchWH : integer := 3;
 	constant patchSize : integer := patchWH**2;

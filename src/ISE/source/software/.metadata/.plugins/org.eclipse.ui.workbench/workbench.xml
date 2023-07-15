@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="22" version="2.0">
+<workbench progressCount="21" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="26" y="26">
 <fastViewData fastViewLocation="1024"/>
@@ -23,6 +23,7 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.cdt.ui.editor.asm.AsmEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.cdt.ui.editor.CEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
@@ -37,21 +38,47 @@
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_5/ISE/source/software/mcu_project/src/main.c" title="main.c" tooltip="mcu_project/src/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mcu_project/src/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4555" selectionTopPixel="1632"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="platform_config.h" partName="platform_config.h" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/source/software/mcu_project/src/platform_config.h" title="platform_config.h" tooltip="mcu_project/src/platform_config.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mcu_project/src/platform_config.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="xiomodule.h" partName="xiomodule.h" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_5/ISE/source/software/cnn_bsp/mcu/include/xiomodule.h" title="xiomodule.h" tooltip="cnn_bsp/mcu/include/xiomodule.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cnn_bsp/mcu/include/xiomodule.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="9" selectionOffset="13907" selectionTopPixel="3791"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="platform.c" partName="platform.c" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/source/software/mcu_project/src/platform.c" title="platform.c" tooltip="mcu_project/src/platform.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mcu_project/src/platform.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2423" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="outbyte.c" partName="outbyte.c" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_5/ISE/source/software/cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/outbyte.c" title="outbyte.c" tooltip="cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/outbyte.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/outbyte.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="42" selectionOffset="182" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_init.h" partName="cnn_init.h" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/source/software/mcu_project/src/cnn_init.h" title="cnn_init.h" tooltip="mcu_project/src/cnn_init.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mcu_project/src/cnn_init.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1101" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="platform.h" partName="platform.h" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/source/software/mcu_project/src/platform.h" title="platform.h" tooltip="mcu_project/src/platform.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mcu_project/src/platform.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="21" selectionOffset="897" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_func.c" partName="cnn_func.c" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/source/software/mcu_project/src/cnn_func.c" title="cnn_func.c" tooltip="mcu_project/src/cnn_func.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mcu_project/src/cnn_func.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="15" selectionOffset="25" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_func.h" partName="cnn_func.h" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/source/software/mcu_project/src/cnn_func.h" title="cnn_func.h" tooltip="mcu_project/src/cnn_func.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mcu_project/src/cnn_func.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1101" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_algorithm.h" partName="cnn_algorithm.h" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/source/software/mcu_project/src/cnn_algorithm.h" title="cnn_algorithm.h" tooltip="mcu_project/src/cnn_algorithm.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mcu_project/src/cnn_algorithm.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1054" selectionTopPixel="190"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_algorithm.c" partName="cnn_algorithm.c" path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_6/ISE/source/software/mcu_project/src/cnn_algorithm.c" title="cnn_algorithm.c" tooltip="mcu_project/src/cnn_algorithm.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mcu_project/src/cnn_algorithm.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="28" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -97,7 +124,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.eclipse.cdt.ui.CPerspective">
+<perspectives activePart="org.eclipse.ui.navigator.ProjectExplorer" activePerspective="org.eclipse.cdt.ui.CPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.cdt.internal.ui.CPerspectiveFactory" id="org.eclipse.cdt.ui.CPerspective" label="C/C++"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -182,8 +209,8 @@
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="250" ratioRight="750" relationship="2" relative="topLeft"/>
-<info folder="true" part="bottom" ratio="0.8352816" ratioLeft="786" ratioRight="155" relationship="4" relative="org.eclipse.ui.editorss">
+<info part="org.eclipse.ui.editorss" ratio="0.16847827" ratioLeft="279" ratioRight="1377" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottom" ratio="0.6418704" ratioLeft="604" ratioRight="337" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
@@ -216,169 +243,171 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/include/xiomodule.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/libsrc/iomodule_v1_03_a/src/xiomodule.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/include/xparameters.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/outbyte.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/libsrc/iomodule_v1_03_a/src/xiomodule_uart_intr.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/libsrc/iomodule_v1_03_a/src/xiomodule_uart_intr.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xilinx.sdk.hw.ui.HwSpecXMLEditor" path="/mcu_sw/system.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xilinx.sdk.hw.ui.HwSpecXMLEditor" path="/mcu_sw/system.xml"/>
-<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="C:\Xilinx\14.5\ISE_DS\EDK\gnu\microblaze\nt64\microblaze-xilinx-elf\include\stdio.h" project="mcu_project"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/include/xiomodule.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/include/xparameters.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/outbyte.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/platform.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/include/xiomodule.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/platform.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/mcu_project/src/README.txt"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/cnn_func.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/cnn_func.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/cnn_bsp/mcu/libsrc/iomodule_v1_03_a/src/xiomodule_uart_intr.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/platform.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/cnn_init.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/platform.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/cnn_init.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/cnn_algorithm.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/cnn_init.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/cnn_func.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/cnn_init.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/cnn_algorithm.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/mcu_project/src/main.c"/>
 </editors>
-<item historyLabel="xiomodule.h" index="1">
-<position info="not_deleted" x="13907" y="9"/>
+<item historyLabel="cnn_init.c" index="5">
+<position info="not_deleted" x="25" y="193"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="350" y="1"/>
+<item historyLabel="cnn_init.h" index="7">
+<position info="not_deleted" x="581" y="0"/>
 </item>
-<item historyLabel="xiomodule.c" index="2">
-<position info="not_deleted" x="9456" y="15"/>
+<item historyLabel="cnn_init.c" index="5">
+<position info="not_deleted" x="25" y="193"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="61" y="0"/>
+<item historyLabel="cnn_func.c" index="0">
+<position info="not_deleted" x="23" y="0"/>
 </item>
-<item historyLabel="xparameters.h" index="3">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="cnn_init.c" index="5">
+<position info="not_deleted" x="25" y="193"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="61" y="0"/>
+<item historyLabel="cnn_func.c" index="0">
+<position info="not_deleted" x="23" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1152" y="0"/>
+<item historyLabel="cnn_algorithm.c" index="8">
+<position info="not_deleted" x="28" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
+<item historyLabel="main.c" index="2">
+<position info="not_deleted" x="85" y="0"/>
+</item>
+<item historyLabel="cnn_func.c" index="0">
+<position info="not_deleted" x="23" y="0"/>
+</item>
+<item historyLabel="cnn_algorithm.c" index="8">
+<position info="not_deleted" x="28" y="0"/>
+</item>
+<item historyLabel="cnn_func.c" index="0">
 <position/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1198" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1556" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
+<item historyLabel="cnn_func.h" index="1">
 <position info="not_deleted" x="1374" y="0"/>
 </item>
-<item historyLabel="outbyte.c" index="4">
-<position info="not_deleted" x="161" y="7"/>
+<item historyLabel="cnn_func.c" index="0">
+<position info="not_deleted" x="3074" y="27"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1272" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="165" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="232" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
+<item historyLabel="cnn_func.h" index="1">
 <position/>
 </item>
-<item historyLabel="xiomodule_uart_intr.c" index="5">
-<position info="not_deleted" x="5251" y="8"/>
+<item historyLabel="cnn_func.c" index="0">
+<position info="not_deleted" x="3231" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position/>
+<item historyLabel="main.c" index="2">
+<position info="not_deleted" x="85" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1851" y="0"/>
+<item historyLabel="cnn_func.c" index="0">
+<position info="not_deleted" x="3118" y="0"/>
 </item>
-<item historyLabel="xiomodule_uart_intr.c" index="6">
-<position info="not_deleted" x="5176" y="14"/>
+<item historyLabel="platform.h" index="4">
+<position info="not_deleted" x="897" y="21"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="2266" y="0"/>
+<item historyLabel="cnn_func.h" index="1">
+<position info="not_deleted" x="1105" y="0"/>
 </item>
-<item historyLabel="system.xml" index="7"/>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1727" y="0"/>
+<item historyLabel="cnn_init.h" index="7">
+<position info="not_deleted" x="1101" y="0"/>
 </item>
-<item historyLabel="system.xml" index="7"/>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1727" y="0"/>
+<item historyLabel="cnn_func.h" index="1">
+<position info="not_deleted" x="1101" y="0"/>
 </item>
-<item historyLabel="system.xml" index="8"/>
-<item historyLabel="stdio.h" index="9">
-<position info="not_deleted" x="4948" y="7"/>
+<item historyLabel="cnn_func.c" index="0">
+<position info="not_deleted" x="549" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="2645" y="0"/>
+<item historyLabel="xiomodule_uart_intr.c" index="3">
+<position info="not_deleted" x="8286" y="14"/>
 </item>
-<item historyLabel="stdio.h" index="9">
-<position info="not_deleted" x="4948" y="7"/>
+<item historyLabel="cnn_algorithm.c" index="8">
+<position info="not_deleted" x="28" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="2645" y="0"/>
+<item historyLabel="cnn_func.h" index="1">
+<position info="not_deleted" x="1101" y="0"/>
 </item>
-<item historyLabel="xiomodule.h" index="10">
-<position info="not_deleted" x="13907" y="9"/>
+<item historyLabel="main.c" index="2">
+<position info="not_deleted" x="85" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1304" y="0"/>
+<item historyLabel="platform.c" index="6">
+<position info="not_deleted" x="2592" y="0"/>
 </item>
-<item historyLabel="xparameters.h" index="11">
-<position info="not_deleted" x="3269" y="25"/>
+<item historyLabel="cnn_init.h" index="7">
+<position info="not_deleted" x="1101" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1304" y="0"/>
+<item historyLabel="cnn_init.c" index="5">
+<position info="not_deleted" x="25" y="193"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position/>
+<item historyLabel="platform.h" index="4">
+<position info="not_deleted" x="897" y="21"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position/>
+<item historyLabel="cnn_func.c" index="0">
+<position info="not_deleted" x="549" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3142" y="0"/>
+<item historyLabel="xiomodule_uart_intr.c" index="3">
+<position info="not_deleted" x="8286" y="14"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1757" y="29"/>
+<item historyLabel="cnn_func.c" index="0">
+<position info="not_deleted" x="556" y="0"/>
 </item>
-<item historyLabel="outbyte.c" index="12">
-<position info="not_deleted" x="161" y="7"/>
+<item historyLabel="cnn_func.h" index="1">
+<position info="not_deleted" x="1101" y="0"/>
 </item>
-<item historyLabel="platform.c" index="13">
-<position info="not_deleted" x="3151" y="0"/>
+<item historyLabel="cnn_func.c" index="0">
+<position info="not_deleted" x="556" y="0"/>
 </item>
-<item historyLabel="xiomodule.h" index="14">
-<position info="not_deleted" x="13907" y="9"/>
+<item historyLabel="main.c" index="2">
+<position info="not_deleted" x="85" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="2529" y="0"/>
+<item historyLabel="platform.c" index="6">
+<position info="not_deleted" x="2592" y="0"/>
 </item>
-<item historyLabel="platform.c" index="15">
-<position info="not_deleted" x="3151" y="0"/>
+<item historyLabel="main.c" index="9">
+<position info="not_deleted" x="85" y="0"/>
 </item>
-<item historyLabel="README.txt" index="16">
+<item historyLabel="cnn_init.c" index="10">
+<position info="not_deleted" x="154" y="0"/>
+</item>
+<item historyLabel="main.c" index="9">
+<position info="not_deleted" x="85" y="0"/>
+</item>
+<item historyLabel="cnn_func.c" index="11">
+<position info="not_deleted" x="569" y="0"/>
+</item>
+<item historyLabel="cnn_func.c" index="11">
+<position info="not_deleted" x="25" y="15"/>
+</item>
+<item historyLabel="cnn_init.c" index="10">
+<position info="not_deleted" x="154" y="0"/>
+</item>
+<item historyLabel="cnn_init.h" index="12">
+<position info="not_deleted" x="1101" y="0"/>
+</item>
+<item historyLabel="cnn_init.c" index="10">
+<position info="not_deleted" x="25" y="8"/>
+</item>
+<item historyLabel="cnn_func.c" index="11">
+<position info="not_deleted" x="25" y="15"/>
+</item>
+<item historyLabel="cnn_algorithm.c" index="13">
+<position info="not_deleted" x="28" y="0"/>
+</item>
+<item historyLabel="main.c" index="9">
+<position info="not_deleted" x="735" y="0"/>
+</item>
+<item historyLabel="cnn_init.c" index="10">
+<position info="not_deleted" x="783" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="14">
 <position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="main.c" index="17">
-<position info="not_deleted" x="2798" y="0"/>
-</item>
-<item historyLabel="README.txt" index="16">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="main.c" index="17">
-<position/>
-</item>
-<item historyLabel="xiomodule_uart_intr.c" index="18">
-<position info="not_deleted" x="5176" y="14"/>
-</item>
-<item active="true" historyLabel="main.c" index="17">
-<position info="not_deleted" x="4666" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -400,35 +429,47 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xiomodule_uart_intr.c" tooltip="cnn_bsp/mcu/libsrc/iomodule_v1_03_a/src/xiomodule_uart_intr.c">
 <persistable path="/cnn_bsp/mcu/libsrc/iomodule_v1_03_a/src/xiomodule_uart_intr.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="outbyte.c" tooltip="cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/outbyte.c">
-<persistable path="/cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/outbyte.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xil_types.h" tooltip="cnn_bsp/mcu/include/xil_types.h">
+<persistable path="/cnn_bsp/mcu/include/xil_types.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xparameters.h" tooltip="cnn_bsp/mcu/include/xparameters.h">
-<persistable path="/cnn_bsp/mcu/include/xparameters.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_algorithm.c" tooltip="mcu_project/src/cnn_algorithm.c">
+<persistable path="/mcu_project/src/cnn_algorithm.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xilinx.sdk.hw.ui.HwSpecXMLEditor" name="system.xml" tooltip="mcu_sw/system.xml">
-<persistable path="/mcu_sw/system.xml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_algorithm.h" tooltip="mcu_project/src/cnn_algorithm.h">
+<persistable path="/mcu_project/src/cnn_algorithm.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xiomodule.c" tooltip="cnn_bsp/mcu/libsrc/iomodule_v1_03_a/src/xiomodule.c">
-<persistable path="/cnn_bsp/mcu/libsrc/iomodule_v1_03_a/src/xiomodule.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_func.h" tooltip="mcu_project/src/cnn_func.h">
+<persistable path="/mcu_project/src/cnn_func.h"/>
 </file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stdio.h" tooltip="C:\Xilinx\14.5\ISE_DS\EDK\gnu\microblaze\nt64\microblaze-xilinx-elf\include\stdio.h">
-<persistable path="C:\Xilinx\14.5\ISE_DS\EDK\gnu\microblaze\nt64\microblaze-xilinx-elf\include\stdio.h" project="mcu_project"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_func.c" tooltip="mcu_project/src/cnn_func.c">
+<persistable path="/mcu_project/src/cnn_func.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="platform.h" tooltip="mcu_project/src/platform.h">
+<persistable path="/mcu_project/src/platform.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_library.c" tooltip="mcu_project/src/cnn_library.c">
+<persistable path="/mcu_project/src/cnn_library.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="cnn_library.h" tooltip="mcu_project/src/cnn_library.h">
+<persistable path="/mcu_project/src/cnn_library.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="platform.c" tooltip="mcu_project/src/platform.c">
 <persistable path="/mcu_project/src/platform.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xiomodule.h" tooltip="cnn_bsp/mcu/include/xiomodule.h">
-<persistable path="/cnn_bsp/mcu/include/xiomodule.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="mcu_project/src/main.c">
-<persistable path="/mcu_project/src/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="README.txt" tooltip="mcu_project/src/README.txt">
-<persistable path="/mcu_project/src/README.txt"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="platform_config.h" tooltip="mcu_project/src/platform_config.h">
+<persistable path="/mcu_project/src/platform_config.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xilinx.sdk.sw.MSSEditor" name="system.mss" tooltip="cnn_bsp/system.mss">
 <persistable path="/cnn_bsp/system.mss"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="outbyte.c" tooltip="cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/outbyte.c">
+<persistable path="/cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/outbyte.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.asm.AsmEditor" name="microblaze_update_icache.S" tooltip="cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/microblaze_update_icache.S">
+<persistable path="/cnn_bsp/mcu/libsrc/standalone_v3_09_a/src/microblaze_update_icache.S"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xilinx.sdk.hw.ui.HwSpecXMLEditor" name="system.xml" tooltip="mcu_sw/system.xml">
+<persistable path="/mcu_sw/system.xml"/>
 </file>
 </mruList>
 </workbench>

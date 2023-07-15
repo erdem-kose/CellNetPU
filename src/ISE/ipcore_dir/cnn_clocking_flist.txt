@@ -2,6 +2,7 @@
 _xmsgs\pn_parser.xmsgs
 cnn_clocking.asy
 cnn_clocking.gise
+cnn_clocking.sym
 cnn_clocking.ucf
 cnn_clocking.vhd
 cnn_clocking.vho

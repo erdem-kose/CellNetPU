@@ -71,9 +71,9 @@ port
   CLK_IN1           : in  std_logic;
   -- Reset that only drives logic in example design
   COUNTER_RESET     : in  std_logic;
-  CLK_OUT           : out std_logic_vector(2 downto 1) ;
+  CLK_OUT           : out std_logic_vector(3 downto 1) ;
   -- High bits of counters driven by clocks
-  COUNT             : out std_logic_vector(2 downto 1)
+  COUNT             : out std_logic_vector(3 downto 1)
  );
 end cnn_clocking_exdes;
 
@@ -85,7 +85,7 @@ architecture xilinx of cnn_clocking_exdes is
   constant C_W        : integer := 16;
 
   -- Number of counters
-  constant NUM_C      : integer := 2;
+  constant NUM_C      : integer := 3;
   -- Array typedef
   type ctrarr is array (1 to NUM_C) of std_logic_vector(C_W-1 downto 0);
 
@@ -109,7 +109,8 @@ port
   clk_in           : in     std_logic;
   -- Clock out ports
   sys_clk          : out    std_logic;
-  mcu_clk          : out    std_logic
+  mcu_clk          : out    std_logic;
+  div_clk          : out    std_logic
  );
 end component;
 
@@ -143,7 +144,8 @@ end generate counters_1;
     clk_in            => CLK_IN1,
     -- Clock out ports
     sys_clk           => clk_int(1),
-    mcu_clk           => clk_int(2));
+    mcu_clk           => clk_int(2),
+    div_clk           => clk_int(3));
 
   gen_outclk_oddr: 
   for clk_out_pins in 1 to NUM_C generate 
@@ -165,6 +167,7 @@ end generate counters_1;
   -------------------------------------------
   clk(1) <= clk_int(1);
   clk(2) <= clk_int(2);
+  clk(3) <= clk_int(3);
 
   -- Output clock sampling
   -------------------------------------

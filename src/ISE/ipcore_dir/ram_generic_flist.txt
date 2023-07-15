@@ -2,7 +2,6 @@
 _xmsgs\pn_parser.xmsgs
 ram_generic.asy
 ram_generic.gise
-ram_generic.mif
 ram_generic.ngc
 ram_generic.vhd
 ram_generic.vho

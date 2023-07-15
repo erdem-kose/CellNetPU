@@ -17,10 +17,10 @@ entity cnn_interface is
 		uart_rx : in std_logic;
 		uart_tx : out std_logic;
 		
-		cnn_rst: out std_logic:='0';
+		cnn_rst: out std_logic:='1';
 		
-		iter_cnt: out std_logic_vector(busWidth/2-2 downto 0) := std_logic_vector(to_unsigned(2,busWidth/2-1));
-		template_no : out std_logic_vector(busWidth/2-3 downto 0) := std_logic_vector(to_unsigned(0,busWidth/2-2));
+		iter_cnt: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(2,busWidth));
+		template_no : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(0,busWidth));
 		Ts : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
 	
 		imageWidth: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
@@ -34,7 +34,10 @@ entity cnn_interface is
 		template_we : out std_logic_vector(0 downto 0);
 		template_address : out std_logic_vector(templateAddressWidth-1 downto 0);
 		template_data_in : out std_logic_vector(busWidth-1 downto 0);
-		template_data_out : in std_logic_vector(busWidth-1 downto 0)
+		template_data_out : in std_logic_vector(busWidth-1 downto 0);
+		
+		error_norm_sum: in std_logic_vector (errorWidth-1 downto 0);
+		error_squa_sum: in std_logic_vector (errorWidth-1 downto 0)
 	);
 end cnn_interface;
 
@@ -43,24 +46,17 @@ architecture Behavioral of cnn_interface is
 		port (
 			Clk : in std_logic;
 			Reset : in std_logic;
-			IO_Addr_Strobe : out std_logic;
-			IO_Read_Strobe : out std_logic;
-			IO_Write_Strobe : out std_logic;
-			IO_Address : out std_logic_vector(31 downto 0);
-			IO_Byte_Enable : out std_logic_vector(3 downto 0);
-			IO_Write_Data : out std_logic_vector(31 downto 0);
-			IO_Read_Data : in std_logic_vector(31 downto 0);
-			IO_Ready : in std_logic;
 			UART_Rx : in std_logic;
 			UART_Tx : out std_logic;
 			GPO1 : out std_logic_vector(2*busWidth-1 downto 0);
 			GPO2 : out std_logic_vector(2*busWidth-1 downto 0);
 			GPO3 : out std_logic_vector(2*busWidth-1 downto 0);
-			GPO4 : out std_logic_vector(2*busWidth-1 downto 0);
 			GPI1 : in std_logic_vector(2*busWidth-1 downto 0);
-			GPI2 : in std_logic_vector(2*busWidth-1 downto 0);
 			GPI1_Interrupt : out std_logic;
-			GPI2_Interrupt : out std_logic
+			GPI2 : in std_logic_vector(2*busWidth-1 downto 0);
+			GPI2_Interrupt : out std_logic;
+			GPI3 : in std_logic_vector(2*busWidth-1 downto 0);
+			GPI3_Interrupt : out std_logic
 		);
 	end component;
 	
@@ -79,59 +75,75 @@ architecture Behavioral of cnn_interface is
 		);
 	end component;
 
+	component cnn_constants
+		port (
+			clk : in std_logic;
+			
+			control_data_in : in std_logic_vector(busWidth-1 downto 0):=(others=>'0');
+			control_address : in std_logic_vector(busWidth-1 downto 0):=(others=>'0');
+
+			cnn_rst: out std_logic:='1';
+			
+			iter_cnt: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(2,busWidth));
+			template_no : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(0,busWidth));
+			Ts : out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(205,busWidth));
+		
+			imageWidth: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
+			imageHeight: out std_logic_vector(busWidth-1 downto 0) := std_logic_vector(to_unsigned(128,busWidth));
+			
+			interface_bram_we : out std_logic_vector(0 downto 0);
+			template_we : out std_logic_vector(0 downto 0);
+			
+			error_sum_slc : out std_logic
+		);
+	end component;
+
+	signal control_data_in : std_logic_vector(busWidth-1 downto 0):=(others=>'0');
+	signal control_address : std_logic_vector(busWidth-1 downto 0):=(others=>'0');
+
 	signal interface_bram_we : std_logic_vector(0 downto 0):=(others=>'0');
 	signal interface_bram_address : std_logic_vector(ramAddressWidth-1 downto 0):=(others=>'0');
 	signal interface_bram_data_in : std_logic_vector(busWidth-1 downto 0):=(others=>'0');
 	signal interface_bram_data_out : std_logic_vector(busWidth-1 downto 0):=(others=>'0');
+
+	signal error_sum_slc : std_logic := '0';
 	
-	signal IO_Addr_Strobe : std_logic;
-	signal IO_Read_Strobe : std_logic;
-	signal IO_Write_Strobe : std_logic;
-	signal IO_Address : std_logic_vector(31 downto 0);
-	signal IO_Byte_Enable : std_logic_vector(3 downto 0);
-	signal IO_Write_Data : std_logic_vector(31 downto 0);
-	signal IO_Read_Data : std_logic_vector(31 downto 0);
-	signal IO_Ready : std_logic;
-			
 	signal gpo1 : std_logic_vector(2*busWidth-1 downto 0);--bram:bram_address,bram_data_in
-	signal gpo2 : std_logic_vector(2*busWidth-1 downto 0);--image dim:imageWidth,imageHeight
-	signal gpo3 : std_logic_vector(2*busWidth-1 downto 0);--template:template_address,template_data_in
-	signal gpo4 : std_logic_vector(2*busWidth-1 downto 0);--control register: 31:16:Ts,15:9:iter_cnt,8:3:template_no,2:cnn_rst,1:bram_we,0:template_we
+	signal gpo2 : std_logic_vector(2*busWidth-1 downto 0);--template:template_address,template_data_in
+	signal gpo3 : std_logic_vector(2*busWidth-1 downto 0);--control address/control value
 	signal gpi1 : std_logic_vector(2*busWidth-1 downto 0);--template_data_out,bram_data_out
-	signal gpi2 : std_logic_vector(2*busWidth-1 downto 0);--ready
 	signal gpi1_interrupt : std_logic :='0';
+	signal gpi2 : std_logic_vector(2*busWidth-1 downto 0);--ready
 	signal gpi2_interrupt : std_logic :='0';
+	signal gpi3 : std_logic_vector(2*busWidth-1 downto 0);--unused
+	signal gpi3_interrupt : std_logic :='0';
 begin
 
 	interface_bram_address<=gpo1(16+ramAddressWidth-1 downto 16);
 	interface_bram_data_in<=gpo1(15 downto 0);
 	
-	imageWidth<=gpo2(31 downto 16);
-	imageHeight<=gpo2(15 downto 0);
-	
-	template_address<=gpo3(16+templateAddressWidth-1 downto 16);
-	template_data_in<=gpo3(15 downto 0);
-	
-	Ts<=gpo4(31 downto 16);
-	iter_cnt<=gpo4(15 downto 9);
-	template_no<=gpo4(8 downto 3);
-	cnn_rst<=gpo4(2);
-	interface_bram_we<=gpo4(1 downto 1);
-	template_we<=gpo4(0 downto 0);
+	template_address<=gpo2(16+templateAddressWidth-1 downto 16);
+	template_data_in<=gpo2(15 downto 0);
 	
 	gpi1(31 downto 16)<=template_data_out;
 	gpi1(15 downto 0)<=interface_bram_data_out;
+	
+	control_address<=gpo3(16+busWidth-1 downto 16);
+	control_data_in<=gpo3(15 downto 0);
+
 	gpi2(31 downto 1)<=(others=>'0');
 	gpi2(0)<=ready;
 	
+	gpi3<=	error_norm_sum when error_sum_slc='0' else
+				error_squa_sum when error_sum_slc='1' else
+				error_norm_sum;
+									
 	INTERFACE_MCU: mcu
 		port map (
 			mcu_clk, rst,
-			IO_Addr_Strobe, IO_Read_Strobe, IO_Write_Strobe, IO_Address, IO_Byte_Enable, IO_Write_Data, IO_Read_Data, IO_Ready,
 			uart_rx, uart_tx,
-			gpo1, gpo2, gpo3, gpo4,
-			gpi1, gpi2,
-			gpi1_interrupt,gpi2_interrupt
+			gpo1, gpo2, gpo3,
+			gpi1, gpi1_interrupt, gpi2, gpi2_interrupt, gpi3, gpi3_interrupt
 		);
 	INTERFACE_BRAM: ram_generic
 		port map (
@@ -139,6 +151,13 @@ begin
 			interface_bram_address, interface_bram_data_in, interface_bram_data_out,
 			sys_clk, bram_we,
 			bram_address, bram_data_in, bram_data_out
+		);
+	INTERFACE_CONSTANTS: cnn_constants
+		port map(
+			mcu_clk, control_data_in, control_address,
+			cnn_rst, iter_cnt, template_no, Ts, imageWidth, imageHeight,
+			interface_bram_we, template_we,
+			error_sum_slc
 		);
 end Behavioral;
 

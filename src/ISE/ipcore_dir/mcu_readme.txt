@@ -1,5 +1,5 @@
 The following files were generated for 'mcu' in directory
-D:\Egitim\ELEYLT-TezCalismasi\Work\v0_5\ISE\ipcore_dir\
+D:\Egitim\ELEYLT-TezCalismasi\Work\v0_6\ISE\ipcore_dir\
 
 Generate XCO file:
    CORE Generator input file containing the parameters used to generate a core.

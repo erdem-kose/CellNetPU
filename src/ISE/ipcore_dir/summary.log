@@ -7,15 +7,15 @@ Port A Read Width		:	16
 Port B Read Width		:	16
 Port A Write Width		:	16
 Port B Write Width		:	16
-Memory Depth			:	1050
+Memory Depth			:	129
 --------------------------------------------------------------
 
-Block RAM resource(s) (9K BRAMs)		: 3
+Block RAM resource(s) (9K BRAMs)		: 1
 Block RAM resource(s) (18K BRAMs)		: 0
 --------------------------------------------------------------
 Clock A Frequency		:  100
 Port A Enable Rate		:  100
 Port A Write Rate		:  50
 ----------------------------------------------------------
-Estimated Power for IP : 3.964801 mW
+Estimated Power for IP : 2.292563 mW
 ----------------------------------------------------------
