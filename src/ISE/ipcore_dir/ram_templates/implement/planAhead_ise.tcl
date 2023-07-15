@@ -44,6 +44,7 @@
 # THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 # PART OF THIS FILE AT ALL TIMES.
 
+
 set device xc6slx45csg324-3
 set projName ram_templates
 set design ram_templates

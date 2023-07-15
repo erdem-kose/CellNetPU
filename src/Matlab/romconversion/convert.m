@@ -21,29 +21,28 @@ image=((double(image)/255)*2-1)*(2^bus_f);
 ideal=(2*ideal-1)*(2^bus_f);
 
 %ideal
-fileID = fopen('rom_files/rom_ideal.coe','w');
+fileID = fopen('rom_files/ram_generic.coe','w');
 
 fprintf(fileID,'memory_initialization_radix=2;\n');
 fprintf(fileID,'memory_initialization_vector=\n');
+
+for i=1:size(image,1)
+    for j=1:size(image,2)
+        fprintf(fileID,'%s',dec2bin(typecast(int16(0),'uint16'),16));
+        fprintf(fileID,'\n');
+    end
+end
+
+for i=1:size(image,1)
+    for j=1:size(image,2)
+        fprintf(fileID,'%s',dec2bin(typecast(int16(image(i,j)),'uint16'),16));
+        fprintf(fileID,'\n');
+    end
+end
+
 for i=1:size(ideal,1)
     for j=1:size(ideal,2)
         fprintf(fileID,'%s',dec2bin(typecast(int16(ideal(i,j)),'uint16'),16));
-        if ~((i==size(ideal,1)) && (j==size(ideal,2)))
-            fprintf(fileID,'\n');
-        end
-    end
-end
-fprintf(fileID,';');
-fclose(fileID);
-%
-%input
-fileID = fopen('rom_files/rom_image.coe','w');
-
-fprintf(fileID,'memory_initialization_radix=2;\n');
-fprintf(fileID,'memory_initialization_vector=');
-for i=1:size(ideal,1)
-    for j=1:size(ideal,2)
-        fprintf(fileID,'%s',dec2bin(typecast(int16(image(i,j)),'uint16'),16));
         if ~((i==size(ideal,1)) && (j==size(ideal,2)))
             fprintf(fileID,'\n');
         end
@@ -56,7 +55,7 @@ fclose(fileID);
 fileID = fopen('rom_files/ram_templates.coe','w');
 
 fprintf(fileID,'memory_initialization_radix=2;\n');
-fprintf(fileID,'memory_initialization_vector=');
+fprintf(fileID,'memory_initialization_vector=\n');
 
 for m=[1 2 3 4 6 7 8 9 10 12 13]
     m_end=13;
@@ -81,3 +80,6 @@ end
 fprintf(fileID,';');
 fclose(fileID);
 %
+Ts=0.1*(2^bus_f);
+disp(dec2bin(typecast(int16(Ts),'uint16'),16));
+disp(typecast(int16(Ts),'uint16'));

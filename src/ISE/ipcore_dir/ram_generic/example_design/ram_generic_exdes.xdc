@@ -1,6 +1,6 @@
 ################################################################################
 #
-# (c) Copyright 2009 - 2010 Xilinx, Inc. All rights reserved.
+# (c) Copyright 2002 - 2011 Xilinx, Inc. All rights reserved.
 # 
 # This file contains confidential and proprietary information
 # of Xilinx, Inc. and is protected under U.S. and
@@ -48,9 +48,7 @@
 #
 ################################################################################
 
-# Tx Core Period Constraint. This constraint can be modified, and is
+# Core Period Constraint. This constraint can be modified, and is
 # valid as long as it is met after place and route.
-create_clock -name "TS_CLK" -period 20.0 [ get_ports CLK ]
-
-
+create_clock -name "TS_CLKA" -period 20.0 [ get_ports CLKA ]
 ################################################################################

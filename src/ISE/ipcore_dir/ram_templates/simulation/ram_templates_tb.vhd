@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 --
--- DIST MEM GEN Core - Top File for the Example Testbench
+-- BLK MEM GEN v7_3 Core - Top File for the Example Testbench
 --
 --------------------------------------------------------------------------------
 --
@@ -77,26 +77,26 @@ END ENTITY;
 
 
 ARCHITECTURE ram_templates_tb_ARCH OF ram_templates_tb IS
-  SIGNAL  STATUS : STD_LOGIC_VECTOR(8 DOWNTO 0);
-  SIGNAL  CLK :  STD_LOGIC := '1';
-  SIGNAL  RESET : STD_LOGIC;
+ SIGNAL  STATUS : STD_LOGIC_VECTOR(8 DOWNTO 0);
+ SIGNAL  CLK :  STD_LOGIC := '1';
+ SIGNAL  RESET : STD_LOGIC;
  
  BEGIN
 
   
  CLK_GEN: PROCESS BEGIN
-   CLK <= NOT CLK;
-   WAIT FOR 100 NS;
-   CLK <= NOT CLK; 
-   WAIT FOR 100 NS;
- END PROCESS;
+     CLK <= NOT CLK;
+     WAIT FOR 100 NS;
+     CLK <= NOT CLK; 
+     WAIT FOR 100 NS;
+  END PROCESS;
   
- RST_GEN: PROCESS BEGIN
-   RESET <= '1';
-   WAIT FOR 1000 NS;
-   RESET <= '0';
-   WAIT;
- END PROCESS;
+  RST_GEN: PROCESS BEGIN
+    RESET <= '1';
+    WAIT FOR 1000 NS;
+    RESET <= '0';
+    WAIT;
+  END PROCESS;
 
   
 --STOP_SIM: PROCESS BEGIN
@@ -110,21 +110,25 @@ PROCESS BEGIN
   WAIT UNTIL STATUS(8)='1';
   IF( STATUS(7 downto 0)/="0") THEN
     ASSERT false
-    REPORT "Simulation Failed"
+     REPORT "Test Completed Successfully"
+	 SEVERITY NOTE;
+     REPORT "Simulation Failed"
 	 SEVERITY FAILURE;
   ELSE
-    ASSERT false
-    REPORT "Test Completed Successfully"
+   ASSERT false
+     REPORT "TEST PASS"
+     SEVERITY NOTE;
+     REPORT "Test Completed Successfully"
 	 SEVERITY FAILURE;
   END IF;
+  
 END PROCESS;	 
   
-  ram_templates_tb_synth_inst:ENTITY work.ram_templates_tb_synth
-  GENERIC MAP (C_ROM_SYNTH => 0)
+  ram_templates_synth_inst:ENTITY work.ram_templates_synth
   PORT MAP(
-    CLK_IN   => CLK,
-    RESET_IN => RESET,
-    STATUS   => STATUS
+           CLK_IN   => CLK,
+     	   RESET_IN => RESET,
+           STATUS   => STATUS
 	  );
 
 END ARCHITECTURE;

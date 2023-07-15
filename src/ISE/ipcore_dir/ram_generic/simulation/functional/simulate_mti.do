@@ -44,6 +44,7 @@
 # THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 # PART OF THIS FILE AT ALL TIMES.
 #--------------------------------------------------------------------------------
+cp ../../../ram_generic.mif .
  vlib work 
 vmap work work
 
@@ -53,13 +54,13 @@ vcom  -work work ../../../ram_generic.vhd \
 
 echo "Compiling Test Bench Files"
 
-vcom -work work    ../ram_generic_tb_pkg.vhd
-vcom -work work    ../ram_generic_tb_rng.vhd
-vcom -work work    ../ram_generic_tb_dgen.vhd
-vcom -work work    ../ram_generic_tb_agen.vhd
-vcom -work work    ../ram_generic_tb_checker.vhd
-vcom -work work    ../ram_generic_tb_stim_gen.vhd
-vcom -work work    ../ram_generic_tb_synth.vhd 
+vcom -work work    ../bmg_tb_pkg.vhd
+vcom -work work    ../random.vhd
+vcom -work work    ../data_gen.vhd
+vcom -work work    ../addr_gen.vhd
+vcom -work work    ../checker.vhd
+vcom -work work    ../bmg_stim_gen.vhd
+vcom -work work    ../ram_generic_synth.vhd 
 vcom -work work    ../ram_generic_tb.vhd
 
 vsim -novopt -t ps -L XilinxCoreLib -L unisim work.ram_generic_tb

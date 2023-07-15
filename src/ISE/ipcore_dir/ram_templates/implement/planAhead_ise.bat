@@ -1,3 +1,4 @@
+#!/bin/sh
 rem (c) Copyright 2009 - 2010 Xilinx, Inc. All rights reserved.
 rem 
 rem This file contains confidential and proprietary information

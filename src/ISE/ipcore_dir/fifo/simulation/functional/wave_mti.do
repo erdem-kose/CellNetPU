@@ -58,7 +58,6 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /fifo_tb/fifo_synth_inst/fifo_inst/CLK
-add wave -noupdate /fifo_tb/fifo_synth_inst/fifo_inst/RST
 add wave -noupdate -divider WRITE
 add wave -noupdate /fifo_tb/fifo_synth_inst/fifo_inst/WR_EN
 add wave -noupdate /fifo_tb/fifo_synth_inst/fifo_inst/FULL

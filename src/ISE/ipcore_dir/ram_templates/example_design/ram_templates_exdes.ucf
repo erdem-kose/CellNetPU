@@ -1,5 +1,6 @@
 ################################################################################
-# (c) Copyright 2009 - 2010 Xilinx, Inc. All rights reserved.
+#
+# (c) Copyright 2002 - 2010 Xilinx, Inc. All rights reserved.
 # 
 # This file contains confidential and proprietary information
 # of Xilinx, Inc. and is protected under U.S. and
@@ -49,8 +50,8 @@
 
 # Tx Core Period Constraint. This constraint can be modified, and is
 # valid as long as it is met after place and route.
-NET "CLK"  TNM_NET     = "CLK";
-TIMESPEC "TS_CLK"      = PERIOD "CLK"  50 MHZ;
+NET "CLKA"  TNM_NET     = "CLKA";
 
+TIMESPEC "TS_CLKA"      = PERIOD "CLKA"  25 MHZ;
 
 ################################################################################

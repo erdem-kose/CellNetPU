@@ -27,14 +27,19 @@
 --------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
---    Generated from core with identifier: xilinx.com:ip:dist_mem_gen:7.2     --
+--    Generated from core with identifier: xilinx.com:ip:blk_mem_gen:7.3      --
 --                                                                            --
---    Rev 1. The LogiCORE Xilinx Distributed Memory Generator creates area    --
---    and performance optimized ROM blocks, single and dual port              --
---    distributed memories, and SRL16-based memories for Xilinx FPGAs. The    --
---    core supersedes the previously released LogiCORE Distributed Memory     --
---    core. Use this core in all new designs for supported families           --
---    wherever a distributed memory is required.                              --
+--    The Xilinx LogiCORE IP Block Memory Generator replaces the Dual Port    --
+--    Block Memory and Single Port Block Memory LogiCOREs, but is not a       --
+--    direct drop-in replacement.  It should be used in all new Xilinx        --
+--    designs. The core supports RAM and ROM functions over a wide range of   --
+--    widths and depths. Use this core to generate block memories with        --
+--    symmetric or asymmetric read and write port widths, as well as cores    --
+--    which can perform simultaneous write operations to separate             --
+--    locations, and simultaneous read operations from the same location.     --
+--    For more information on differences in interface and feature support    --
+--    between this core and the Dual Port Block Memory and Single Port        --
+--    Block Memory LogiCOREs, please consult the data sheet.                  --
 --------------------------------------------------------------------------------
 
 -- The following code must appear in the VHDL architecture header:
@@ -42,11 +47,11 @@
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
 COMPONENT ram_templates
   PORT (
-    a : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-    d : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-    clk : IN STD_LOGIC;
-    we : IN STD_LOGIC;
-    spo : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+    clka : IN STD_LOGIC;
+    wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    addra : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    dina : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    douta : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
@@ -57,11 +62,11 @@ END COMPONENT;
 ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
 your_instance_name : ram_templates
   PORT MAP (
-    a => a,
-    d => d,
-    clk => clk,
-    we => we,
-    spo => spo
+    clka => clka,
+    wea => wea,
+    addra => addra,
+    dina => dina,
+    douta => douta
   );
 -- INST_TAG_END ------ End INSTANTIATION Template ------------
 

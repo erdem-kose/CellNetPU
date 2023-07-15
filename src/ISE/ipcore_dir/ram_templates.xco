@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.5
-# Date: Wed Oct 12 13:31:35 2016
+# Date: Sat Oct 15 11:06:51 2016
 #
 ##############################################################
 #
@@ -12,7 +12,7 @@
 #
 ##############################################################
 #
-#  Generated from component: xilinx.com:ip:dist_mem_gen:7.2
+#  Generated from component: xilinx.com:ip:blk_mem_gen:7.3
 #
 ##############################################################
 #
@@ -36,38 +36,73 @@ SET verilogsim = false
 SET vhdlsim = true
 # END Project Options
 # BEGIN Select
-SELECT Distributed_Memory_Generator xilinx.com:ip:dist_mem_gen:7.2
+SELECT Block_Memory_Generator xilinx.com:ip:blk_mem_gen:7.3
 # END Select
 # BEGIN Parameters
-CSET ce_overrides=ce_overrides_sync_controls
-CSET coefficient_file="D:\Egitim\ELEYLT-Tez Calismasi\Work\ISE\erdem_vhdl\cnn_application\v1_remaster\source\rom_files\ram_templates.coe"
-CSET common_output_ce=false
-CSET common_output_clk=false
+CSET additional_inputs_for_power_estimation=false
+CSET algorithm=Minimum_Area
+CSET assume_synchronous_clk=false
+CSET axi_id_width=4
+CSET axi_slave_type=Memory_Slave
+CSET axi_type=AXI4_Full
+CSET byte_size=9
+CSET coe_file="D:\Egitim\ELEYLT-Tez Calismasi\Work\v2\ISE\source\rom_files\ram_templates.coe"
+CSET collision_warnings=ALL
 CSET component_name=ram_templates
-CSET data_width=16
-CSET default_data=0
-CSET default_data_radix=16
-CSET depth=256
-CSET dual_port_address=non_registered
-CSET dual_port_output_clock_enable=false
-CSET input_clock_enable=false
-CSET input_options=non_registered
-CSET memory_type=single_port_ram
-CSET output_options=non_registered
+CSET disable_collision_warnings=false
+CSET disable_out_of_range_warnings=false
+CSET ecc=false
+CSET ecctype=No_ECC
+CSET enable_32bit_address=false
+CSET enable_a=Always_Enabled
+CSET enable_b=Always_Enabled
+CSET error_injection_type=Single_Bit_Error_Injection
+CSET fill_remaining_memory_locations=true
+CSET interface_type=Native
+CSET load_init_file=true
+CSET mem_file=no_Mem_file_loaded
+CSET memory_type=Single_Port_RAM
+CSET operating_mode_a=READ_FIRST
+CSET operating_mode_b=WRITE_FIRST
+CSET output_reset_value_a=0
+CSET output_reset_value_b=0
 CSET pipeline_stages=0
-CSET qualify_we_with_i_ce=false
-CSET reset_qdpo=false
-CSET reset_qsdpo=false
-CSET reset_qspo=false
-CSET simple_dual_port_address=non_registered
-CSET simple_dual_port_output_clock_enable=false
-CSET single_port_output_clock_enable=false
-CSET sync_reset_qdpo=false
-CSET sync_reset_qsdpo=false
-CSET sync_reset_qspo=false
+CSET port_a_clock=100
+CSET port_a_enable_rate=100
+CSET port_a_write_rate=50
+CSET port_b_clock=100
+CSET port_b_enable_rate=100
+CSET port_b_write_rate=50
+CSET primitive=8kx2
+CSET read_width_a=16
+CSET read_width_b=16
+CSET register_porta_input_of_softecc=false
+CSET register_porta_output_of_memory_core=false
+CSET register_porta_output_of_memory_primitives=false
+CSET register_portb_output_of_memory_core=false
+CSET register_portb_output_of_memory_primitives=false
+CSET register_portb_output_of_softecc=false
+CSET remaining_memory_locations=0
+CSET reset_memory_latch_a=false
+CSET reset_memory_latch_b=false
+CSET reset_priority_a=CE
+CSET reset_priority_b=CE
+CSET reset_type=SYNC
+CSET softecc=false
+CSET use_axi_id=false
+CSET use_bram_block=Stand_Alone
+CSET use_byte_write_enable=false
+CSET use_error_injection_pins=false
+CSET use_regcea_pin=false
+CSET use_regceb_pin=false
+CSET use_rsta_pin=false
+CSET use_rstb_pin=false
+CSET write_depth_a=231
+CSET write_width_a=16
+CSET write_width_b=16
 # END Parameters
 # BEGIN Extra information
-MISC pkg_timestamp=2012-11-21T20:07:40Z
+MISC pkg_timestamp=2012-11-19T16:22:25Z
 # END Extra information
 GENERATE
-# CRC: c6c0895f
+# CRC: a2b22f77

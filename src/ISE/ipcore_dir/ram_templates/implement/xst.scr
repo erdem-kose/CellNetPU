@@ -1,7 +1,6 @@
-
 run
 -ifmt VHDL
--ent ram_templates_exdes 
+-ent ram_templates_exdes
 -p xc6slx45-csg324-3
 -ifn xst.prj
 -write_timing_constraints No

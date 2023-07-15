@@ -75,11 +75,11 @@ use unisim.vcomponents.all;
 --------------------------------------------------------------------------------
 entity ram_generic_exdes is
   PORT (
-      A          : IN  STD_LOGIC_VECTOR(14-1-(4*0*boolean'pos(14>4)) downto 0)
+      A          : IN  STD_LOGIC_VECTOR(16-1-(4*0*boolean'pos(16>4)) downto 0)
                  := (OTHERS => '0');
       D          : IN  STD_LOGIC_VECTOR(16-1 downto 0)                := (OTHERS => '0');
-      DPRA       : IN  STD_LOGIC_VECTOR(14-1 downto 0)           := (OTHERS => '0');
-      SPRA       : IN  STD_LOGIC_VECTOR(14-1 downto 0)           := (OTHERS => '0');
+      DPRA       : IN  STD_LOGIC_VECTOR(16-1 downto 0)           := (OTHERS => '0');
+      SPRA       : IN  STD_LOGIC_VECTOR(16-1 downto 0)           := (OTHERS => '0');
       CLK        : IN  STD_LOGIC                                                := '0';
       WE         : IN  STD_LOGIC                                                := '0';
       I_CE       : IN  STD_LOGIC                                                := '1';
@@ -110,7 +110,7 @@ architecture xilinx of ram_generic_exdes is
       CLK                     : IN STD_LOGIC;
       WE                      : IN  STD_LOGIC;
       SPO                     : OUT STD_LOGIC_VECTOR(16-1 downto 0);
-      A                       : IN  STD_LOGIC_VECTOR(14-1-(4*0*boolean'pos(14>4)) downto 0)
+      A                       : IN  STD_LOGIC_VECTOR(16-1-(4*0*boolean'pos(16>4)) downto 0)
                               := (OTHERS => '0');
       D                       : IN  STD_LOGIC_VECTOR(16-1 downto 0)                := (OTHERS => '0')
 

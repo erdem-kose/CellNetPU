@@ -1,0 +1,106 @@
+
+
+NET "adrs[14]" IOSTANDARD = LVCMOS18;
+
+
+NET "data[15]" LOC = U1;
+NET "data[14]" LOC = U2;
+NET "data[13]" LOC = T1;
+NET "data[12]" LOC = T2;
+NET "data[11]" LOC = N1;
+NET "data[10]" LOC = N2;
+NET "data[9]" LOC = M1;
+NET "data[8]" LOC = M3;
+NET "data[7]" LOC = J1;
+NET "data[6]" LOC = J3;
+NET "data[5]" LOC = H1;
+NET "data[4]" LOC = H2;
+NET "data[3]" LOC = K1;
+NET "data[0]" LOC = L2;
+NET "data[1]" LOC = L1;
+NET "data[2]" LOC = K2;
+NET "adrs[12]" LOC = G6;
+NET "adrs[11]" LOC = D3;
+NET "adrs[10]" LOC = F4;
+NET "adrs[9]" LOC = D1;
+NET "adrs[8]" LOC = D2;
+NET "adrs[7]" LOC = H6;
+NET "adrs[6]" LOC = H3;
+NET "adrs[5]" LOC = H4;
+NET "adrs[4]" LOC = F3;
+NET "adrs[3]" LOC = L7;
+NET "adrs[2]" LOC = H5;
+NET "adrs[1]" LOC = J6;
+NET "adrs[0]" LOC = J7;
+NET "clk" LOC = L15;
+NET "en" LOC = A10;
+NET "rst" LOC = D14;
+NET "ready" LOC = U18;
+
+NET "adrs[12]" IOSTANDARD = LVCMOS18;
+NET "adrs[15]" IOSTANDARD = LVCMOS18;
+NET "adrs[13]" IOSTANDARD = LVCMOS18;
+NET "adrs[11]" IOSTANDARD = LVCMOS18;
+NET "adrs[10]" IOSTANDARD = LVCMOS18;
+NET "adrs[9]" IOSTANDARD = LVCMOS18;
+NET "adrs[8]" IOSTANDARD = LVCMOS18;
+NET "adrs[5]" IOSTANDARD = LVCMOS18;
+NET "adrs[6]" IOSTANDARD = LVCMOS18;
+NET "adrs[4]" IOSTANDARD = LVCMOS18;
+NET "adrs[3]" IOSTANDARD = LVCMOS18;
+NET "adrs[2]" IOSTANDARD = LVCMOS18;
+NET "adrs[1]" IOSTANDARD = LVCMOS18;
+NET "adrs[0]" IOSTANDARD = LVCMOS18;
+NET "data[15]" IOSTANDARD = LVCMOS18;
+NET "data[14]" IOSTANDARD = LVCMOS18;
+NET "data[13]" IOSTANDARD = LVCMOS18;
+NET "data[12]" IOSTANDARD = LVCMOS18;
+NET "data[11]" IOSTANDARD = LVCMOS18;
+NET "data[10]" IOSTANDARD = LVCMOS18;
+NET "data[9]" IOSTANDARD = LVCMOS18;
+NET "data[8]" IOSTANDARD = LVCMOS18;
+NET "data[7]" IOSTANDARD = LVCMOS18;
+NET "data[6]" IOSTANDARD = LVCMOS18;
+NET "data[5]" IOSTANDARD = LVCMOS18;
+NET "data[4]" IOSTANDARD = LVCMOS18;
+NET "data[3]" IOSTANDARD = LVCMOS18;
+NET "data[2]" IOSTANDARD = LVCMOS18;
+NET "data[1]" IOSTANDARD = LVCMOS18;
+NET "data[0]" IOSTANDARD = LVCMOS18;
+NET "clk" IOSTANDARD = LVCMOS33;
+NET "en" IOSTANDARD = LVCMOS33;
+NET "ready" IOSTANDARD = LVCMOS33;
+NET "rst" IOSTANDARD = LVCMOS33;
+#Created by Constraints Editor (xc6slx45-csg324-3) - 2016/10/14
+NET "clk" TNM_NET = "clk";
+TIMESPEC TS_clk = PERIOD "clk" 10 ns HIGH 50%;
+
+
+NET "wen[0]" LOC = P15;
+
+
+NET "wen[0]" IOSTANDARD = LVCMOS33;
+NET "adrs[7]" IOSTANDARD = LVCMOS18;
+
+
+# PlanAhead Generated IO constraints 
+NET "data[15]" SLEW = FAST;
+NET "data[14]" SLEW = FAST;
+NET "data[13]" SLEW = FAST;
+NET "data[12]" SLEW = FAST;
+NET "data[11]" SLEW = FAST;
+NET "data[10]" SLEW = FAST;
+NET "data[9]" SLEW = FAST;
+NET "data[8]" SLEW = FAST;
+NET "data[7]" SLEW = FAST;
+NET "data[6]" SLEW = FAST;
+NET "data[5]" SLEW = FAST;
+NET "data[4]" SLEW = FAST;
+NET "data[3]" SLEW = FAST;
+NET "data[2]" SLEW = FAST;
+NET "data[1]" SLEW = FAST;
+NET "data[0]" SLEW = FAST;
+NET "ready" SLEW = FAST;
+#Created by Constraints Editor (xc6slx45-csg324-3) - 2016/10/17
+NET "PROCESSOR/STATE_MACHINE/alu_clk" TNM_NET = PROCESSOR/STATE_MACHINE/alu_clk;
+TIMESPEC TS_PROCESSOR_STATE_MACHINE_alu_clk = PERIOD "PROCESSOR/STATE_MACHINE/alu_clk" 10 ns HIGH 50%;

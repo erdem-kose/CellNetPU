@@ -74,11 +74,10 @@ use unisim.vcomponents.all;
 entity fifo_exdes is
    PORT (
            CLK                       : IN  std_logic;
-           RST                       : IN  std_logic;
            WR_EN 		     : IN  std_logic;
            RD_EN                     : IN  std_logic;
-           DIN                       : IN  std_logic_vector(8-1 DOWNTO 0);
-           DOUT                      : OUT std_logic_vector(8-1 DOWNTO 0);
+           DIN                       : IN  std_logic_vector(16-1 DOWNTO 0);
+           DOUT                      : OUT std_logic_vector(16-1 DOWNTO 0);
            FULL                      : OUT std_logic;
            EMPTY                     : OUT std_logic);
 
@@ -95,11 +94,10 @@ architecture xilinx of fifo_exdes is
   component fifo is
    PORT (
            CLK                       : IN  std_logic;
-           RST                       : IN  std_logic;
            WR_EN 		     : IN  std_logic;
            RD_EN                     : IN  std_logic;
-           DIN                       : IN  std_logic_vector(8-1 DOWNTO 0);
-           DOUT                      : OUT std_logic_vector(8-1 DOWNTO 0);
+           DIN                       : IN  std_logic_vector(16-1 DOWNTO 0);
+           DOUT                      : OUT std_logic_vector(16-1 DOWNTO 0);
            FULL                      : OUT std_logic;
            EMPTY                     : OUT std_logic);
 
@@ -118,7 +116,6 @@ begin
   exdes_inst : fifo 
     PORT MAP (
            CLK                       => clk_i,
-           RST                       => rst,
            WR_EN 		     => wr_en,
            RD_EN                     => rd_en,
            DIN                       => din,

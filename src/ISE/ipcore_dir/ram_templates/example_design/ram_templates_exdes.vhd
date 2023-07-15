@@ -1,18 +1,23 @@
+ 
+ 
+ 
+
+
 
 
 --------------------------------------------------------------------------------
 --
--- Distributed Memory Generator Core - Top-level core wrapper
+-- BLK MEM GEN v7.1 Core - Top-level core wrapper
 --
 --------------------------------------------------------------------------------
 --
--- (c) Copyright 2009 - 2010 Xilinx, Inc. All rights reserved.
--- 
+-- (c) Copyright 2006-2010 Xilinx, Inc. All rights reserved.
+--
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
 -- international copyright and other intellectual property
 -- laws.
--- 
+--
 -- DISCLAIMER
 -- This disclaimer is not a license and does not grant any
 -- rights to the materials distributed herewith. Except as
@@ -34,7 +39,7 @@
 -- by a third party) even if such damage or loss was
 -- reasonably foreseeable or Xilinx had been advised of the
 -- possibility of the same.
--- 
+--
 -- CRITICAL APPLICATIONS
 -- Xilinx products are not designed or intended to be fail-
 -- safe, or for use in any application requiring fail-safe
@@ -48,82 +53,111 @@
 -- liability of any use of Xilinx products in Critical
 -- Applications, subject only to applicable laws and
 -- regulations governing limitations on product liability.
--- 
+--
 -- THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 -- PART OF THIS FILE AT ALL TIMES.
---
+
 --------------------------------------------------------------------------------
 --
+-- Filename: ram_templates_exdes.vhd
 --
 -- Description:
---   This is the actual DMG core wrapper.
+--   This is the actual BMG core wrapper.
+--
+--------------------------------------------------------------------------------
+-- Author: IP Solutions Division
+--
+-- History: August 31, 2005 - First Release
+--------------------------------------------------------------------------------
 --
 --------------------------------------------------------------------------------
 -- Library Declarations
 --------------------------------------------------------------------------------
 
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-library unisim;
-use unisim.vcomponents.all;
+LIBRARY UNISIM;
+USE UNISIM.VCOMPONENTS.ALL;
 
 --------------------------------------------------------------------------------
 -- Entity Declaration
 --------------------------------------------------------------------------------
-entity ram_templates_exdes is
+ENTITY ram_templates_exdes IS
   PORT (
-    CLK        : IN  STD_LOGIC                                                := '0';
-    WE         : IN  STD_LOGIC                                                := '0';
-    SPO        : OUT STD_LOGIC_VECTOR(16-1 downto 0);
-    A          : IN  STD_LOGIC_VECTOR(8-1-(4*0*boolean'pos(8>4)) downto 0)
-                 := (OTHERS => '0');
-    D          : IN  STD_LOGIC_VECTOR(16-1 downto 0)                := (OTHERS => '0')
-      );
+      --Inputs - Port A
+  
+    WEA            : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ADDRA          : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+  
+    DINA           : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+  
+    DOUTA          : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+    CLKA       : IN STD_LOGIC
 
-end ram_templates_exdes;
+
+  );
+
+END ram_templates_exdes;
 
 
+ARCHITECTURE xilinx OF ram_templates_exdes IS
 
-architecture xilinx of ram_templates_exdes is
-
-    SIGNAL CLK_i    : std_logic;
-    
-  component ram_templates is
+  COMPONENT BUFG IS
   PORT (
+     I      : IN STD_ULOGIC;
+     O      : OUT STD_ULOGIC
+  );
+  END COMPONENT;
 
-    CLK                     : IN STD_LOGIC;
-    WE                      : IN  STD_LOGIC;
-    SPO                     : OUT STD_LOGIC_VECTOR(16-1 downto 0);
-    A                       : IN  STD_LOGIC_VECTOR(8-1-(4*0*boolean'pos(8>4)) downto 0)
-                              := (OTHERS => '0');
-    D                       : IN  STD_LOGIC_VECTOR(16-1 downto 0)                := (OTHERS => '0')
+  COMPONENT ram_templates IS
+  PORT (
+      --Port A
+  
+    WEA        : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ADDRA      : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+  
+    DINA       : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+  
+    DOUTA      : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 
-);
-  end component;
-
-
-begin
-
-  dmg0 : ram_templates
-    port map (
-
-      CLK                     => CLK_i,
-      WE                      => WE,
-      SPO                     => SPO,
-      A                       => A,
-      D                       => D
-
-      );
-
-clk_buf: bufg
-    PORT MAP(
-      i => CLK,
-      o => CLK_i
-      );
+    CLKA       : IN STD_LOGIC
 
 
 
-end xilinx;
+  );
+  END COMPONENT;
+
+  SIGNAL CLKA_buf     : STD_LOGIC;
+  SIGNAL CLKB_buf     : STD_LOGIC;
+  SIGNAL S_ACLK_buf   : STD_LOGIC;
+
+BEGIN
+
+  bufg_A : BUFG
+    PORT MAP (
+     I => CLKA,
+     O => CLKA_buf
+     );
+
+
+
+  bmg0 : ram_templates
+    PORT MAP (
+      --Port A
+  
+      WEA        => WEA,
+      ADDRA      => ADDRA,
+  
+      DINA       => DINA,
+  
+      DOUTA      => DOUTA,
+
+      CLKA       => CLKA_buf
+
+
+    );
+
+END xilinx;
