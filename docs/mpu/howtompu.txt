@@ -1,3 +1,5 @@
+#Warning: Turkish document, will be translated to English later
+
 ISE ilk asama
 projenin "spartan6 xc6slx45 csg324 -3 speed grade" uzerine olduguna emin ol
 projeye yeni kaynak ekle,
