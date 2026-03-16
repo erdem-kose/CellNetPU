@@ -3,7 +3,7 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="D:/Egitim/ELEYLT-TezCalismasi/Work/v0_9/ISE/testbench_isim_beh.wdb" id="1" type="auto">
+      <db_ref path="./testbench_isim_beh.wdb" id="1" type="auto">
          <top_modules>
             <top_module name="cnn_components" />
             <top_module name="cnn_constants" />
