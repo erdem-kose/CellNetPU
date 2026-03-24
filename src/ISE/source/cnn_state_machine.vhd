@@ -101,7 +101,7 @@ begin
 		variable init_state : integer range 0 to 1 := 0;
 		
 		variable ii : integer range 0 to cacheHeightMAX := 0; --i. satir
-		variable ii_1d : integer range 0 to cacheHeightMAX*cacheWidthMAX := 0; --i. satir
+		variable ii_1d : integer range 0 to cacheHeightMAX*cacheWidthMAX := 0; --ii*cacheWidth (pre-computed)
 		variable jj : integer range 0 to cacheWidthMAX := 0; --j. sutun
 		
 		variable cache_lag : integer range 0 to cacheLagMAX := 0;
@@ -144,33 +144,33 @@ begin
 						end if;
 						if cache_lag=0 then--Assign Read Addresses
 							if (ii>=1 and ii<=cacheHeight and jj>=1 and jj<=cacheWidth) then
-								address:=(ii-1)*cacheWidth+(jj-1);
+								address:=ii_1d-cacheWidth+(jj-1);
 								u_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							end if;
 							if (ii>=0 and ii<=1 and jj>=1 and jj<=cacheWidth and init_state=0) then
-								address:=(cacheHeight+ii-2)*cacheWidth+(jj-2);
+								address:=cacheAddressShift+ii_1d-2*cacheWidth+(jj-2);
 								ideal_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (ii>=3 and ii<=cacheHeight and jj>=1 and jj<=cacheWidth) then
-								address:=(ii-3)*cacheWidth+(jj-2);
+								address:=ii_1d-3*cacheWidth+(jj-2);
 								ideal_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							end if;
 						elsif cache_lag=1 then--Assign Write Address
 							cache_wr_lag:=0;
 							if (ii>=0 and ii<=1 and jj>=2 and jj<=cacheWidth and init_state=0) then
-								address:=(cacheHeight+ii-2)*cacheWidth+(jj-2);
+								address:=cacheAddressShift+ii_1d-2*cacheWidth+(jj-2);
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (ii>=1 and ii<=2 and jj=0 and init_state=0) then
-								address:=(cacheHeight+ii-3)*cacheWidth+(cacheWidth-1);
+								address:=cacheAddressShift+ii_1d-3*cacheWidth+(cacheWidth-1);
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (ii>=3 and ii<=cacheHeight and jj>=2 and jj<=cacheWidth) then
-								address:=(ii-3)*cacheWidth+(jj-2);
+								address:=ii_1d-3*cacheWidth+(jj-2);
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (ii>=4 and ii<=cacheHeight and jj=0) then
-								address:=(ii-4)*cacheWidth+(cacheWidth-1);
+								address:=ii_1d-4*cacheWidth+(cacheWidth-1);
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (ii=0 and jj=0) then
-								address:=(cacheHeight+ii-3)*cacheWidth+(cacheWidth-1);
+								address:=cacheAddressShift+ii_1d-3*cacheWidth+(cacheWidth-1);
 								x_address<=std_logic_vector(to_unsigned(address,cacheAddressWidth));
 							elsif (jj=1) then
 							else

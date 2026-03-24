@@ -192,6 +192,9 @@ src/ISE/cnn_system_summary.html
 # --- Translate / Map / PAR outputs ---
 *.ngd
 *.ptwx
+*.bgn
+*.drc
+*.ut
 *_map.mrp
 *_map.ngm
 *_pad.txt
