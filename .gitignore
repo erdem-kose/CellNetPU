@@ -141,6 +141,7 @@ src/ISE/mpu/*.opt
 src/ISE/mpu/*.make
 src/ISE/mpu/*_incl.make
 src/ISE/mpu/*.bmm
+src/ISE/edkBmmFile.bmm
 src/ISE/mpu/*.bsb
 src/ISE/mpu/pn_processor_*
 src/ISE/mpu/*.makebehavdo.tcl
@@ -169,9 +170,42 @@ src/ISE/mpu/simulation/behavioral/*_wrapper.vhd
 src/ISE/mpu/simulation/behavioral/mpu.vhd
 src/ISE/mpu/simulation/behavioral/elaborate/
 
+# --- XST synthesis generated files ---
+*.cmd_log
+*.prj
+*.xst
+
+# --- Netlist constraint files (XPS-generated) ---
+*.ncf
+
+# --- Xilinx WebTalk usage data ---
+webtalk_pn.xml
+webtalk.log
+
 # =============================================
 # ISE project temp files
 # =============================================
 src/ISE/cnn_application.gise
 src/ISE/cnn_system_guide.ncd
 src/ISE/cnn_system_summary.html
+
+# --- Translate / Map / PAR outputs ---
+*.ngd
+*.ptwx
+*_map.mrp
+*_map.ngm
+*_pad.txt
+*_summary.xml
+*_usage.xml
+
+.claude
+
+src/ISE/cnn_system.stx
+src/ISE/mpu/XpsGuiSessionLock
+src/ISE/mpu/test_mergedMhs.mhs
+
+src/ISE/mpu/mpu.xpssim
+src/ISE/mpu/mpu.xpssyn
+src/ISE/mpu/mpu.xpsupb
+
+.goutputstream*

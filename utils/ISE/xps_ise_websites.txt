@@ -1,6 +1,0 @@
-https://forums.xilinx.com/t5/Embedded-Development-Tools/Setting-Elf-File-Association/td-p/168002
-
-https://www.xilinx.com/itp/xilinx10/help/platform_studio/ps_p_cxd_selecting_ise_project_in_project_navigator_and_launching_xps.htm
-https://www.xilinx.com/itp/xilinx10/help/platform_studio/ps_p_cxd_developing_your_embedded_hardware_platform_design.htm
-https://www.xilinx.com/itp/xilinx10/help/platform_studio/ps_p_app_creating_software_application_project.htm
-https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/pp_p_process_update_bitstream_processor_data_xps.htm

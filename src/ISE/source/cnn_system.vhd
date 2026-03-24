@@ -63,6 +63,34 @@ entity cnn_system is
 end cnn_system;
 
 architecture Behavioral of cnn_system is
+	-- Suppress top-level IOBUFs: MPU IP cores have their own
+	attribute buffer_type : string;
+	attribute buffer_type of mcbx_dram_we_n : signal is "none";
+	attribute buffer_type of mcbx_dram_udm : signal is "none";
+	attribute buffer_type of mcbx_dram_ras_n : signal is "none";
+	attribute buffer_type of mcbx_dram_odt : signal is "none";
+	attribute buffer_type of mcbx_dram_ldm : signal is "none";
+	attribute buffer_type of mcbx_dram_clk_n : signal is "none";
+	attribute buffer_type of mcbx_dram_clk : signal is "none";
+	attribute buffer_type of mcbx_dram_cke : signal is "none";
+	attribute buffer_type of mcbx_dram_cas_n : signal is "none";
+	attribute buffer_type of mcbx_dram_ba : signal is "none";
+	attribute buffer_type of mcbx_dram_addr : signal is "none";
+	attribute buffer_type of mcbx_dram_udqs_n : signal is "none";
+	attribute buffer_type of mcbx_dram_udqs : signal is "none";
+	attribute buffer_type of mcbx_dram_dqs_n : signal is "none";
+	attribute buffer_type of mcbx_dram_dqs : signal is "none";
+	attribute buffer_type of mcbx_dram_dq : signal is "none";
+	attribute buffer_type of mcbx_zio : signal is "none";
+	attribute buffer_type of mcbx_rzq : signal is "none";
+	attribute buffer_type of Ethernet_Lite_TX_CLK : signal is "none";
+	attribute buffer_type of Ethernet_Lite_RX_CLK : signal is "none";
+	attribute buffer_type of Ethernet_Lite_MDIO : signal is "none";
+	attribute buffer_type of QSPI_FLASH_SS : signal is "none";
+	attribute buffer_type of QSPI_FLASH_SCLK : signal is "none";
+	attribute buffer_type of QSPI_FLASH_IO1 : signal is "none";
+	attribute buffer_type of QSPI_FLASH_IO0 : signal is "none";
+
 	--for CLOCK
 	signal sys_clk: std_logic := '0';
 	signal mcu_clk: std_logic := '0';
