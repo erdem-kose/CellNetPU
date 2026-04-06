@@ -1,1 +1,214 @@
+# =============================================
+# CellNetPU - Xilinx ISE & MicroBlaze .gitignore
+# =============================================
+# Only hand-written source files are tracked.
+# Everything else under src/ISE/ is generated
+# from .mhs, .xco, .xise and can be rebuilt.
+# =============================================
+
+# --- Eclipse / SDK metadata ---
 .metadata
+
+# --- ISE generated project files ---
+*.gise
+*.cdk
+
+# --- Synthesis products ---
+*.ngc
+*.ngr
+*.ncd
+*.pcf
+*.syr
+*.bld
+*.blc
+*.lso
+*.xrpt
+*.srp
+
+# --- Place & Route / Timing ---
+*.par
+*.twr
+*.twx
+*.xpi
+*.map
+*.pad
+*.unroutes
+*.xwbt
+
+# --- Bitstreams & binaries ---
+*.bit
+*.mcs
+*.spi
+*.bin
+*.elf
+*.axf
+
+# --- Simulation artifacts ---
+*.wdb
+*.vcd
+*.ghw
+*.vvp
+*.asdb
+*.isim
+isim/
+work/
+
+# --- Object files & executables ---
+*.o
+*.a
+*.so
+*.dll
+*.exe
+*.jar
+
+# --- Logs & reports ---
+*.log
+*.log.bak
+*.rpt
+*.html
+*.csv
+*.out
+
+# --- Temp & backup ---
+*~
+*.bak
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Xilinx tool directories ---
+_xmsgs/
+_ngo/
+_impact/
+_xilbld/
+.Xil/
+xst/
+xlnx_auto_*/
+iseconfig/
+.webtalk*
+
+# --- License files ---
+*.lic
+*.license
+.flexlm*
+
+# --- IDE local settings ---
+.vscode/
+.idea/
+
+# --- Python ---
+__pycache__/
+*.pyc
+
+# =============================================
+# CoreGen / IP cores (rebuild from .xco)
+# =============================================
+src/ISE/ipcore_dir/_xmsgs/
+src/ISE/ipcore_dir/tmp/
+src/ISE/ipcore_dir/xlnx_auto_*/
+src/ISE/ipcore_dir/coregen.*
+src/ISE/ipcore_dir/*.lso
+src/ISE/ipcore_dir/*.asy
+src/ISE/ipcore_dir/*.sym
+src/ISE/ipcore_dir/*.ucf
+src/ISE/ipcore_dir/*.vho
+src/ISE/ipcore_dir/*.xdc
+src/ISE/ipcore_dir/*.xise
+src/ISE/ipcore_dir/*.ncf
+src/ISE/ipcore_dir/*_flist.txt
+src/ISE/ipcore_dir/*_xmdf.tcl
+src/ISE/ipcore_dir/edit_*.tcl
+src/ISE/ipcore_dir/update_*.tcl
+src/ISE/ipcore_dir/cnn_clocking/
+
+# =============================================
+# MicroBlaze / XPS (rebuild from .mhs + .xmp)
+# =============================================
+src/ISE/mpu.ncf
+src/ISE/mpu.synth.tcl
+src/ISE/mpu/__xps/
+src/ISE/mpu/SDK/
+src/ISE/mpu/implementation/
+src/ISE/mpu/synthesis/
+src/ISE/mpu/hdl/
+src/ISE/mpu/bootloops/
+src/ISE/mpu/etc/
+src/ISE/mpu/pcores/
+src/ISE/mpu/report/
+src/ISE/mpu/*.log
+src/ISE/mpu/*.opt
+src/ISE/mpu/*.make
+src/ISE/mpu/*_incl.make
+src/ISE/mpu/*.bmm
+src/ISE/edkBmmFile.bmm
+src/ISE/mpu/*.bsb
+src/ISE/mpu/pn_processor_*
+src/ISE/mpu/*.makebehavdo.tcl
+src/ISE/mpu/*.exportToSDK.tcl
+src/ISE/mpu/platgen.*
+src/ISE/mpu/memgen.*
+src/ISE/mpu/revup/
+
+# --- MicroBlaze simulation generated files ---
+# (rebuild by running XPS simulation export)
+src/ISE/mpu/simulation/behavioral/*.v
+src/ISE/mpu/simulation/behavioral/*.do
+src/ISE/mpu/simulation/behavioral/*.sh
+src/ISE/mpu/simulation/behavioral/*.bat
+src/ISE/mpu/simulation/behavioral/*.cmd
+src/ISE/mpu/simulation/behavioral/*.prj
+src/ISE/mpu/simulation/behavioral/*.lso
+src/ISE/mpu/simulation/behavioral/*.scr
+src/ISE/mpu/simulation/behavioral/*.mem
+src/ISE/mpu/simulation/behavioral/*.bmm
+src/ISE/mpu/simulation/behavioral/*.ini
+src/ISE/mpu/simulation/behavioral/*_wave.tcl
+src/ISE/mpu/simulation/behavioral/*_wave*.tcl
+src/ISE/mpu/simulation/behavioral/*_setup.tcl
+src/ISE/mpu/simulation/behavioral/*_wrapper.vhd
+src/ISE/mpu/simulation/behavioral/mpu.vhd
+src/ISE/mpu/simulation/behavioral/elaborate/
+
+# --- XST synthesis generated files ---
+*.cmd_log
+*.prj
+*.xst
+
+# --- Netlist constraint files (XPS-generated) ---
+*.ncf
+
+# --- Xilinx WebTalk usage data ---
+webtalk_pn.xml
+webtalk.log
+
+# =============================================
+# ISE project temp files
+# =============================================
+src/ISE/cnn_application.gise
+src/ISE/cnn_system_guide.ncd
+src/ISE/cnn_system_summary.html
+
+# --- Translate / Map / PAR outputs ---
+*.ngd
+*.ptwx
+*.bgn
+*.drc
+*.ut
+*_map.mrp
+*_map.ngm
+*_pad.txt
+*_summary.xml
+*_usage.xml
+
+.claude
+
+src/ISE/cnn_system.stx
+src/ISE/mpu/XpsGuiSessionLock
+src/ISE/mpu/test_mergedMhs.mhs
+
+src/ISE/mpu/mpu.xpssim
+src/ISE/mpu/mpu.xpssyn
+src/ISE/mpu/mpu.xpsupb
+
+.goutputstream*

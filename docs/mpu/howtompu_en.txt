@@ -1,0 +1,89 @@
+# MicroBlaze (MPU) Setup Guide
+
+## 1. Create ISE Project
+
+- Verify that the project targets "Spartan-6 XC6SLX45 CSG324 -3 speed grade".
+- Add a new source to the project and select "Embedded Processor" as the type.
+- Do not use spaces in the name.
+
+## 2. XPS (Xilinx Platform Studio) Configuration
+
+- When XPS opens, start the system setup with the BSB (Base System Builder) Wizard.
+- For the Atlys board, enter the Digilent "axi_bsb_lib" folder path in "peripheral repository search path".
+- Select "Single MicroBlaze" as the processor and choose "Throughput" optimization mode.
+- Configure peripherals, memory size, and operating frequency.
+
+## 3. Adding Peripherals
+
+- Add any additional peripherals needed from the XPS interface.
+- LMB IOModule is recommended; MCU-style usage is also supported.
+
+## 4. Generate Netlist
+
+- From the top menu, run Hardware -> Generate Netlist.
+- Wait for completion; this produces mpu.ngc and wrapper files.
+
+## 5. ISE Synthesis and Implementation
+
+- Return to ISE Project Navigator.
+- Run in order: Synthesize, Implement Design, and Generate Programming File.
+- Right-click on the MPU component and select "Export Hardware Design to SDK".
+
+## 6. SDK Setup
+
+- After "Export Hardware Design to SDK", the SDK opens automatically.
+- If it does not open, launch SDK manually from the ISE menu.
+
+### 6a. Create Board Support Package (BSP)
+
+- Create a new BSP project.
+- Select the exported "mpu_hw_platform" as the hardware platform.
+- Choose "Standalone" (bare-metal) as the OS.
+- Add required libraries: lwip140 (TCP/IP stack), xilisf (SPI Flash).
+- Click "Generate" to build the BSP. This step produces xparameters.h and libxil.a.
+
+### 6b. Create Application Project
+
+- Create a new "Application Project".
+- Select mpu_bsp as the BSP.
+- Choose "Empty Application" as the template.
+- Add the application source files to src/: main.c, sys/, and cnn/ directories.
+- If a linker script (lscript.ld) exists, copy it into src/.
+
+### 6c. Build
+
+- Right-click the project -> Build Project.
+- It should compile without errors; the output is mpu_sw.elf.
+
+## 7. Program the FPGA
+
+- In SDK, run Xilinx Tools -> Program FPGA.
+- In the Software Configuration section, select mpu_sw.elf as the ELF file.
+- system.bit should be selected as the bitstream.
+- Click "Program" to program the FPGA.
+
+## 8. Serial Terminal Connection
+
+- Open a serial terminal application (PuTTY, TeraTerm, etc.).
+- Settings: 921600 baud, 8 data bits, no parity, 1 stop bit.
+- After programming the FPGA, send these commands over UART:
+    0 -> Read header information
+    1 -> Load image
+    2 -> Run CNN learning algorithm
+    3 -> Retrieve processed image
+    4 -> Retrieve error values
+    5 -> Retrieve learned templates
+
+## 9. Debugging
+
+- In SDK, start a debug session via Run -> Debug Configurations -> Xilinx C/C++ Application (GDB).
+- Set breakpoints to step through the code.
+- Since MicroBlaze runs on the FPGA, hardware debug mode is required (via MDM).
+
+## 10. Important Notes
+
+- When using DDR2 memory, verify that caches are enabled (configured in sys_init.c).
+- If GPIO addresses were changed, check that xparameters.h is up to date.
+- After modifying the BSP, run "Re-generate BSP Sources".
+- Stack and heap sizes in lscript.ld are configured for the DDR2 region (default 64 MB).
+- Fixed-point format: 16-bit for data (6 integer + 10 fractional), 32-bit for errors (22 integer + 10 fractional).

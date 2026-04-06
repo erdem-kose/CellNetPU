@@ -1,24 +1,89 @@
-#Warning: Turkish document, will be translated to English later
+# MicroBlaze (MPU) Kurulum Rehberi
 
-ISE ilk asama
-projenin "spartan6 xc6slx45 csg324 -3 speed grade" uzerine olduguna emin ol
-projeye yeni kaynak ekle,
-"Embedded Processor" sec,
-adini gir ama bosluk kullanma,
+## 1. ISE Projesi Olusturma
 
-XPS acilinca 
-BSB Wizard ile sistem kurmaya evet de,
-Atlys icin "axi bsb lib" yolunu set project "peripheral repository search path"'e gir
-single microblaze ve throughput sec
-peripheral memory ve frekansý ayarla,
+- Proje ayarlarinda cihazin "Spartan-6 XC6SLX45 CSG324 -3 speed grade" oldugunu dogrula.
+- Projeye yeni bir kaynak ekle ve tur olarak "Embedded Processor" sec.
+- Isim girerken bosluk karakteri kullanma.
 
-arayuzden
-gerekli ekstra eklemeleri yap, lmb iomodule tavsiye edilir, mcu tarzi kullanilabilir
-ust barda hardware->Generate netlist
+## 2. XPS (Xilinx Platform Studio) Ayarlari
 
-ISE Tarafi
-sentezle,
-implement et,
-mpu'nun uzerine gelip "Export Hardware Design to SDK" de.
+- XPS acildiginda BSB (Base System Builder) Wizard ile sistem kurulumuna basla.
+- Atlys karti icin "peripheral repository search path" alanina Digilent "axi_bsb_lib" klasor yolunu gir.
+- Islemci olarak "Single MicroBlaze" sec, optimizasyon icin "Throughput" modunu sec.
+- Cevre birimleri, bellek boyutu ve calisma frekansini ayarla.
 
-SDK Tarafi
+## 3. Cevre Birimleri Ekleme
+
+- Arayuzden gerekli ek cevre birimlerini ekle.
+- LMB IOModule tavsiye edilir; MCU tarzi kullanima da uygundur.
+
+## 4. Netlist Olusturma
+
+- Ust menuden Hardware -> Generate Netlist komutunu calistir.
+- Tamamlanmasini bekle; mpu.ngc ve sarmalayici dosyalar olusacaktir.
+
+## 5. ISE Sentez ve Uygulama
+
+- ISE Project Navigator'a don.
+- Sirasiyla sentezle (Synthesize), uygulamayi yap (Implement Design) ve bitstream olustur (Generate Programming File).
+- MPU bilesenine sag tiklayip "Export Hardware Design to SDK" komutunu calistir.
+
+## 6. SDK Kurulumu
+
+- "Export Hardware Design to SDK" isleminden sonra SDK otomatik acilir.
+- Acilmazsa ISE menusunden SDK'yi manuel olarak baslat.
+
+### 6a. BSP (Board Support Package) Olusturma
+
+- Yeni bir BSP projesi olustur.
+- Donanim platformu olarak export edilen "mpu_hw_platform" projesini sec.
+- Isletim sistemi olarak "Standalone" (bare-metal) sec.
+- Gerekli kutuphaneleri ekle: lwip140 (TCP/IP stack), xilisf (SPI Flash).
+- "Generate" ile BSP'yi derle. Bu adim xparameters.h ve libxil.a dosyalarini olusturur.
+
+### 6b. Uygulama Projesi Olusturma
+
+- Yeni bir "Application Project" olustur.
+- BSP olarak mpu_bsp'yi sec.
+- Sablon olarak "Empty Application" sec.
+- src/ klasorune uygulama kodlarini ekle: main.c, sys/ ve cnn/ dosyalari.
+- Linker script dosyasi (lscript.ld) varsa src/ klasorune kopyala.
+
+### 6c. Derleme
+
+- Projeye sag tikla -> Build Project.
+- Hatasiz derlenmesi gerekir; cikti olarak mpu_sw.elf dosyasi olusur.
+
+## 7. FPGA'ya Yukleme
+
+- SDK'da Xilinx Tools -> Program FPGA komutunu calistir.
+- Software Configuration bolumunde ELF dosyasi olarak mpu_sw.elf'i sec.
+- Bitstream olarak system.bit secili olmalidir.
+- "Program" butonuyla FPGA'yi programla.
+
+## 8. Seri Terminal Baglantisi
+
+- Bir seri terminal uygulamasi ac (PuTTY, TeraTerm, vb.).
+- Ayarlar: 921600 baud, 8 data bit, no parity, 1 stop bit.
+- FPGA programlandiktan sonra UART uzerinden su komutlari gonder:
+    0 -> Baslik bilgisi oku
+    1 -> Goruntu yukle
+    2 -> CNN ogrenme algoritmasini calistir
+    3 -> Islenmis goruntuyu al
+    4 -> Hata degerlerini al
+    5 -> Ogrenmis sablonlari al
+
+## 9. Debug
+
+- SDK'da Run -> Debug Configurations -> Xilinx C/C++ Application (GDB) ile debug oturumu baslat.
+- Breakpoint koyarak adim adim hata ayiklamasi yapilabilir.
+- FPGA uzerinde MicroBlaze calistigi icin donanim debug modu gerekir (MDM uzerinden).
+
+## 10. Onemli Notlar
+
+- DDR2 bellek kullaniminda cache'lerin aktif oldugunu dogrula (sys_init.c icinde ayarlanir).
+- GPIO adreslerini degistirdiysen xparameters.h dosyasinin guncel oldugunu kontrol et.
+- BSP'de degisiklik yaptiktan sonra "Re-generate BSP Sources" komutunu calistir.
+- lscript.ld dosyasinda stack ve heap boyutlari DDR2 alanina gore ayarlidir (varsayilan 64 MB).
+- Sabit nokta formati: veri icin 16 bit (6 tamsayi + 10 kesir), hata icin 32 bit (22 tamsayi + 10 kesir).
